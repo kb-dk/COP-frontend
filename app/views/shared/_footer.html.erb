@@ -1,0 +1,36 @@
+<footer class="pageFooter dkbreveFooter">
+
+  <div class="container">
+
+    <div class="row text-center hidden-xs">
+      <span>
+          <a href="http://www.kb.dk" target="_blank">
+            <span><%= image_tag("kb.png", :alt => "Det Kgl. Bibliotek") %></span>
+            <span>
+              <h5>Det Kgl. Bibliotek</h5>
+            </span>
+          </a>
+      </span>
+      <span>|</span>
+      <span>
+         <%= link_to 'Cookie- og Privatlivspolitik', page_path('politik'), class: '' %>
+      </span>
+      <span>|</span>
+      <span>
+          <a href="http://kontaktbiblioteket.kb.dk/q.php"><span class="glyphicon glyphicon-envelope"></span> info@kb.dk</a>
+      </span>
+    </div>
+    <div class="visible-xs-block">
+      <div class="col-sm-12">
+        <a href="http://www.kb.dk" target="_blank">
+          Det Kgl. Bibliotek
+        </a>
+      </div>
+      <div class="col-sm-12"><%= link_to 'Om Danmarks Breve', page_path('about'), class: '' %></div>
+      <div class="col-sm-12"><%= link_to 'Cookie- og Privatlivspolitik', page_path('politik'), class: '' %></div>
+      <div class="col-sm-12">
+        <a href="http://kontaktbiblioteket.kb.dk/q.php"><span class="glyphicon glyphicon-envelope"></span> info@kb.dk</a></div>
+    </div>
+  </div>
+</footer>
+

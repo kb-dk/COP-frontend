@@ -1,0 +1,18 @@
+footer.pageFooter.dkbreveFooter{
+  @include gradient-vertical(#fff, #FFF);
+  box-shadow: 0 -10px 6px -6px #ccc;
+  font-family: $font-family-nav;
+  padding: 20px 0 10px 0;
+  span{
+    display: inline-block;
+    padding: 0 2px;
+  }
+  margin:0;
+  img{
+    width:17px;
+    vertical-align: top;
+  }
+  .media-body{
+    padding-top:3px;
+  }
+}
