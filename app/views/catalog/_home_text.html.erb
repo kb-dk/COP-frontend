@@ -1,0 +1,11 @@
+<div class="page-header row">
+
+</div>
+
+<% #exhibits.each_slice(3).each do |row| %>
+    <div class="row"><!-- start main content row -->
+      <%= render partial: 'edition_card' %>
+    </div>
+<% #end %>
+
+
