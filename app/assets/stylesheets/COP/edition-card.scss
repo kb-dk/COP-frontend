@@ -1,0 +1,219 @@
+//$linkcolor :  #fa8072;  // Salmon
+//
+//.edition-card{
+//  box-sizing: border-box;
+//  float: left;
+//  height: 350px;
+//  margin: 0 -16px 16px 16px;
+//  max-width: 287px;
+//  padding: 0 16px 0 0;
+//  -webkit-perspective: 1000;
+//  perspective: 1000;
+//  position: relative;
+//
+//  .flipper {
+//    position: relative;
+//    -webkit-transform-style: preserve-3d;
+//    transform-style: preserve-3d;
+//    -webkit-transition: 0.6s;
+//    transition: 0.6s;
+//  }
+//  .card-face {
+//    -webkit-backface-visibility: hidden;
+//    backface-visibility: hidden;
+//    background-color: #f5f5f5;
+//    border: 1px solid #e3e3e3;
+//    height: 350px;
+//    left: 0;
+//    position: absolute;
+//    top: 0;
+//    -webkit-transform-style: preserve-3d;
+//    transform-style: preserve-3d;
+//    -webkit-transition: 0.6s;
+//    transition: 0.6s;
+//    width: 100%;
+//  }
+//  .card-front {
+//    -webkit-transform: rotateY(0deg);
+//    transform: rotateY(0deg);
+//    z-index: 2;
+//    img{
+//      height: 269px;
+//      -o-object-fit: cover;
+//      object-fit: cover;
+//      width: 100%;
+//    }
+//    .card-title {
+//      padding-left: 10px;
+//      padding-right: 10px;
+//      padding-top: 10px;
+//      text-align: center;
+//      font-size: 17px;
+//      line-height: 1.2;
+//      color: $linkcolor;
+//    }
+//  }
+//  .card-back {
+//    box-shadow: inset 2px 2px 5px -2px #e3e3e3;
+//    padding: 0 16px;
+//    -webkit-transform: rotateY(-180deg);
+//    transform: rotateY(-180deg);
+//  }
+//}
+
+$edition-card-height:350px;
+
+.edition-card {
+  box-sizing: border-box;
+  float: left;
+  height: $edition-card-height;
+  margin: 0 -1 * $edition-card-gutter $edition-card-gutter $edition-card-gutter;
+  //               image width        +       gutter         + border (x2)
+  max-width: $edition-card-image-size + $edition-card-gutter + 2px;
+  padding: 0 $edition-card-gutter 0 0;
+  perspective: 1000; // for flip animation
+  position: relative;
+
+  .flipper {
+    position: relative;
+    transform-style: preserve-3d;
+    transition: 0.6s;
+  }
+
+  &.hover .flipper,
+  &:hover .flipper {
+    -ms-filter: "FlipH"; // autoprefixer doesn't handle this case.
+    filter: FlipH;
+    transform: rotateY(180deg);
+  }
+}
+
+.card-face {
+  backface-visibility: hidden;
+  background-color: $edition-card-bg;
+  border: 1px solid $edition-card-border;
+  height: $edition-card-height;
+  left: 0;
+  position: absolute;
+  top: 0;
+  transform-style: preserve-3d;
+  transition: 0.6s;
+  width: 100%;
+}
+
+.card-title {
+  @extend .h5;
+  @extend .text-center;
+
+  font-size: $font-size-h4;
+  line-height: 1.2;
+}
+
+.card-front {
+  transform: rotateY(0deg);
+  z-index: 2;
+
+  img {
+    height: $edition-card-image-size;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  .card-title {
+    padding-left: $padding-small-horizontal;
+    padding-right: $padding-small-horizontal;
+    padding-top: $padding-large-vertical;
+  }
+
+  .unpublished {
+    @extend .center-block;
+
+    font-size: $font-size-base;
+    margin-top: -1em;
+    position: relative;
+    width: 15ch;
+
+    + .card-title {
+      padding-top: 0;
+    }
+  }
+}
+
+.card-back {
+  box-shadow: $edition-card-shadow;
+  padding: 0 $edition-card-gutter;
+  transform: rotateY(-180deg);
+
+  .card-title {
+    border-bottom: 1px dotted $edition-card-border;
+    line-height: $headings-line-height;
+    margin-bottom: $padding-base-vertical;
+    padding-bottom: $padding-base-vertical;
+  }
+
+  .subtitle {
+    @extend .h5;
+    @extend .text-center;
+    line-height: $headings-line-height;
+  }
+
+  .description {
+    font-size: $font-size-h6;
+  }
+
+  .visit-edition {
+    bottom: $edition-card-gutter;
+    position: absolute;
+  }
+}
+
+.nav.tags {
+  display: inline-block;
+}
+
+// between the small and medium breakpoints, reduce the size of the image by a little bit
+@media (min-width: $screen-sm-min) and (max-width: $screen-md-max) {
+
+  // calculate the size of one full grid column
+  $reduce-edition-card-image-size: ((($container-sm - $grid-gutter-width) / $grid-columns) - ($grid-gutter-width / 2));
+
+  .edition-card,
+  .card-face {
+    height: $edition-card-height - $reduce-edition-card-image-size;
+  }
+
+  .card-front,
+  .card-back {
+    img {
+      height: $edition-card-image-size - $reduce-edition-card-image-size;
+    }
+  }
+}
+
+.center-btn {
+  left: 50%;
+  position: absolute;
+
+  .btn {
+    left: -50%;
+    position: relative;
+  }
+}
+
+// For the medium breakpoint, reduce the max width of the .edition-card to align right-edge of row correctly
+@media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
+  .edition-card {
+
+    // each card is 3 columns wide
+    max-width: 3 * ($container-md / $grid-columns) - $padding-xs-horizontal;
+  }
+}
+
+// For the small breakpoint, reduce the max width of the .edition-card to align right-edge of row correctly
+@media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+  .edition-card {
+
+    // each card is 4 columns wide
+    max-width: 4 * ($container-sm / $grid-columns) - $padding-xs-horizontal;
+  }
+}
