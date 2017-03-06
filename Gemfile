@@ -48,6 +48,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'better_errors'
+  gem 'xray-rails'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -66,9 +67,8 @@ gem 'devise-guests', '~> 0.5'
 gem 'high_voltage', '~> 3.0.0'
 #Used in openseadragon
 gem 'font-awesome-rails'
+
 # kb cookie policy
 gem 'kbcookie', '>=0.0.0', :git => 'https://github.com/Det-Kongelige-Bibliotek/kbcookie.git'
 # Makes it possible to xraying the partials from the browser
-group :development do
-  gem 'xray-rails'
-end
+

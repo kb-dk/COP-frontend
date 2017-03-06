@@ -97,7 +97,8 @@ class CatalogController < ApplicationController
     #   The ordering of the field names is the order of the display
     config.add_show_field 'cobject_title_ssi', label: 'Title'
     config.add_show_field 'creator_tsim', label: 'Creator'
-    config.add_show_field 'mods_ts', label: 'mods'
+
+    #config.add_show_field 'mods_ts', label: 'mods'
 
 
     # "fielded" search configuration. Used by pulldown among other places.
