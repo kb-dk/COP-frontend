@@ -3,6 +3,8 @@ class CatalogController < ApplicationController
 
   include Blacklight::Catalog
 
+  before_action :set_id, only: [:show,:track]
+
   configure_blacklight do |config|
     ## Class for sending and receiving requests from a search index
     # config.repository_class = Blacklight::Solr::Repository
@@ -147,5 +149,21 @@ class CatalogController < ApplicationController
     # Configuration for autocomplete suggestor
     config.autocomplete_enabled = true
     config.autocomplete_path = 'suggest'
+  end
+
+  def cobject
+    id = "/#{params[:medium]}/#{params[:collection]}/#{params[:year]}/#{params[:month]}/#{params[:edition]}/#{params[:cobjectId]}"
+    @response, @document = fetch id
+    respond_to do |format|
+      format.html { setup_next_and_previous_documents
+                    render 'show'}
+      format.json { render json: { response: { document: @document } } }
+      additional_export_formats(@document, format)
+    end
+  end
+
+  private
+  def set_id
+    params[:id] = "/#{params[:medium]}/#{params[:collection]}/#{params[:year]}/#{params[:month]}/#{params[:edition]}/#{params[:cobjectId]}" if params[:medium].present?
   end
 end
