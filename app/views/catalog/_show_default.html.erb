@@ -1,24 +1,23 @@
 <% doc_presenter = show_presenter(document) %>
 
-<div class="openseadragon-container col-md-8">
-  <div id="kbOSDInstance">
-    <div class="kbOSDViewer">
-      <div class="kbOSDToolbar"></div>
-      <div class="kbOSDContent"></div>
-    </div>
+<div id="row">
+<div id="kbOSDInstance" class="col-md-7">
+  <div class="kbOSDViewer">
+    <div class="kbOSDToolbar"></div>
+    <div class="kbOSDContent"></div>
   </div>
 </div>
-<div id="col-md-4">
+<div id="metadata" class="col-md-5">
   <dl class="dl-horizontal  dl-invert">
     <% document_show_fields(document).each do |field_name, field| -%>
         <% if should_render_show_field? document, field %>
-            <dt class="blacklight-<%= field_name.parameterize %>"><%= render_document_show_field_label document, field: field_name %></dt>
-            <dd class="blacklight-<%= field_name.parameterize %>"><%= doc_presenter.field_value field_name %></dd>
+            <dt><%= render_document_show_field_label document, field: field_name %></dt>
+            <dd ><%= doc_presenter.field_value field_name %></dd>
         <% end -%>
     <% end -%>
   </dl>
 </div>
-
+</div>
 
 <script type="text/javascript">
     var url = <%= @document['content_metadata_image_iiif_info_ssm'].to_s.html_safe %>;
