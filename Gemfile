@@ -62,6 +62,13 @@ end
 gem 'rsolr', '~> 1.0'
 gem 'devise'
 gem 'devise-guests', '~> 0.5'
-
+#Makes it possible to find a file path using fx. page_path
+gem 'high_voltage', '~> 3.0.0'
 #Used in openseadragon
 gem 'font-awesome-rails'
+# kb cookie policy
+gem 'kbcookie', '>=0.0.0', :git => 'https://github.com/Det-Kongelige-Bibliotek/kbcookie.git'
+# Makes it possible to xraying the partials from the browser
+group :development do
+  gem 'xray-rails'
+end
