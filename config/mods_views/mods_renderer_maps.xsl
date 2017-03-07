@@ -9,9 +9,9 @@
                xmlns:md="http://www.loc.gov/mods/v3"
                version="1.0">
 
-    <xsl:param name="isoplaces" select="document('iso3166.xml')"/>
+    <xsl:param name="isoplaces" select="document('./iso3166.xml')"/>
 
-    <xsl:include href="../../common_xslt/render_event.xsl"/>
+    <xsl:include href="./common_xslt/render_event.xsl"/>
 
     <xsl:template name="mods_renderer">
 
