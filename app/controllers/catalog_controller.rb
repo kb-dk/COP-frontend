@@ -17,7 +17,9 @@ class CatalogController < ApplicationController
 
     ## Default parameters to send to solr for all search-like requests. See also SearchBuilder#processed_parameters
     config.default_solr_params = {
-      rows: 10
+        rows: 10,
+        # Exclude the luftfoto images from everywhere
+        :fq => ['-cobject_edition_ssi:"/images/luftfo/2011/maj/luftfoto"']
     }
 
     # solr path which will be added to solr base url before the other solr params.
@@ -69,8 +71,8 @@ class CatalogController < ApplicationController
     #  (useful when user clicks "more" on a large facet and wants to navigate alphabetically across a large set of results)
     # :index_range can be an array or range of prefixes that will be used to create the navigation (note: It is case sensitive when searching values)
 
-    config.add_facet_field 'cobject_edition_ssi', label: 'Edition'
-    config.add_facet_field 'subject_topic_id_ssim', label: 'Kategori'
+    config.add_facet_field 'cobject_edition_ssi', label: 'Edition', helper_method: :show_edition_name, collapse: false, limit: 20
+    config.add_facet_field 'subject_topic_id_ssim', label: 'Kategori', helper_method: :show_category_name, collapse: false, limit: 10
     #config.add_facet_field 'subject_topic_facet', label: 'Topic', limit: 20, index_range: 'A'..'Z'
 
     #config.add_facet_field 'example_pivot_field', label: 'Pivot Field', :pivot => ['format', 'language_facet']
@@ -121,10 +123,6 @@ class CatalogController < ApplicationController
     # since we aren't specifying it otherwise.
 
     config.add_search_field 'all_fields', label: 'All Fields' do |field|
-      # Exclude the luftfoto images from the search results
-      field.solr_parameters = {
-          :fq => ['-cobject_edition_ssi:"/images/luftfo/2011/maj/luftfoto"']
-      }
       # Free text search in these fields: title, creator, description
       field.solr_local_parameters = {
           :qf => 'cobject_title_ssi^100 creator_tsim^80 description_tsim^50'
@@ -135,12 +133,7 @@ class CatalogController < ApplicationController
     # case for a BL "search field", which is really a dismax aggregate
     # of Solr search fields.
 
-
     config.add_search_field('creator') do |field|
-      # Exclude the luftfoto images from the search results
-      field.solr_parameters = {
-          :fq => ['-cobject_edition_ssi:"/images/luftfo/2011/maj/luftfoto"']
-      }
       field.solr_local_parameters = {
           qf: 'creator_tsim',
           pf: 'creator_tsim'
