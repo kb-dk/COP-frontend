@@ -52,6 +52,8 @@ GEM
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
       rack (>= 0.9.0)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
     blacklight (6.7.3)
       bootstrap-sass (~> 3.2)
       deprecation
@@ -228,6 +230,7 @@ PLATFORMS
 
 DEPENDENCIES
   better_errors
+  binding_of_caller
   blacklight (~> 6.0)
   byebug
   coffee-rails (~> 4.2)
