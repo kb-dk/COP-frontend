@@ -147,6 +147,12 @@ class CatalogController < ApplicationController
       }
     end
 
+    config.add_search_field('editions') do |field|
+      field.solr_parameters = {
+          :fq => ['medium_ssi:editions']
+      }
+    end
+
     # "sort results by" select (pulldown)
     # label in pulldown is followed by the name of the SOLR field to sort by and
     # whether the sort is ascending or descending (it must be asc or desc
@@ -179,4 +185,9 @@ class CatalogController < ApplicationController
   def set_id
     params[:id] = "/#{params[:medium]}/#{params[:collection]}/#{params[:year]}/#{params[:month]}/#{params[:edition]}/#{params[:cobjectId]}" if params[:medium].present?
   end
+
+  def fetch_editions
+    search_results({search_field: 'editions'})
+  end
+  helper_method :fetch_editions
 end
