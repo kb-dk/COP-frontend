@@ -122,7 +122,12 @@ class CatalogController < ApplicationController
     # solr request handler? The one set in config[:default_solr_parameters][:qt],
     # since we aren't specifying it otherwise.
 
-    config.add_search_field 'all_fields', label: 'All Fields'
+    config.add_search_field 'all_fields', label: 'All Fields' do |field|
+      # Free text search in these fields: title, creator, description
+      field.solr_local_parameters = {
+          :qf => 'cobject_title_ssi^100 creator_tsim^80 description_tsim^50'
+      }
+    end
 
     # Now we see how to over-ride Solr request handler defaults, in this
     # case for a BL "search field", which is really a dismax aggregate
