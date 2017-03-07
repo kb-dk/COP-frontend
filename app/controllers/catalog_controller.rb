@@ -17,7 +17,9 @@ class CatalogController < ApplicationController
 
     ## Default parameters to send to solr for all search-like requests. See also SearchBuilder#processed_parameters
     config.default_solr_params = {
-      rows: 10
+        rows: 10,
+        # Exclude the luftfoto images from everywhere
+        :fq => ['-cobject_edition_ssi:"/images/luftfo/2011/maj/luftfoto"']
     }
 
     # solr path which will be added to solr base url before the other solr params.
@@ -120,27 +122,13 @@ class CatalogController < ApplicationController
     # solr request handler? The one set in config[:default_solr_parameters][:qt],
     # since we aren't specifying it otherwise.
 
-    config.add_search_field 'all_fields', label: 'All Fields' do |field|
-      # Exclude the luftfoto images from the search results
-      field.solr_parameters = {
-          :fq => ['-cobject_edition_ssi:"/images/luftfo/2011/maj/luftfoto"']
-      }
-      # Free text search in these fields: title, creator, description
-      field.solr_local_parameters = {
-          :qf => 'cobject_title_ssi^100 creator_tsim^80 description_tsim^50'
-      }
-    end
+    config.add_search_field 'all_fields', label: 'All Fields'
 
     # Now we see how to over-ride Solr request handler defaults, in this
     # case for a BL "search field", which is really a dismax aggregate
     # of Solr search fields.
 
-
     config.add_search_field('creator') do |field|
-      # Exclude the luftfoto images from the search results
-      field.solr_parameters = {
-          :fq => ['-cobject_edition_ssi:"/images/luftfo/2011/maj/luftfoto"']
-      }
       field.solr_local_parameters = {
           qf: 'creator_tsim',
           pf: 'creator_tsim'
