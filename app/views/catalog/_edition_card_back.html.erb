@@ -1,5 +1,5 @@
 <h2 class="card-title">
- title
+  <%= edition[:name_ssi]%>
 </h2>
 
 <p class="subtitle">
@@ -13,7 +13,7 @@ subtitle
       <%#= content_tag(:span,"&hellip;".html_safe, class: "visible-sm visible-md") %>
       <span class="hidden-sm hidden-md">
         <%#= exhibit.description.slice(168, exhibit.description.length) %>
-        Description
+        <%= edition[:description_tdsim].join(' ')%>
       </span>
     <% #end %>
   </p>
