@@ -91,13 +91,15 @@ class CatalogController < ApplicationController
     #   The ordering of the field names is the order of the display
     config.add_index_field 'cobject_title_ssi', label: 'Title'
     config.add_index_field 'creator_tsim', label: 'Creator'
+    config.add_index_field 'description_tsim', label: 'Description'
     config.add_index_field 'pub_dat_tsim', label: 'Pub date'
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
     config.add_show_field 'cobject_title_ssi', label: 'Title'
     config.add_show_field 'creator_tsim', label: 'Creator'
-    config.add_show_field 'mods_ts', label: 'mods'
+    config.add_show_field 'description_tsim', label: 'Description'
+    # config.add_show_field 'mods_ts', label: 'mods'
 
 
     # "fielded" search configuration. Used by pulldown among other places.
@@ -118,8 +120,16 @@ class CatalogController < ApplicationController
     # solr request handler? The one set in config[:default_solr_parameters][:qt],
     # since we aren't specifying it otherwise.
 
-    config.add_search_field 'all_fields', label: 'All Fields'
-
+    config.add_search_field 'all_fields', label: 'All Fields' do |field|
+      # Exclude the luftfoto images from the search results
+      field.solr_parameters = {
+          :fq => ['-cobject_edition_ssi:"/images/luftfo/2011/maj/luftfoto"']
+      }
+      # Free text search in these fields: title, creator, description
+      field.solr_local_parameters = {
+          :qf => 'cobject_title_ssi^100 creator_tsim^80 description_tsim^50'
+      }
+    end
 
     # Now we see how to over-ride Solr request handler defaults, in this
     # case for a BL "search field", which is really a dismax aggregate
@@ -127,10 +137,13 @@ class CatalogController < ApplicationController
 
 
     config.add_search_field('creator') do |field|
- #     field.solr_parameters = { :'spellcheck.dictionary' => 'author' }
+      # Exclude the luftfoto images from the search results
+      field.solr_parameters = {
+          :fq => ['-cobject_edition_ssi:"/images/luftfo/2011/maj/luftfoto"']
+      }
       field.solr_local_parameters = {
-        qf: 'creator_tsim',
-        pf: 'creator_tsim'
+          qf: 'creator_tsim',
+          pf: 'creator_tsim'
       }
     end
 

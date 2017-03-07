@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/Det-Kongelige-Bibliotek/kbcookie.git
+  revision: aa797344e75246c609313ccad28ea7f0a40430ad
+  specs:
+    kbcookie (0.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -85,8 +91,11 @@ GEM
     faraday (0.11.0)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.17)
+    font-awesome-rails (4.7.0.1)
+      railties (>= 3.2, < 5.1)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
+    high_voltage (3.0.0)
     i18n (0.8.1)
     jbuilder (2.6.3)
       activesupport (>= 3.0.0, < 5.2)
@@ -224,8 +233,11 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise
   devise-guests (~> 0.5)
+  font-awesome-rails
+  high_voltage (~> 3.0.0)
   jbuilder (~> 2.5)
   jquery-rails
+  kbcookie (>= 0.0.0)!
   listen (~> 3.0.5)
   puma (~> 3.0)
   rails (~> 5.0.1)
