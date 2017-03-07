@@ -1,10 +1,16 @@
+<% result, editions = fetch_editions %>
+<% editions.each do |edi| %>
+
+
 <div class="col-xs-12 col-sm-4 edition-card">
   <div class="flipper">
     <div class="card-front card-face">
-      <%= render 'edition_card_front' %>
+      <%= render 'edition_card_front', edition: edi %>
     </div>
     <div class="card-back card-face">
-      <%= render 'edition_card_back' %>
+      <%= render 'edition_card_back', edition: edi %>
     </div>
   </div>
 </div>
+
+<% end %>
