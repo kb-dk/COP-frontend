@@ -9,7 +9,8 @@ class Finder
   def self.get_doc_by_id(id)
     query = "id:#{id}"
     response = get_solr.get 'select', :params => {:q => query}
-    return response['response']['docs']
+    # Return the first document
+    return response['response']['docs'].first
   end
 
 end
