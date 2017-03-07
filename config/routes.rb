@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  
+  scope "(:locale)", :locale => /en|da/ do
+
   mount Blacklight::Engine => '/'
   root to: "catalog#index"
     concern :searchable, Blacklight::Routes::Searchable.new
@@ -27,4 +28,5 @@ Rails.application.routes.draw do
   get ':medium/:collection/:year/:month/:edition/:cobjectId/track', to: 'catalog#track'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  end
 end
