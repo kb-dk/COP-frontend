@@ -8,11 +8,24 @@ This xsl does the formatting of metadata for a landing page
                xmlns:md="http://www.loc.gov/mods/v3"
                version="1.0" >
 
+  <xsl:param name="resource_type_config" select="document('./resource-type.xml')"/>
+  <xsl:param name="cataloging_language" select="'da'"/>
   <xsl:param name="isoplaces" select="document('./iso3166.xml')"/>
   <xsl:include href="./render_event.xsl"/>
-  <xsl:output encoding="UTF-8" indent="yes" method="xml"/>
+  <xsl:output encoding="UTF-8" omit-xml-declaration="yes"  indent="yes" method="xml"/>
 
   <xsl:template match="/">
+    <xsl:choose>
+      <xsl:when test="md:mods">
+	<xsl:call-template name="mods_renderer"/>
+      </xsl:when>
+      <xsl:otherwise>
+	<xsl:apply-templates/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template match="md:modsCollection">
     <xsl:call-template name="mods_renderer"/>
   </xsl:template>
 
@@ -302,15 +315,15 @@ This xsl does the formatting of metadata for a landing page
 	  <!-- START NOTE -->
 	  <xsl:for-each select="md:mods/md:note[@type='content'and not(@transliteration='rex')]">
 	    <xsl:element name="li">
-	      <xsl:if test="position()=1">
-		<strong xml:lang="en">Note:</strong>
-		<strong xml:lang="da">Note:</strong>
-	      </xsl:if>
 	      <xsl:attribute name="lang">
 		<xsl:call-template name="get_language">
 		  <xsl:with-param name="cataloging_language" select="$cataloging_language" />
 		</xsl:call-template>
 	      </xsl:attribute>
+	      <xsl:if test="position()=1">
+		<strong xml:lang="en">Note:</strong>
+		<strong xml:lang="da">Note:</strong>
+	      </xsl:if>
 	      <xsl:value-of select="."/>
 	      <br/>
 	    </xsl:element>
