@@ -5,7 +5,7 @@
 <div class="col-xs-12 col-sm-4 edition-card">
   <div class="flipper">
     <div class="card-front card-face">
-      <%= render 'edition_card_front', edition: edi %>
+      <%= render 'edition_card_front', edition: edi, img_url: get_edition_image_url(edi.id) %>
     </div>
     <div class="card-back card-face">
       <%= render 'edition_card_back', edition: edi %>
