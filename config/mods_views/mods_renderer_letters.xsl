@@ -8,16 +8,26 @@ in the metadatasection of a landing page -->
                xmlns:md="http://www.loc.gov/mods/v3"
                version="1.0" >
 
+  <xsl:param name="resource_type_config" select="document('./resource-type.xml')"/>
   <xsl:param name="isoplaces" select="document('./iso3166.xml')"/>
   <xsl:param name="cataloging_language" select="'da'"/>
   <xsl:include href="./render_event.xsl"/>
-
+  <xsl:output encoding="UTF-8" omit-xml-declaration="yes"  indent="yes" method="xml"/>
 
   <xsl:template match="/">
-    <xsl:call-template name="mods_renderer"/>
+    <xsl:choose>
+      <xsl:when test="md:mods">
+	<xsl:call-template name="mods_renderer"/>
+      </xsl:when>
+      <xsl:otherwise>
+	<xsl:apply-templates/>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 
-
+  <xsl:template match="md:modsCollection">
+    <xsl:call-template name="mods_renderer"/>
+  </xsl:template>
 
   <xsl:template name="mods_renderer">
     <xsl:attribute name="class">rightGrid</xsl:attribute>
