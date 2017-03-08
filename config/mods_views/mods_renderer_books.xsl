@@ -9,6 +9,7 @@ This xsl does the formatting of metadata for a landing page
                version="1.0" >
 
   <xsl:param name="cataloging_language" select="'da'"/>
+  <xsl:param name="resource_type_config" select="document('./resource-type.xml')"/>
 
   <xsl:include href="./render_event.xsl"/>
   <xsl:output encoding="UTF-8" omit-xml-declaration="yes"  indent="yes" method="xml"/>
