@@ -101,7 +101,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'cobject_title_ssi', label: 'Title'
     config.add_show_field 'creator_tsim', label: 'Creator'
     config.add_show_field 'description_tsim', label: 'Description'
-    # config.add_show_field 'mods_ts', label: 'mods'
+    config.add_show_field 'mods_ts', label: 'mods',  helper_method: :show_mods_record
 
 
     # "fielded" search configuration. Used by pulldown among other places.
