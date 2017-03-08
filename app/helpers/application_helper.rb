@@ -14,4 +14,14 @@ module ApplicationHelper
     doc['node_tdsim'].first unless doc['node_tdsim'].blank?
   end
 
+  # Helper to return an array with all the ids of the subcategories for a facet
+  def find_subcategories subject_id
+    ids = []
+    docs = Finder.get_subcats_by_id subject_id
+    docs.each do |doc|
+      ids << doc['id']
+    end
+    return ids
+  end
+
 end
