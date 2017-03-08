@@ -350,12 +350,14 @@ in the metadatasection of a landing page -->
 		<strong xml:lang="en">Note:</strong>
 		<strong xml:lang="da">Note:</strong>
 	      </xsl:if>
+	      <span>
 	      <xsl:attribute name="lang">
 		<xsl:call-template name="get_language">
 		  <xsl:with-param name="cataloging_language" select="$cataloging_language" />
 		</xsl:call-template>
 	      </xsl:attribute>
 	      <xsl:value-of select="."/>
+	      </span>
 	      <br/>
 	    </xsl:element>
 	  </xsl:for-each>
