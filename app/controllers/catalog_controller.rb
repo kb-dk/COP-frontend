@@ -188,7 +188,7 @@ class CatalogController < ApplicationController
     res,docs = search_results({f:{cobject_edition_ssi: [editionId]},per_page: 1})
     url = ""
     if docs.size > 0
-      url = docs.first['thumbnail_square_url_ssm'].first
+      url = docs.first['thumbnail_url_ssm'].first
     end
     url
   end
