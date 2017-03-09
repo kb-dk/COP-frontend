@@ -180,7 +180,17 @@ class CatalogController < ApplicationController
   end
 
   def fetch_editions
-    search_results({search_field: 'editions'})
+    search_results({search_field: 'editions', rows: 100})
   end
   helper_method :fetch_editions
+
+  def get_edition_image_url(editionId)
+    res,docs = search_results({f:{cobject_edition_ssi: [editionId]},per_page: 1})
+    url = ""
+    if docs.size > 0
+      url = docs.first['thumbnail_url_ssm'].first
+    end
+    url
+  end
+  helper_method :get_edition_image_url
 end
