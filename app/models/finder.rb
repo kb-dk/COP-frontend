@@ -16,7 +16,7 @@ class Finder
   # Function to return the solr documents that are subcategories, searching by id
   def self.get_subcats_by_id id
     query = "parent_ssi:#{id}" # Set the query
-    response = get_solr.get 'select', :params => {:q => query}
+    response = get_solr.get 'select', :params => {:q => query, :rows => 1000} # Return all the subcategories (by default the rows: 10)
     return response['response']['docs'] # Return all the documents
   end
 
