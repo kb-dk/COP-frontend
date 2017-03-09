@@ -21,7 +21,15 @@ module ApplicationHelper
     docs.each do |doc|
       ids << doc['id']
     end
+    # Returns an array with the subcategories' ids
     return ids
+  end
+
+  # Helper to find the top_category of an edition
+  def get_top_category edition_id
+    # Find the document with the specific id
+    doc = Finder.get_doc_by_id(edition_id)
+    doc['top_cat_ssi']
   end
 
 end
