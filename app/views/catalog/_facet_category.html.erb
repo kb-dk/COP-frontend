@@ -36,7 +36,7 @@
       end %>
 
   <!--and now the paginator renders only the subcategories we want-->
-  <%= paginator = facet_paginator(facet_field, display_facet) %>
+  <% paginator = facet_paginator(facet_field, display_facet) %>
   <%= render_facet_limit_list paginator, field_name %>
 
   <% unless paginator.last_page? || params[:action] == "facet" %>
