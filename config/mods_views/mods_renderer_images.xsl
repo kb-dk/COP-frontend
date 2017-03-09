@@ -36,12 +36,7 @@ in the metadatasection of a landing page -->
     <xsl:element name="div">
       <xsl:attribute name="class">rightGrid</xsl:attribute>
       <section id="metaData">
-	<header>
-	  <h2 xml:lang="da">Fakta</h2>
-	  <h2 xml:lang="en">Facts</h2>
-	</header>
 	<ul>
-
 	  <!-- START METADATAELEMENTS -->
 	  <!--  START TITLE ELEMENTS -->
 	  <!-- START TITLE -->

@@ -33,10 +33,6 @@ This xsl does the formatting of metadata for a landing page
     <xsl:element name="div">
       <xsl:attribute name="class">rightGrid</xsl:attribute>
       <section id="metaData">
-	<header>
-	  <h2 xml:lang="da">Fakta</h2>
-	  <h2 xml:lang="en">Facts</h2>
-	</header>
 	<ul>
 	  <!-- START METADATAELEMENTS -->
 	  <!--  START TITLE ELEMENTS -->
@@ -49,22 +45,20 @@ This xsl does the formatting of metadata for a landing page
 		  <strong xml:lang="en">Title:</strong>
 		  <xsl:element name="span">
 		    <xsl:attribute name="dir">ltr</xsl:attribute>
-		    <xsl:element name="span">
-		      <xsl:attribute name="lang">
-			<xsl:call-template name="get_language">
-			  <xsl:with-param name="cataloging_language" select="$cataloging_language" />
-			</xsl:call-template>
-		      </xsl:attribute>
+		    <xsl:attribute name="lang">
+		      <xsl:call-template name="get_language">
+			<xsl:with-param name="cataloging_language" select="$cataloging_language" />
+		      </xsl:call-template>
+		    </xsl:attribute>
 		      <xsl:apply-templates select="(md:nonSort|md:title)[not(@transliteration='rex')]"/>
-		    </xsl:element>
-		    <xsl:element name="span">
-		      <xsl:attribute name="lang">
-			<xsl:call-template name="get_language">
-			  <xsl:with-param name="cataloging_language" select="$cataloging_language" />
-			</xsl:call-template>
-		      </xsl:attribute>
-		      <xsl:if test="position()&lt;last() and last()&gt;1"><xsl:text>; </xsl:text></xsl:if>
-		    </xsl:element>
+		  </xsl:element>
+		  <xsl:element name="span">
+		    <xsl:attribute name="lang">
+		      <xsl:call-template name="get_language">
+			<xsl:with-param name="cataloging_language" select="$cataloging_language" />
+		      </xsl:call-template>
+		    </xsl:attribute>
+		    <xsl:if test="position()&lt;last() and last()&gt;1"><xsl:text>; </xsl:text></xsl:if>
 		  </xsl:element>
 		</xsl:if>
 		<xsl:text>
