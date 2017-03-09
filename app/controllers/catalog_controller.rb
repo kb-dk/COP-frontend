@@ -47,6 +47,7 @@ class CatalogController < ApplicationController
     # solr field configuration for search results/index views
     config.index.title_field = 'cobject_title_ssi'
     config.index.display_type_field = 'format'
+    config.index.thumbnail_field = 'thumbnail_url_ssm'
 
     # solr field configuration for document/show views
     #config.show.title_field = 'title_display'
