@@ -180,7 +180,7 @@ class CatalogController < ApplicationController
   end
 
   def fetch_editions
-    search_results({search_field: 'editions'})
+    search_results({search_field: 'editions', rows: 100})
   end
   helper_method :fetch_editions
 
