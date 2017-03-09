@@ -12,7 +12,7 @@ da:
       next: 'Næste &raquo;'
 
   blacklight:
-    application_name: 'Blacklight'
+    application_name: 'Digitale samlinger'
 
     header_links:
       login: 'Log ind'
