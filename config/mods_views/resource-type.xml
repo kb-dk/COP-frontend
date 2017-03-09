@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+   Translation from mods resource types into danish translation.
+   Called from rss2fsiviewer
+-->
+<property>
+  <entry key="text">tekst</entry>
+  <entry key="cartographic">kartografisk materiale</entry>
+  <entry key="still image">billeder, todimensionalt billedmateriale</entry>
+  <entry key="moving image">film, filmoptagelse</entry>
+  <entry key="three dimensional object">Genstand, 3-dimensionalt billedmateriale</entry>
+  <entry key="software, multimedia">elektronisk materiale</entry>
+  <entry key="mixed material">sammensat materiale</entry>
+  <entry key="notated music">noder</entry>
+  <entry key="sound recording">indspilninger</entry>
+  <entry key="sound recording-musical">indspilninger, musik</entry>
+  <entry key="sound recording-nonmusical">indspilninger (uanset indhold)</entry>
+</property>

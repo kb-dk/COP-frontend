@@ -32,4 +32,17 @@ module ApplicationHelper
     doc['top_cat_ssi']
   end
 
+  def show_mods_record args
+    # Get hold of the mods record from the solr doc and transform it in relation to the medium
+    mods = args[:document]['processed_mods_ts']
+    xslt_file = 'mods_renderer_' + params['medium'] + '.xsl'
+    mods_dom = Nokogiri::XML(mods)
+    xslt_file_path      = Rails.root.join('config', 'mods_views', xslt_file )
+    lang_selector_sheet = Rails.root.join('config', 'mods_views', 'choose_lang.xsl')
+    stylesheet          = Nokogiri::XSLT(File.open(xslt_file_path))
+    lang_selector       = Nokogiri::XSLT(File.open(lang_selector_sheet))
+    transformed_doc     = lang_selector.transform(stylesheet.transform(mods_dom, {}),["lang","'da'"])
+    transformed_doc.to_s.html_safe
+  end
+
 end

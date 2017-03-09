@@ -102,7 +102,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'cobject_title_ssi', label: 'Title'
     config.add_show_field 'creator_tsim', label: 'Creator'
     config.add_show_field 'description_tsim', label: 'Description'
-    # config.add_show_field 'mods_ts', label: 'mods'
+    config.add_show_field 'mods_ts', label: 'mods',  helper_method: :show_mods_record
 
 
     # "fielded" search configuration. Used by pulldown among other places.
@@ -181,7 +181,17 @@ class CatalogController < ApplicationController
   end
 
   def fetch_editions
-    search_results({search_field: 'editions'})
+    search_results({search_field: 'editions', rows: 100})
   end
   helper_method :fetch_editions
+
+  def get_edition_image_url(editionId)
+    res,docs = search_results({f:{cobject_edition_ssi: [editionId]},per_page: 1})
+    url = ""
+    if docs.size > 0
+      url = docs.first['thumbnail_url_ssm'].first
+    end
+    url
+  end
+  helper_method :get_edition_image_url
 end
