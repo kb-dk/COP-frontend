@@ -72,3 +72,6 @@ gem 'font-awesome-rails'
 gem 'kbcookie', '>=0.0.0', :git => 'https://github.com/Det-Kongelige-Bibliotek/kbcookie.git'
 # Makes it possible to xraying the partials from the browser
 
+# Add some translation files
+gem 'devise-i18n'
+gem 'rails-i18n', '~> 5.0.0'
