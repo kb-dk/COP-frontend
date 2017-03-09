@@ -1,13 +1,43 @@
 <ul class="facet-values list-unstyled">
 
-  <% edition_facet = params[:f][:cobject_edition_ssi].first.to_s %>
-  <% edition_facet = get_top_category(edition_facet) %>
+  <!--if there are facet parameters-->
+  <% unless params[:f].nil? %>
+      <!--if there is an edition facet-->
+      <% unless params[:f][:cobject_edition_ssi].nil? %>
+          <!--take the first one-->
+          <% edition_facet = params[:f][:cobject_edition_ssi].first.to_s %>
+      <% end %>
+      <!--if there are category facets-->
+      <% unless params[:f][:subject_topic_id_ssim].nil? %>
+          <!--take the last one, because there can be many and FOR NOW I assume the last is very down in the tree-->
+          <% category_facet = params[:f][:subject_topic_id_ssim].last.to_s %>
+      <% end %>
+  <% end %>
+  <!--for the edition, find the top category so you can search for the subcategories-->
+  <% top_cat_edition_facet = get_top_category(edition_facet) unless edition_facet.blank? %>
 
-  <%= find_subcategories(edition_facet)%>
+  <!--if there is a category facet-->
+  <% if !category_facet.blank? %>
+      <!--find the subcategories of this category-->
+      <% subcat_array = find_subcategories(category_facet) %>
+  <% else %>
+      <!--else find the subcategories of the top category of the edition-->
+      <% subcat_array = find_subcategories(top_cat_edition_facet) %>
+  <% end %>
 
+  <!--display facets, are the ones that BL by default would print (class: Blacklight::Solr::Response::Facets::FacetField)
+  <!-- so we iterate throught the array of the facets and we delete the ones that do NOT match the subcategories array-->
+      <% display_facet.items.delete_if do |x|
+        if !subcat_array.include? x.value
+          true
+        else
+          false
+        end
+      end %>
+
+  <!--and now the paginator renders only the subcategories we want-->
   <%= paginator = facet_paginator(facet_field, display_facet) %>
   <%= render_facet_limit_list paginator, field_name %>
-
 
   <% unless paginator.last_page? || params[:action] == "facet" %>
     <li class="more_facets_link">
