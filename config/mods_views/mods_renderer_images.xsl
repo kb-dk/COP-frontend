@@ -36,12 +36,7 @@ in the metadatasection of a landing page -->
     <xsl:element name="div">
       <xsl:attribute name="class">rightGrid</xsl:attribute>
       <section id="metaData">
-	<header>
-	  <h2 xml:lang="da">Fakta</h2>
-	  <h2 xml:lang="en">Facts</h2>
-	</header>
 	<ul>
-
 	  <!-- START METADATAELEMENTS -->
 	  <!--  START TITLE ELEMENTS -->
 	  <!-- START TITLE -->
@@ -350,12 +345,14 @@ in the metadatasection of a landing page -->
 		<strong xml:lang="en">Note:</strong>
 		<strong xml:lang="da">Note:</strong>
 	      </xsl:if>
+	      <span>
 	      <xsl:attribute name="lang">
 		<xsl:call-template name="get_language">
 		  <xsl:with-param name="cataloging_language" select="$cataloging_language" />
 		</xsl:call-template>
 	      </xsl:attribute>
 	      <xsl:value-of select="."/>
+	      </span>
 	      <br/>
 	    </xsl:element>
 	  </xsl:for-each>
