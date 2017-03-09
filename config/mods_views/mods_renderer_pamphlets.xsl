@@ -49,8 +49,8 @@ This xsl does the formatting of metadata for a landing page
 		    <xsl:attribute name="dir">ltr</xsl:attribute>
 		    <xsl:element name="span">
 		      <xsl:attribute name="lang">
-			<xsl:call-template name="get_language"
->			  <xsl:with-param name="cataloging_language" select="$cataloging_language" />
+			<xsl:call-template name="get_language">
+			  <xsl:with-param name="cataloging_language" select="$cataloging_language" />
 			</xsl:call-template>
 		      </xsl:attribute>
 		      <xsl:apply-templates select="(md:nonSort|md:title)[not(@transliteration='rex')]"/>
