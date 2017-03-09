@@ -16,7 +16,7 @@ module ApplicationHelper
 
   def show_mods_record args
     # Get hold of the mods record from the solr doc and transform it in relation to the medium
-    mods = args[:document]['mods_ts']
+    mods = args[:document]['processed_mods_ts']
     xslt_file = 'mods_renderer_' + params['medium'] + '.xsl'
     mods_dom = Nokogiri::XML(mods)
     xslt_file_path      = Rails.root.join('config', 'mods_views', xslt_file )
