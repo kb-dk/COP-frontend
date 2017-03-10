@@ -1,7 +1,11 @@
-.navbar-brand{
-  background: transparent url(asset-path('logo.jpg')) no-repeat top left!important;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+#header-navbar {
+  box-shadow: 0 10px 6px -6px #ccc;
+
+  .navbar-brand {
+    background: transparent url(asset-path('KB_logo.jpg')) no-repeat top left !important;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
 }
