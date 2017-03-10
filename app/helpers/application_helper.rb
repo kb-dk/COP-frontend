@@ -14,6 +14,24 @@ module ApplicationHelper
     doc['node_tdsim'].first unless doc['node_tdsim'].blank?
   end
 
+  # Helper to return an array with all the ids of the subcategories for a facet
+  def find_subcategories subject_id
+    ids = []
+    docs = Finder.get_subcats_by_id subject_id
+    docs.each do |doc|
+      ids << doc['id']
+    end
+    # Returns an array with the subcategories' ids
+    return ids
+  end
+
+  # Helper to find the top_category of an edition
+  def get_top_category edition_id
+    # Find the document with the specific id
+    doc = Finder.get_doc_by_id(edition_id)
+    doc['top_cat_ssi']
+  end
+
   def show_mods_record args
     # Get hold of the mods record from the solr doc and transform it in relation to the medium
     mods = args[:document]['processed_mods_ts']
