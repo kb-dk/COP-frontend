@@ -1,6 +1,6 @@
 <% result, editions = fetch_editions %>
 <% editions.each do |edi| %>
-<a href="#">
+<a href="/?f[cobject_edition_ssi][]=<%= edi[:id] %>&q=&search_field=all_fields">
 <div class="col-xs-12 col-sm-4 edition-card">
   <div class="flipper">
     <div class="card-front card-face">
