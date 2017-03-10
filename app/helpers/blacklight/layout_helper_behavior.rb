@@ -29,7 +29,7 @@ module Blacklight
     # Classes used for sizing the main content of a Blacklight page
     # @return [String]
     def main_content_classes
-      'col-md-7 col-sm-8'
+      'col-md-9 col-sm-8'
     end
 
     ##
