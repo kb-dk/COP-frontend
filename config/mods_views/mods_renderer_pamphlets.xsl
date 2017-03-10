@@ -35,10 +35,6 @@ This xsl does the formatting of metadata for a landing page
     <xsl:element name="div">
       <xsl:attribute name="class">rightGrid</xsl:attribute>
       <section id="metaData">
-	<header>
-	  <h2 xml:lang="da">Fakta</h2>
-	  <h2 xml:lang="en">Facts</h2>
-	</header>
 	<ul>
 	  <!-- START METADATAELEMENTS -->
 	  <!--  START TITLE ELEMENTS -->
@@ -53,8 +49,8 @@ This xsl does the formatting of metadata for a landing page
 		    <xsl:attribute name="dir">ltr</xsl:attribute>
 		    <xsl:element name="span">
 		      <xsl:attribute name="lang">
-			<xsl:call-template name="get_language"
->			  <xsl:with-param name="cataloging_language" select="$cataloging_language" />
+			<xsl:call-template name="get_language">
+			  <xsl:with-param name="cataloging_language" select="$cataloging_language" />
 			</xsl:call-template>
 		      </xsl:attribute>
 		      <xsl:apply-templates select="(md:nonSort|md:title)[not(@transliteration='rex')]"/>
@@ -364,13 +360,15 @@ This xsl does the formatting of metadata for a landing page
 		</xsl:otherwise>
 	      </xsl:choose>
 	      <xsl:for-each select="md:mods/md:genre">
-		<xsl:attribute name="xml:lang">
-		  <xsl:value-of select="@xml:lang"/>
-		</xsl:attribute>
-		<xsl:value-of select="."/>
-		<xsl:call-template name="break_semicolon">
-		  <xsl:with-param name="cataloging_language" select="$cataloging_language" />
-		</xsl:call-template>
+		<span>
+		  <xsl:attribute name="lang">
+		    <xsl:value-of select="@xml:lang"/>
+		  </xsl:attribute>
+		  <xsl:value-of select="."/>
+		  <xsl:call-template name="break_semicolon">
+		    <xsl:with-param name="cataloging_language" select="$cataloging_language" />
+		  </xsl:call-template>
+		</span>
 	      </xsl:for-each>
 	    </xsl:element>
 	  </xsl:if>
@@ -890,18 +888,14 @@ This xsl does the formatting of metadata for a landing page
 		  <xsl:element name="a">
 		    <xsl:attribute name="xml:lang">da</xsl:attribute>
 		    <xsl:attribute name="href">
-		      <xsl:value-of select="concat('/editions/any/2009/jul/editions/da/',
-					    '?query=',$escapedQuery,
-					    '&amp;searchAcrossEditions=true&amp;orderBy=&amp;title=&amp;creator=&amp;person=&amp;location=&amp;notBefore=&amp;notAfter=')"/>
+		      <xsl:value-of select="concat('/','?search_field=all_fields&amp;q=',$escapedQuery)"/>,
 		    </xsl:attribute>
 		    <xsl:value-of select="."/>
 		  </xsl:element>
 		  <xsl:element name="a">
 		    <xsl:attribute name="xml:lang">en</xsl:attribute>
 		    <xsl:attribute name="href">
-		      <xsl:value-of select="concat('/editions/any/2009/jul/editions/en/',
-					    '?query=',$escapedQuery,
-					    '&amp;searchAcrossEditions=true&amp;orderBy=&amp;title=&amp;creator=&amp;person=&amp;location=&amp;notBefore=&amp;notAfter=')"/>
+		      <xsl:value-of select="concat('/','?search_field=all_fields&amp;q=',$escapedQuery)"/>,
 		    </xsl:attribute>
 		    <xsl:value-of select="."/>
 		  </xsl:element>
