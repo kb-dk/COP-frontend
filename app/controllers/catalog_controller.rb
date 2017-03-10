@@ -6,6 +6,11 @@ class CatalogController < ApplicationController
   before_action :set_id, only: [:show,:track]
 
   configure_blacklight do |config|
+    config.view.gallery.partials = [:index_header, :index]
+    config.view.masonry.partials = [:index]
+
+    config.show.tile_source_field = :content_metadata_image_iiif_info_ssm
+    config.show.partials.insert(1, :openseadragon)
     ## Class for sending and receiving requests from a search index
     # config.repository_class = Blacklight::Solr::Repository
     #
@@ -42,6 +47,7 @@ class CatalogController < ApplicationController
     # solr field configuration for search results/index views
     config.index.title_field = 'cobject_title_ssi'
     config.index.display_type_field = 'format'
+    config.index.thumbnail_field = 'thumbnail_url_ssm'
 
     # solr field configuration for document/show views
     #config.show.title_field = 'title_display'
