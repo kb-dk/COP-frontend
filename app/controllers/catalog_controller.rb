@@ -24,7 +24,7 @@ class CatalogController < ApplicationController
     config.default_solr_params = {
         rows: 10,
         # Exclude the luftfoto images from everywhere
-        :fq => ['-cobject_edition_ssi:"/images/luftfo/2011/maj/luftfoto"']
+        :fq => ['-cobject_edition_ssi:"/images/luftfo/2011/maj/luftfoto"', '-medium_ssi:categories','-medium_ssi:editions']
     }
 
     # solr path which will be added to solr base url before the other solr params.
