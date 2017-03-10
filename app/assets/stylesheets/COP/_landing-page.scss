@@ -1,3 +1,14 @@
+#metadata{
+  ul
+  {
+    list-style-type: none;
+  }
+
+  ul li {
+    margin:0 0 10px 0;
+  }
+}
+
 #kbOSDInstance {
 
   height: 680px ;
@@ -7,3 +18,4 @@
     border-width: 1px;
   }
 }
+
