@@ -1,4 +1,9 @@
-#search-navbar{
+#search-navbar, #search-navbar .form-wrapper {
   min-height: 70px !important;
-
+  form {
+    position: absolute;
+    top: 50%;
+    margin-top: -15px;
+  }
 }
+
