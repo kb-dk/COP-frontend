@@ -1,5 +1,8 @@
 #search-navbar, #search-navbar .form-wrapper {
   min-height: 70px !important;
+  .search-query-form{
+    width: 100% !important;
+  }
   form {
     position: absolute;
     top: 50%;
