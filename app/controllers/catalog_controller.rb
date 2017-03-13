@@ -6,7 +6,7 @@ class CatalogController < ApplicationController
   before_action :set_id, only: [:show,:track]
 
   configure_blacklight do |config|
-    config.view.gallery.partials = [:index_header, :index]
+    config.view.gallery.partials = [:index_header]
     config.view.masonry.partials = [:index]
 
     config.show.tile_source_field = :content_metadata_image_iiif_info_ssm
