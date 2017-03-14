@@ -63,6 +63,8 @@ end
 gem 'rsolr', '~> 1.0'
 gem 'devise'
 gem 'devise-guests', '~> 0.5'
+gem 'devise_cas_authenticatable'
+
 #Makes it possible to find a file path using fx. page_path
 gem 'high_voltage', '~> 3.0.0'
 #Used in openseadragon
