@@ -302,22 +302,23 @@ This xsl does the formatting of metadata for a landing page
             <xsl:for-each select="md:mods/
 				    md:name[@type='personal'][md:role/md:roleTerm[@type='code']='ctb']">
               <xsl:if test="position()=1">
-                <xsl:element name="dd">
+                <xsl:element name="dt">
                   <strong xml:lang="en">Contributor:</strong>
                   <strong xml:lang="da">Anden bidragsyder:</strong>
                 </xsl:element>
               </xsl:if>
-              <xsl:element name="dt">
+              <xsl:element name="dd">
                 <xsl:attribute name="lang">
                   <xsl:call-template name="get_language">
                     <xsl:with-param name="cataloging_language" select="$cataloging_language"/>
                   </xsl:call-template>
                 </xsl:attribute>
                 <xsl:apply-templates select="md:namePart[not(@transliteration='rex')]"/>
-              </xsl:element>
+
               <xsl:call-template name="break_semicolon">
                 <xsl:with-param name="cataloging_language" select="$cataloging_language"/>
               </xsl:call-template>
+              </xsl:element>
             </xsl:for-each>
 
             <xsl:for-each select="md:mods/md:name[md:role/md:roleTerm[@type='code']='src']">
@@ -327,10 +328,12 @@ This xsl does the formatting of metadata for a landing page
                   <strong xml:lang="da">Skriver:</strong>
                 </xsl:element>
               </xsl:if>
+              <xsl:element name="dd">
               <xsl:apply-templates select="md:namePart[not(@transliteration='rex')]"/>
               <xsl:call-template name="break_semicolon">
                 <xsl:with-param name="cataloging_language" select="$cataloging_language"/>
               </xsl:call-template>
+              </xsl:element>
             </xsl:for-each>
 
             <xsl:for-each select="md:mods/md:name[md:role/md:roleTerm[@type='code']='pat']">
@@ -340,10 +343,12 @@ This xsl does the formatting of metadata for a landing page
                   <strong xml:lang="da">Protektor:</strong>
                 </xsl:element>
               </xsl:if>
+              <xsl:element name="dd">
               <xsl:apply-templates select="md:namePart[not(@transliteration='rex')]"/>
               <xsl:call-template name="break_semicolon">
                 <xsl:with-param name="cataloging_language" select="$cataloging_language"/>
               </xsl:call-template>
+              </xsl:element>
             </xsl:for-each>
           </xsl:if>
           <!-- END NAME ELEMENTS -->
