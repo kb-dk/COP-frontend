@@ -281,12 +281,12 @@ This xsl does the formatting of metadata for a landing page
             <xsl:for-each select="md:mods/
 				    md:name[@type='personal'][md:role/md:roleTerm[@type='code']='prt']">
               <xsl:if test="position()=1">
-                <xsl:element name="dd">
+                <xsl:element name="dt">
                   <strong xml:lang="en">Printer:</strong>
                   <strong xml:lang="da">Trykker:</strong>
                 </xsl:element>
               </xsl:if>
-              <xsl:element name="dt">
+              <xsl:element name="dd">
                 <xsl:attribute name="lang">
                   <xsl:call-template name="get_language">
                     <xsl:with-param name="cataloging_language" select="$cataloging_language"/>
@@ -603,7 +603,7 @@ This xsl does the formatting of metadata for a landing page
             </xsl:for-each>
 
             <xsl:if test="md:mods/md:originInfo/md:dateCreated[@xml:lang]">
-              <span dir="ltr">
+              <xsl:element name="dd">
                 <xsl:for-each select="md:mods/md:originInfo/md:dateCreated[@xml:lang]">
                   <xsl:if test="position()=1">
                     <xsl:text>(</xsl:text>
@@ -621,7 +621,7 @@ This xsl does the formatting of metadata for a landing page
                     </xsl:otherwise>
                   </xsl:choose>
                 </xsl:for-each>
-              </span>
+              </xsl:element>
             </xsl:if>
 
             <xsl:if test="not(md:mods/md:originInfo/md:dateCreated[@xml:lang])">
