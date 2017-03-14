@@ -7,7 +7,7 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.6'
+gem 'rails', '~> 5.0.1'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server
@@ -19,7 +19,7 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
+gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -63,6 +63,8 @@ end
 gem 'rsolr', '~> 1.0'
 gem 'devise'
 gem 'devise-guests', '~> 0.5'
+gem 'devise_cas_authenticatable'
+
 #Makes it possible to find a file path using fx. page_path
 gem 'high_voltage', '~> 3.0.0'
 #Used in openseadragon
