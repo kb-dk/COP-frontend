@@ -1,0 +1,10 @@
+.fa{
+  &:hover{
+    color:$link-hover-color !important;
+  }
+  color: $link-color !important;
+}
+
+.kbOSDContent{
+  border-color: $nav-tabs-border-color !important;
+}
