@@ -86,6 +86,9 @@ GEM
       warden (~> 1.2.3)
     devise-guests (0.5.0)
       devise
+    devise_cas_authenticatable (1.10.0)
+      devise (>= 1.2.0)
+      rubycas-client (>= 2.2.1)
     erubis (2.7.0)
     execjs (2.7.0)
     faraday (0.11.0)
@@ -173,6 +176,8 @@ GEM
     rsolr (1.1.2)
       builder (>= 2.1.2)
     ruby-progressbar (1.8.1)
+    rubycas-client (2.3.9)
+      activesupport
     rubyzip (1.2.1)
     sass (3.4.23)
     sass-rails (5.0.6)
@@ -235,6 +240,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise
   devise-guests (~> 0.5)
+  devise_cas_authenticatable
   font-awesome-rails
   high_voltage (~> 3.0.0)
   jbuilder (~> 2.5)
