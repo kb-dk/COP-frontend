@@ -197,4 +197,9 @@ class CatalogController < ApplicationController
     url
   end
   helper_method :get_edition_image_url
+
+  # Configuration for autocomplete suggestor
+  config.autocomplete_enabled = true
+  config.autocomplete_path = 'suggest'
+
 end
