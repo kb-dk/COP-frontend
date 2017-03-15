@@ -330,7 +330,7 @@ This xsl does the formatting of metadata for a landing page
             </xsl:for-each>
           </xsl:if>
           <!-- END NAME ELEMENTS -->
-                 <!-- START NOTE -->
+          <!-- START NOTE -->
           <xsl:for-each select="md:mods/md:note[@type='content'and not(@transliteration='rex')]">
             <xsl:if test="position()=1">
               <xsl:element name="dt">
@@ -357,7 +357,7 @@ This xsl does the formatting of metadata for a landing page
                 <xsl:attribute name="xml:lang">en</xsl:attribute>
                 <xsl:value-of select="."/>
                 <xsl:if test="@manuscript = 'yes'">
-                  <xsl:text> (manuscript)</xsl:text>
+                  <xsl:text>(manuscript)</xsl:text>
                 </xsl:if>
               </xsl:element>
 
@@ -365,7 +365,7 @@ This xsl does the formatting of metadata for a landing page
                 <xsl:attribute name="xml:lang">da</xsl:attribute>
                 <xsl:value-of select="$resource_type_config/property/entry[@key = $key]"/>
                 <xsl:if test="@manuscript = 'yes'">
-                  <xsl:text> (håndskrift)</xsl:text>
+                  <xsl:text>(håndskrift)</xsl:text>
                 </xsl:if>
               </xsl:element>
             </xsl:for-each>
@@ -428,8 +428,8 @@ This xsl does the formatting of metadata for a landing page
               </xsl:if>
               <xsl:element name="dd">
                 <xsl:apply-templates select="md:note"/>
-                    <xsl:text>
-                    </xsl:text>
+                <xsl:text>
+                </xsl:text>
               </xsl:element>
             </xsl:for-each>
 
@@ -882,25 +882,17 @@ This xsl does the formatting of metadata for a landing page
       <xsl:if test="md:mods/md:extension/h:div">
         <xsl:element name="section">
           <xsl:attribute name="id">category</xsl:attribute>
-          <header>
-            <h2>
-              <span xml:lang="da">Indgår i</span>
-              <span xml:lang="en">Is part of</span>
-            </h2>
-          </header>
-          <nav>
-            <ol>
+          <h3 xml:lang="da">Indgår i</h3>
+          <h3 xml:lang="en">Is part of</h3>
+          <ul>
               <xsl:for-each select="md:mods/md:extension/h:div">
                 <xsl:if test="h:a">
                   <li>
-                    <p>
                       <xsl:apply-templates select="."/>
-                    </p>
                   </li>
                 </xsl:if>
               </xsl:for-each>
-            </ol>
-          </nav>
+          </ul>
         </xsl:element>
       </xsl:if>
     </xsl:element>

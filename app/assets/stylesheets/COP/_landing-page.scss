@@ -2,6 +2,14 @@
   .dl-horizontal dd {
     margin-bottom: 4px;
   }
+
+  ul {
+    list-style-type: none;
+  }
+
+  ul li {
+    margin: 0 0 10px 0;
+  }
 }
 
 #kbOSDInstance {

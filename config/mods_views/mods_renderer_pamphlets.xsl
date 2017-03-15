@@ -72,7 +72,8 @@ This xsl does the formatting of metadata for a landing page
           <!-- START SUBTITLE -->
           <xsl:if test="md:mods/md:titleInfo[md:subTitle]">
             <xsl:for-each select="md:mods/md:titleInfo[md:subTitle]">
-              <xsl:if test="position()=1">                <xsl:element name="dt">
+              <xsl:if test="position()=1">
+                <xsl:element name="dt">
                   <strong xml:lang="en">Subtitle</strong>
                   <strong xml:lang="da">Undertitel</strong>
                 </xsl:element>
@@ -914,34 +915,23 @@ This xsl does the formatting of metadata for a landing page
       <xsl:if test="md:mods/md:extension/h:div">
         <xsl:element name="section">
           <xsl:attribute name="id">category</xsl:attribute>
-          <header>
-            <h2>
-              <span xml:lang="da">Indgår i</span>
-              <span xml:lang="en">Is part of</span>
-            </h2>
-          </header>
-          <nav>
-            <ol>
-              <xsl:for-each select="md:mods/md:extension/h:div">
-                <xsl:if test="h:a">
-                  <li>
-                    <p>
-                      <xsl:apply-templates select="."/>
-                    </p>
-                  </li>
-                </xsl:if>
-              </xsl:for-each>
-            </ol>
-          </nav>
+          <h3 xml:lang="da">Indgår i</h3>
+          <h3 xml:lang="en">Is part of</h3>
+          <ul>
+            <xsl:for-each select="md:mods/md:extension/h:div">
+              <xsl:if test="h:a">
+                <li>
+                  <xsl:apply-templates select="."/>
+                </li>
+              </xsl:if>
+            </xsl:for-each>
+          </ul>
         </xsl:element>
       </xsl:if>
 
       <section id="userTags">
-        <header>
-          <h2>Tags</h2>
-        </header>
+        <h3>Tags</h3>
         <xsl:if test="md:mods/md:subject/md:topic">
-          <nav>
             <ul class="clearfix">
               <xsl:for-each select="md:mods/md:subject/md:topic">
                 <xsl:element name="li">
@@ -981,7 +971,6 @@ This xsl does the formatting of metadata for a landing page
                 </xsl:element>
               </xsl:for-each>
             </ul>
-          </nav>
         </xsl:if>
 
       </section>
