@@ -840,9 +840,8 @@ in the metadatasection of a landing page -->
         </xsl:if>
         <!-- END SUBJECT ELMENTS -->
 
-        <xsl:if
-                test="md:mods/md:identifier[@type='accession number']|md:mods/md:identifier[@type='local']">
-          <li>
+        <xsl:if test="md:mods/md:identifier[@type='accession number']|md:mods/md:identifier[@type='local']">
+
           <xsl:for-each select="md:mods/md:identifier[@type='local']">
             <xsl:if test="position() = 1">
               <xsl:element name="dt">
