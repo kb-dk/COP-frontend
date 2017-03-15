@@ -60,7 +60,6 @@ This xsl does the formatting of metadata for a landing page
                   </xsl:call-template>
                 </xsl:attribute>
                 <xsl:if test="position()&lt;last() and last()&gt;1">
-                  <xsl:text>;</xsl:text>
                 </xsl:if>
               </xsl:element>
             </xsl:if>
@@ -225,8 +224,8 @@ This xsl does the formatting of metadata for a landing page
                   </xsl:call-template>
                 </xsl:attribute>
                 <xsl:apply-templates select="md:namePart[not(@transliteration='rex')]"/>
+                <xsl:call-template name="break_semicolon"/>
               </xsl:element>
-              <xsl:call-template name="break_semicolon"/>
             </xsl:for-each>
 
             <xsl:for-each select="md:mods/
@@ -315,9 +314,9 @@ This xsl does the formatting of metadata for a landing page
                 </xsl:attribute>
                 <xsl:apply-templates select="md:namePart[not(@transliteration='rex')]"/>
 
-              <xsl:call-template name="break_semicolon">
-                <xsl:with-param name="cataloging_language" select="$cataloging_language"/>
-              </xsl:call-template>
+                <xsl:call-template name="break_semicolon">
+                  <xsl:with-param name="cataloging_language" select="$cataloging_language"/>
+                </xsl:call-template>
               </xsl:element>
             </xsl:for-each>
 
@@ -329,10 +328,10 @@ This xsl does the formatting of metadata for a landing page
                 </xsl:element>
               </xsl:if>
               <xsl:element name="dd">
-              <xsl:apply-templates select="md:namePart[not(@transliteration='rex')]"/>
-              <xsl:call-template name="break_semicolon">
-                <xsl:with-param name="cataloging_language" select="$cataloging_language"/>
-              </xsl:call-template>
+                <xsl:apply-templates select="md:namePart[not(@transliteration='rex')]"/>
+                <xsl:call-template name="break_semicolon">
+                  <xsl:with-param name="cataloging_language" select="$cataloging_language"/>
+                </xsl:call-template>
               </xsl:element>
             </xsl:for-each>
 
@@ -344,10 +343,10 @@ This xsl does the formatting of metadata for a landing page
                 </xsl:element>
               </xsl:if>
               <xsl:element name="dd">
-              <xsl:apply-templates select="md:namePart[not(@transliteration='rex')]"/>
-              <xsl:call-template name="break_semicolon">
-                <xsl:with-param name="cataloging_language" select="$cataloging_language"/>
-              </xsl:call-template>
+                <xsl:apply-templates select="md:namePart[not(@transliteration='rex')]"/>
+                <xsl:call-template name="break_semicolon">
+                  <xsl:with-param name="cataloging_language" select="$cataloging_language"/>
+                </xsl:call-template>
               </xsl:element>
             </xsl:for-each>
           </xsl:if>
@@ -921,11 +920,13 @@ This xsl does the formatting of metadata for a landing page
                 <xsl:choose>
                   <xsl:when test="text()='CC BY-NC-ND'">
                     <span xml:lang="da">
-                      Dette værk er licenseret under en <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/">
+                      Dette værk er licenseret under en <a rel="license"
+                                                           href="http://creativecommons.org/licenses/by-nc-nd/3.0/">
                       Creative Commons Navngivelse-IkkeKommerciel-IngenBearbejdelse 3.0 Unported Licens</a>.
                     </span>
                     <span xml:lang="en">
-                      This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/">
+                      This work is licensed under a <a rel="license"
+                                                       href="http://creativecommons.org/licenses/by-nc-nd/3.0/">
                       Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License</a>.
                     </span>
                     <br/>
