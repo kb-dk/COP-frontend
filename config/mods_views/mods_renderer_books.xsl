@@ -41,8 +41,8 @@ This xsl does the formatting of metadata for a landing page
           <xsl:for-each select="md:mods/md:titleInfo[not(@type) and not(md:subTitle)]">
             <xsl:if test="md:title">
               <!--<xsl:element name="dt">
-                <strong xml:lang="da">Titel:</strong>
-                <strong xml:lang="en">Title:</strong>
+                <strong xml:lang="da">Titel</strong>
+                <strong xml:lang="en">Title</strong>
               </xsl:element>-->
               <xsl:element name="h3">
                 <xsl:attribute name="dir">ltr</xsl:attribute>
@@ -83,8 +83,8 @@ This xsl does the formatting of metadata for a landing page
             <xsl:for-each select="md:mods/md:titleInfo[md:subTitle]">
               <xsl:if test="position()=1">
                 <xsl:element name="dt">
-                  <strong xml:lang="en">Subtitle:</strong>
-                  <strong xml:lang="da">Undertitel:</strong>
+                  <strong xml:lang="en">Subtitle</strong>
+                  <strong xml:lang="da">Undertitel</strong>
                 </xsl:element>
               </xsl:if>
               <xsl:element name="dd">
@@ -109,8 +109,8 @@ This xsl does the formatting of metadata for a landing page
             <xsl:for-each select="md:mods/md:titleInfo[@type='alternative']">
               <xsl:if test="position()=1">
                 <xsl:element name="dt">
-                  <strong xml:lang="en">Alternative title:</strong>
-                  <strong xml:lang="da">Varianttitel:</strong>
+                  <strong xml:lang="en">Alternative title</strong>
+                  <strong xml:lang="da">Varianttitel</strong>
                 </xsl:element>
               </xsl:if>
               <xsl:element name="dd">
@@ -135,8 +135,8 @@ This xsl does the formatting of metadata for a landing page
             <xsl:for-each select="md:mods/md:titleInfo[@type='transcribed']">
               <xsl:if test="position()=1">
                 <xsl:element name="dt">
-                  <strong xml:lang="en">Transcribed title:</strong>
-                  <strong xml:lang="da">Transkriberet titel:</strong>
+                  <strong xml:lang="en">Transcribed title</strong>
+                  <strong xml:lang="da">Transkriberet titel</strong>
                 </xsl:element>
               </xsl:if>
               <xsl:element name="dd">
@@ -160,8 +160,8 @@ This xsl does the formatting of metadata for a landing page
             <xsl:for-each select="md:mods/md:note[@displayLabel='Situation']">
               <xsl:if test="position()=1">
                 <xsl:element name="dt">
-                  <strong xml:lang="en">Situation:</strong>
-                  <strong xml:lang="da">Situation:</strong>
+                  <strong xml:lang="en">Situation</strong>
+                  <strong xml:lang="da">Situation</strong>
                 </xsl:element>
               </xsl:if>
               <xsl:element name="dd">
@@ -175,8 +175,8 @@ This xsl does the formatting of metadata for a landing page
             <xsl:for-each select="md:mods/md:note[@displayLabel='Caption']">
               <xsl:if test="position()=1">
                 <xsl:element name="dt">
-                  <strong xml:lang="en">Caption:</strong>
-                  <strong xml:lang="da">Undertekst:</strong>
+                  <strong xml:lang="en">Caption</strong>
+                  <strong xml:lang="da">Undertekst</strong>
                 </xsl:element>
               </xsl:if>
               <xsl:element name="dd">
@@ -190,8 +190,8 @@ This xsl does the formatting of metadata for a landing page
             <xsl:for-each select="md:mods/md:note[@displayLabel='Dialog']">
               <xsl:if test="position()=1">
                 <xsl:element name="dt">
-                  <strong xml:lang="en">Dialogue:</strong>
-                  <strong xml:lang="da">Dialog:</strong>
+                  <strong xml:lang="en">Dialogue</strong>
+                  <strong xml:lang="da">Dialog</strong>
                 </xsl:element>
               </xsl:if>
               <xsl:element name="dd">
@@ -214,8 +214,8 @@ This xsl does the formatting of metadata for a landing page
 				    md:name[@type='personal'][md:role/md:roleTerm[@type='code']='aut']">
               <xsl:if test="position()=1">
                 <xsl:element name="dt">
-                  <strong xml:lang="en">Author:</strong>
-                  <strong xml:lang="da">Forfatter:</strong>
+                  <strong xml:lang="en">Author</strong>
+                  <strong xml:lang="da">Forfatter</strong>
                 </xsl:element>
               </xsl:if>
               <xsl:element name="dd">
@@ -233,8 +233,8 @@ This xsl does the formatting of metadata for a landing page
 				    md:name[@type='corporate'][md:role/md:roleTerm[@type='code']='aut']">
               <xsl:if test="position()=1">
                 <xsl:element name="dt">
-                  <strong xml:lang="en">Corporate author:</strong>
-                  <strong xml:lang="da">Ophavsorganisation:</strong>
+                  <strong xml:lang="en">Corporate author</strong>
+                  <strong xml:lang="da">Ophavsorganisation</strong>
                 </xsl:element>
               </xsl:if>
               <xsl:element name="dd">
@@ -255,13 +255,13 @@ This xsl does the formatting of metadata for a landing page
 
                     <xsl:when test="@type = 'corporate'">
 
-                      <strong xml:lang="en">Corporate creator:</strong>
-                      <strong xml:lang="da">Ophavsorganisation:</strong>
+                      <strong xml:lang="en">Corporate creator</strong>
+                      <strong xml:lang="da">Ophavsorganisation</strong>
 
                     </xsl:when>
                     <xsl:otherwise>
-                      <strong xml:lang="en">Creator:</strong>
-                      <strong xml:lang="da">Ophav:</strong>
+                      <strong xml:lang="en">Creator</strong>
+                      <strong xml:lang="da">Ophav</strong>
                     </xsl:otherwise>
 
                   </xsl:choose>
@@ -282,8 +282,8 @@ This xsl does the formatting of metadata for a landing page
 				    md:name[@type='personal'][md:role/md:roleTerm[@type='code']='prt']">
               <xsl:if test="position()=1">
                 <xsl:element name="dt">
-                  <strong xml:lang="en">Printer:</strong>
-                  <strong xml:lang="da">Trykker:</strong>
+                  <strong xml:lang="en">Printer</strong>
+                  <strong xml:lang="da">Trykker</strong>
                 </xsl:element>
               </xsl:if>
               <xsl:element name="dd">
@@ -303,8 +303,8 @@ This xsl does the formatting of metadata for a landing page
 				    md:name[@type='personal'][md:role/md:roleTerm[@type='code']='ctb']">
               <xsl:if test="position()=1">
                 <xsl:element name="dt">
-                  <strong xml:lang="en">Contributor:</strong>
-                  <strong xml:lang="da">Anden bidragsyder:</strong>
+                  <strong xml:lang="en">Contributor</strong>
+                  <strong xml:lang="da">Anden bidragsyder</strong>
                 </xsl:element>
               </xsl:if>
               <xsl:element name="dd">
@@ -324,8 +324,8 @@ This xsl does the formatting of metadata for a landing page
             <xsl:for-each select="md:mods/md:name[md:role/md:roleTerm[@type='code']='src']">
               <xsl:if test="position()=1">
                 <xsl:element name="dt">
-                  <strong xml:lang="en">Scribe:</strong>
-                  <strong xml:lang="da">Skriver:</strong>
+                  <strong xml:lang="en">Scribe</strong>
+                  <strong xml:lang="da">Skriver</strong>
                 </xsl:element>
               </xsl:if>
               <xsl:element name="dd">
@@ -339,8 +339,8 @@ This xsl does the formatting of metadata for a landing page
             <xsl:for-each select="md:mods/md:name[md:role/md:roleTerm[@type='code']='pat']">
               <xsl:if test="position()=1">
                 <xsl:element name="dt">
-                  <strong xml:lang="en">Patron:</strong>
-                  <strong xml:lang="da">Protektor:</strong>
+                  <strong xml:lang="en">Patron</strong>
+                  <strong xml:lang="da">Protektor</strong>
                 </xsl:element>
               </xsl:if>
               <xsl:element name="dd">
@@ -357,8 +357,8 @@ This xsl does the formatting of metadata for a landing page
           <xsl:for-each select="md:mods/md:note[@type='content'and not(@transliteration='rex')]">
             <xsl:if test="position()=1">
               <xsl:element name="dt">
-                <strong xml:lang="en">Note:</strong>
-                <strong xml:lang="da">Note:</strong>
+                <strong xml:lang="en">Note</strong>
+                <strong xml:lang="da">Note</strong>
               </xsl:element>
             </xsl:if>
             <xsl:element name="dd">
@@ -373,8 +373,8 @@ This xsl does the formatting of metadata for a landing page
               <xsl:variable name="key" select="normalize-space(.)"/>
 
               <xsl:element name="dt">
-                <strong xml:lang="en">Resource type:</strong>
-                <strong xml:lang="da">Ressourcetype:</strong>
+                <strong xml:lang="en">Resource type</strong>
+                <strong xml:lang="da">Ressourcetype</strong>
               </xsl:element>
               <xsl:element name="dd">
                 <xsl:attribute name="xml:lang">en</xsl:attribute>
@@ -399,12 +399,12 @@ This xsl does the formatting of metadata for a landing page
             <xsl:element name="dt">
               <xsl:choose>
                 <xsl:when test="count(md:mods/md:genre)&gt;1">
-                  <strong xml:lang="en">Genres:</strong>
-                  <strong xml:lang="da">Genrer:</strong>
+                  <strong xml:lang="en">Genres</strong>
+                  <strong xml:lang="da">Genrer</strong>
                 </xsl:when>
                 <xsl:otherwise>
-                  <strong xml:lang="en">Genre:</strong>
-                  <strong xml:lang="da">Genre:</strong>
+                  <strong xml:lang="en">Genre</strong>
+                  <strong xml:lang="da">Genre</strong>
                 </xsl:otherwise>
               </xsl:choose>
             </xsl:element>
@@ -431,8 +431,8 @@ This xsl does the formatting of metadata for a landing page
             <xsl:for-each select="md:mods/md:physicalDescription[@displayLabel='Medium']">
               <xsl:if test="position() = 1">
                 <xsl:element name="dt">
-                  <strong xml:lang="en">Medium:</strong>
-                  <strong xml:lang="da">Materiale:</strong>
+                  <strong xml:lang="en">Medium</strong>
+                  <strong xml:lang="da">Materiale</strong>
                 </xsl:element>
               </xsl:if>
               <xsl:element name="dd">
@@ -444,8 +444,8 @@ This xsl does the formatting of metadata for a landing page
             <xsl:for-each select="md:mods/md:physicalDescription[md:note[@type='technique']]">
               <xsl:if test="position() = 1">
                 <xsl:element name="dt">
-                  <strong xml:lang="en">Technique:</strong>
-                  <strong xml:lang="da">Teknik:</strong>
+                  <strong xml:lang="en">Technique</strong>
+                  <strong xml:lang="da">Teknik</strong>
                 </xsl:element>
               </xsl:if>
               <xsl:element name="dd">
@@ -465,8 +465,8 @@ This xsl does the formatting of metadata for a landing page
             <xsl:for-each select="md:mods/md:physicalDescription[@displayLabel='Extent']">
               <xsl:if test="position() = 1">
                 <xsl:element name="dt">
-                  <strong xml:lang="en">Extent:</strong>
-                  <strong xml:lang="da">Omfang:</strong>
+                  <strong xml:lang="en">Extent</strong>
+                  <strong xml:lang="da">Omfang</strong>
                 </xsl:element>
               </xsl:if>
               <xsl:element name="dd">
@@ -480,8 +480,8 @@ This xsl does the formatting of metadata for a landing page
             <xsl:for-each select="md:mods/md:physicalDescription[@displayLabel='Size']">
               <xsl:if test="position() = 1">
                 <xsl:element name="dt">
-                  <strong xml:lang="en">Size:</strong>
-                  <strong xml:lang="da">Dimensioner:</strong>
+                  <strong xml:lang="en">Size</strong>
+                  <strong xml:lang="da">Dimensioner</strong>
                 </xsl:element>
               </xsl:if>
               <xsl:element name="dd">
@@ -498,8 +498,8 @@ This xsl does the formatting of metadata for a landing page
           <xsl:for-each select="md:mods/md:physicalDescription[@displayLabel='Text area']">
             <xsl:if test="position() = 1">
               <xsl:element name="dt">
-                <strong xml:lang="en">Text area:</strong>
-                <strong xml:lang="da">Tekstarea:</strong>
+                <strong xml:lang="en">Text area</strong>
+                <strong xml:lang="da">Tekstarea</strong>
               </xsl:element>
             </xsl:if>
             <xsl:element name="dd">
@@ -516,8 +516,8 @@ This xsl does the formatting of metadata for a landing page
             <xsl:for-each select="md:mods/md:language/md:languageTerm">
               <xsl:if test="position()=1">
                 <xsl:element name="dt">
-                  <strong xml:lang="en">Languages:</strong>
-                  <strong xml:lang="da">Sprog:</strong>
+                  <strong xml:lang="en">Languages</strong>
+                  <strong xml:lang="da">Sprog</strong>
                 </xsl:element>
               </xsl:if>
               <xsl:element name="dd">
@@ -531,8 +531,8 @@ This xsl does the formatting of metadata for a landing page
             <xsl:for-each select="md:mods/md:note[@displayLabel='Script']">
               <xsl:if test="position()=1">
                 <xsl:element name="dt">
-                  <strong xml:lang="en">Script:</strong>
-                  <strong xml:lang="da">Skriftsystem:</strong>
+                  <strong xml:lang="en">Script</strong>
+                  <strong xml:lang="da">Skriftsystem</strong>
                 </xsl:element>
               </xsl:if>
               <xsl:element name="dd">
@@ -547,8 +547,8 @@ This xsl does the formatting of metadata for a landing page
             <xsl:for-each select="md:mods/md:note[@displayLabel='Script: detail']">
               <xsl:if test="position()=1">
                 <xsl:element name="dt">
-                  <strong xml:lang="en">Script (detailed):</strong>
-                  <strong xml:lang="da">Skriftsystem (detaljeret):</strong>
+                  <strong xml:lang="en">Script (detailed)</strong>
+                  <strong xml:lang="da">Skriftsystem (detaljeret)</strong>
                 </xsl:element>
               </xsl:if>
               <xsl:element name="dd">
@@ -565,8 +565,8 @@ This xsl does the formatting of metadata for a landing page
             <xsl:for-each select="md:mods/md:originInfo/md:place/md:placeTerm[@type='text']">
               <xsl:if test="position()=1">
                 <xsl:element name="dt">
-                  <strong xml:lang="en">Place of origin:</strong>
-                  <strong xml:lang="da">Oprindelsested:</strong>
+                  <strong xml:lang="en">Place of origin</strong>
+                  <strong xml:lang="da">Oprindelsested</strong>
                 </xsl:element>
               </xsl:if>
               <xsl:element name="dd">
@@ -582,8 +582,8 @@ This xsl does the formatting of metadata for a landing page
             <xsl:for-each select="md:mods/md:originInfo/md:place/md:placeTerm[@type='code']">
               <xsl:if test="position()=1">
                 <xsl:element name="dt">
-                  <strong xml:lang="en">Country of origin:</strong>
-                  <strong xml:lang="da">Oprindelsesland:</strong>
+                  <strong xml:lang="en">Country of origin</strong>
+                  <strong xml:lang="da">Oprindelsesland</strong>
                 </xsl:element>
               </xsl:if>
               <xsl:element name="dd">
@@ -596,8 +596,8 @@ This xsl does the formatting of metadata for a landing page
             <xsl:for-each select="md:mods/md:originInfo/md:dateCreated[@encoding='w3cdtf']">
               <xsl:if test="position()=1">
                 <xsl:element name="dt">
-                  <strong xml:lang="en">Date created:</strong>
-                  <strong xml:lang="da">Oprindelsesdato:</strong>
+                  <strong xml:lang="en">Date created</strong>
+                  <strong xml:lang="da">Oprindelsesdato</strong>
                 </xsl:element>
               </xsl:if>
               <xsl:element name="dd">
@@ -639,8 +639,8 @@ This xsl does the formatting of metadata for a landing page
 				       md:title">
                 <xsl:if test="position()=1">
                   <xsl:element name="dt">
-                    <strong xml:lang="en">Publication:</strong>
-                    <strong xml:lang="da">Publikation:</strong>
+                    <strong xml:lang="en">Publication</strong>
+                    <strong xml:lang="da">Publikation</strong>
                   </xsl:element>
                 </xsl:if>
                 <xsl:element name="dd">
@@ -653,8 +653,8 @@ This xsl does the formatting of metadata for a landing page
             <xsl:for-each select="md:mods/md:originInfo/md:publisher">
               <xsl:if test="position()=1">
                 <xsl:element name="dt">
-                  <strong xml:lang="en">Publisher:</strong>
-                  <strong xml:lang="da">Forlag:</strong>
+                  <strong xml:lang="en">Publisher</strong>
+                  <strong xml:lang="da">Forlag</strong>
                 </xsl:element>
               </xsl:if>
               <xsl:element name="dd">
@@ -681,11 +681,11 @@ This xsl does the formatting of metadata for a landing page
             <xsl:for-each select="md:mods/md:subject/md:topic[not(@xlink:href)]">
               <xsl:if test="position()=1">
                 <xsl:element name="dt">
-                  <strong xml:lang="en">Topic:</strong>
+                  <strong xml:lang="en">Topic</strong>
                   <strong xml:lang="da">
                     <xsl:choose>
-                      <xsl:when test="../@displayLabel='Motiv'">Motiv:</xsl:when>
-                      <xsl:otherwise>Emne:</xsl:otherwise>
+                      <xsl:when test="../@displayLabel='Motiv'">Motiv</xsl:when>
+                      <xsl:otherwise>Emne</xsl:otherwise>
                     </xsl:choose>
                   </strong>
                 </xsl:element>
@@ -711,8 +711,8 @@ This xsl does the formatting of metadata for a landing page
             <xsl:for-each select="md:mods/md:subject/md:geographic">
               <xsl:if test="position()=1">
                 <xsl:element name="dt">
-                  <strong xml:lang="en">Place:</strong>
-                  <strong xml:lang="da">Lokalitet:</strong>
+                  <strong xml:lang="en">Place</strong>
+                  <strong xml:lang="da">Lokalitet</strong>
                 </xsl:element>
               </xsl:if>
               <!-- START Topic -->
@@ -737,8 +737,8 @@ This xsl does the formatting of metadata for a landing page
             <xsl:for-each select="md:mods/md:subject/md:name">
               <xsl:if test="position()=1">
                 <xsl:element name="dt">
-                  <strong xml:lang="en">Person:</strong>
-                  <strong xml:lang="da">Person:</strong>
+                  <strong xml:lang="en">Person</strong>
+                  <strong xml:lang="da">Person</strong>
                 </xsl:element>
               </xsl:if>
               <xsl:element name="dd">
@@ -763,8 +763,8 @@ This xsl does the formatting of metadata for a landing page
               <xsl:for-each select="md:temporal">
                 <xsl:if test="position()=1">
                   <xsl:element name="dt">
-                    <strong xml:lang="en">Time:</strong>
-                    <strong xml:lang="da">Tid:</strong>
+                    <strong xml:lang="en">Time</strong>
+                    <strong xml:lang="da">Tid</strong>
                   </xsl:element>
                 </xsl:if>
                 <xsl:element name="dd">
@@ -792,7 +792,7 @@ This xsl does the formatting of metadata for a landing page
             <xsl:for-each select="md:mods/md:identifier[@type='local']">
               <xsl:if test="position() = 1">
                 <xsl:element name="dt">
-                  <strong>Id:</strong>
+                  <strong>Id</strong>
                 </xsl:element>
               </xsl:if>
               <xsl:element name="dd">
@@ -805,8 +805,8 @@ This xsl does the formatting of metadata for a landing page
             <xsl:for-each select="md:mods/md:identifier[@type='accession number']">
               <xsl:if test="position() = 1">
                 <xsl:element name="dt">
-                  <strong xml:lang="en">Accession number:</strong>
-                  <strong xml:lang="da">Accessionsnummer:</strong>
+                  <strong xml:lang="en">Accession number</strong>
+                  <strong xml:lang="da">Accessionsnummer</strong>
                 </xsl:element>
               </xsl:if>
               <xsl:element name="dd">
@@ -823,8 +823,8 @@ This xsl does the formatting of metadata for a landing page
             <xsl:for-each select="md:mods/md:location/md:physicalLocation[not(@transliteration)]">
               <xsl:if test="position() = 1">
                 <xsl:element name="dt">
-                  <strong xml:lang="en">Shelf mark:</strong>
-                  <strong xml:lang="da">Opstilling:</strong>
+                  <strong xml:lang="en">Shelf mark</strong>
+                  <strong xml:lang="da">Opstilling</strong>
                 </xsl:element>
               </xsl:if>
               <xsl:element name="dd">
@@ -841,8 +841,8 @@ This xsl does the formatting of metadata for a landing page
             <xsl:for-each select="md:mods/md:relatedItem[@displayLabel='Collection']">
               <xsl:if test="position() = 1">
                 <xsl:element name="dt">
-                  <strong xml:lang="en">Collection:</strong>
-                  <strong xml:lang="da">Samling:</strong>
+                  <strong xml:lang="en">Collection</strong>
+                  <strong xml:lang="da">Samling</strong>
                 </xsl:element>
               </xsl:if>
               <xsl:element name="dd">
@@ -863,8 +863,8 @@ This xsl does the formatting of metadata for a landing page
             <xsl:for-each select="md:mods/md:note[@type='citation/reference']">
               <xsl:if test="position() = 1">
                 <xsl:element name="dt">
-                  <strong xml:lang="en">Selected references:</strong>
-                  <strong xml:lang="da">Referencer til materialet:</strong>
+                  <strong xml:lang="en">Selected references</strong>
+                  <strong xml:lang="da">Referencer til materialet</strong>
                 </xsl:element>
               </xsl:if>
               <xsl:element name="dd">
@@ -885,8 +885,8 @@ This xsl does the formatting of metadata for a landing page
             <xsl:for-each select="md:mods/md:note[not(@type)]">
               <xsl:if test="position() = 1">
                 <xsl:element name="dt">
-                  <strong xml:lang="en">Comment:</strong>
-                  <strong xml:lang="da">Kommentar:</strong>
+                  <strong xml:lang="en">Comment</strong>
+                  <strong xml:lang="da">Kommentar</strong>
                 </xsl:element>
               </xsl:if>
               <xsl:element name="dd">
