@@ -8,3 +8,13 @@
 .kbOSDContent{
   border-color: $nav-tabs-border-color !important;
 }
+
+#kbOSDInstance {
+
+  height: 680px;
+
+  .kbOSDContent {
+    border-style: solid;
+    border-width: 1px;
+  }
+}
