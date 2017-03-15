@@ -905,11 +905,11 @@ This xsl does the formatting of metadata for a landing page
           <!-- Copyright -->
           <xsl:if test="md:mods/md:accessCondition/node()">
             <xsl:element name="dt">
-              <strong xml:lang="en">Copyright:</strong>
-              <strong xml:lang="da">Ophavsret:</strong>
+              <strong xml:lang="en">Copyright</strong>
+              <strong xml:lang="da">Ophavsret</strong>
             </xsl:element>
-            <xsl:element name="dd">
-              <xsl:for-each select="md:mods/md:accessCondition">
+            <xsl:for-each select="md:mods/md:accessCondition">
+              <xsl:element name="dd">
                 <xsl:choose>
                   <xsl:when test="text()!='CC BY-NC-ND'">
                     <xsl:attribute name="xml:lang">
@@ -921,28 +921,24 @@ This xsl does the formatting of metadata for a landing page
                 <xsl:choose>
                   <xsl:when test="text()='CC BY-NC-ND'">
                     <span xml:lang="da">
-                      <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/">
-                        <img alt="Creative Commons licens" style="border-width:0"
-                             src="http://i.creativecommons.org/l/by-nc-nd/3.0/88x31.png"/>
-                      </a>
-                      <br/>Dette værk er licenseret under en <a rel="license"
-                                                                href="http://creativecommons.org/licenses/by-nc-nd/3.0/">
+                      Dette værk er licenseret under en <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/">
                       Creative Commons Navngivelse-IkkeKommerciel-IngenBearbejdelse 3.0 Unported Licens</a>.
                     </span>
                     <span xml:lang="en">
-                      <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/">
-                        <img alt="Creative Commons License" style="border-width:0"
-                             src="http://i.creativecommons.org/l/by-nc-nd/3.0/88x31.png"/>
-                      </a>
-                      <br/>This work is licensed under a <a rel="license"
-                                                            href="http://creativecommons.org/licenses/by-nc-nd/3.0/">
+                      This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/">
                       Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License</a>.
                     </span>
+                    <br/>
+                    <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/">
+                      <img alt="Creative Commons licens" style="border-width:0"
+                           src="http://i.creativecommons.org/l/by-nc-nd/3.0/88x31.png"/>
+                    </a>
                   </xsl:when>
                 </xsl:choose>
-              </xsl:for-each>
-            </xsl:element>
+              </xsl:element>
+            </xsl:for-each>
           </xsl:if>
+
         </dl>
       </section>
     </xsl:element>
