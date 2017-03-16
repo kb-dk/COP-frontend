@@ -639,6 +639,7 @@ This xsl does the formatting of metadata for a landing page
 
               <!-- START Topic -->
               <xsl:element name="dd">
+
                 <xsl:attribute name="xml:lang">
                   <xsl:call-template name="get_language">
                     <xsl:with-param name="cataloging_language" select="$cataloging_language"/>
@@ -648,6 +649,7 @@ This xsl does the formatting of metadata for a landing page
                 <xsl:call-template name="break_semicolon">
                   <xsl:with-param name="cataloging_language" select="$cataloging_language"/>
                 </xsl:call-template>
+
               </xsl:element>
             </xsl:for-each>
 
@@ -913,70 +915,74 @@ This xsl does the formatting of metadata for a landing page
       <!-- END METADATAELEMENTS -->
 
       <xsl:if test="md:mods/md:extension/h:div">
-        <xsl:element name="section">
-          <xsl:attribute name="id">category</xsl:attribute>
-          <h3 xml:lang="da">Indgår i</h3>
-          <h3 xml:lang="en">Is part of</h3>
-          <ul>
+        <dl class="dl-horizontal">
+          <xsl:element name="section">
             <xsl:for-each select="md:mods/md:extension/h:div">
+              <xsl:if test="position() = 1">
+                <xsl:element name="dt">
+                  <strong xml:lang="da">Indgår i</strong>
+                  <strong xml:lang="en">Is part of</strong>
+                </xsl:element>
+              </xsl:if>
               <xsl:if test="h:a">
-                <li>
+                <xsl:element name="dd">
                   <xsl:apply-templates select="."/>
-                </li>
+                </xsl:element>
               </xsl:if>
             </xsl:for-each>
-          </ul>
-        </xsl:element>
+
+          </xsl:element>
+        </dl>
       </xsl:if>
 
-      <section id="userTags">
-        <h3>Tags</h3>
-        <xsl:if test="md:mods/md:subject/md:topic">
-            <ul class="clearfix">
-              <xsl:for-each select="md:mods/md:subject/md:topic">
-                <xsl:element name="li">
-                  <xsl:attribute name="xml:lang">
-                    <xsl:call-template name="get_language">
-                      <xsl:with-param name="cataloging_language" select="$cataloging_language"/>
-                    </xsl:call-template>
-                  </xsl:attribute>
-                  <xsl:variable name="escapeWhitespace">
-                    <xsl:call-template name="replaceCharsInString">
-                      <xsl:with-param name="stringIn" select="."/>
-                      <xsl:with-param name="charsIn" select="' '"/>
-                      <xsl:with-param name="charsOut" select="'+'"/>
-                    </xsl:call-template>
-                  </xsl:variable>
-                  <xsl:variable name="escapedQuery">
-                    <xsl:call-template name="replaceCharsInString">
-                      <xsl:with-param name="stringIn" select="$escapeWhitespace"/>
-                      <xsl:with-param name="charsIn" select="':'"/>
-                      <xsl:with-param name="charsOut" select="''"/>
-                    </xsl:call-template>
-                  </xsl:variable>
-                  <xsl:element name="a">
-                    <xsl:attribute name="xml:lang">da</xsl:attribute>
-                    <xsl:attribute name="href">
-                      <xsl:value-of select="concat('/','?search_field=all_fields&amp;q=',$escapedQuery)"/>,
-                    </xsl:attribute>
-                    <xsl:value-of select="."/>
-                  </xsl:element>
-                  <xsl:element name="a">
-                    <xsl:attribute name="xml:lang">en</xsl:attribute>
-                    <xsl:attribute name="href">
-                      <xsl:value-of select="concat('/','?search_field=all_fields&amp;q=',$escapedQuery)"/>,
-                    </xsl:attribute>
-                    <xsl:value-of select="."/>
-                  </xsl:element>
-                </xsl:element>
-              </xsl:for-each>
-            </ul>
-        </xsl:if>
 
-      </section>
-
+      <dl class="dl-horizontal">
+        <section id="userTags">
+          <xsl:if test="md:mods/md:subject/md:topic">
+            <xsl:for-each select="md:mods/md:subject/md:topic">
+              <xsl:if test="position() = 1">
+                <xsl:element name="dt">Tags</xsl:element>
+              </xsl:if>
+              <xsl:element name="dd">
+              <xsl:attribute name="xml:lang">
+                <xsl:call-template name="get_language">
+                  <xsl:with-param name="cataloging_language" select="$cataloging_language"/>
+                </xsl:call-template>
+              </xsl:attribute>
+              <xsl:variable name="escapeWhitespace">
+                <xsl:call-template name="replaceCharsInString">
+                  <xsl:with-param name="stringIn" select="."/>
+                  <xsl:with-param name="charsIn" select="' '"/>
+                  <xsl:with-param name="charsOut" select="'+'"/>
+                </xsl:call-template>
+              </xsl:variable>
+              <xsl:variable name="escapedQuery">
+                <xsl:call-template name="replaceCharsInString">
+                  <xsl:with-param name="stringIn" select="$escapeWhitespace"/>
+                  <xsl:with-param name="charsIn" select="':'"/>
+                  <xsl:with-param name="charsOut" select="''"/>
+                </xsl:call-template>
+              </xsl:variable>
+              <xsl:element name="a">
+                <xsl:attribute name="xml:lang">da</xsl:attribute>
+                <xsl:attribute name="href">
+                  <xsl:value-of select="concat('/','?search_field=all_fields&amp;q=',$escapedQuery)"/>,
+                </xsl:attribute>
+                <xsl:value-of select="."/>
+              </xsl:element>
+              <xsl:element name="a">
+                <xsl:attribute name="xml:lang">en</xsl:attribute>
+                <xsl:attribute name="href">
+                  <xsl:value-of select="concat('/','?search_field=all_fields&amp;q=',$escapedQuery)"/>,
+                </xsl:attribute>
+                <xsl:value-of select="."/>
+              </xsl:element>
+              </xsl:element>
+            </xsl:for-each>
+          </xsl:if>
+        </section>
+      </dl>
     </xsl:element>
-
   </xsl:template>
 
   <xsl:template match="h:a">
