@@ -138,6 +138,10 @@ class CatalogController < ApplicationController
     # of Solr search fields.
 
     config.add_search_field('creator') do |field|
+
+      # solr_parameters hash are sent to Solr as ordinary url query params.
+      field.solr_parameters = { :'spellcheck.dictionary' => 'title' }
+
       field.solr_local_parameters = {
           qf: 'creator_tsim',
           pf: 'creator_tsim'
