@@ -1,12 +1,7 @@
 <% doc_presenter = show_presenter(document) %>
 
 <div id="row">
-<div id="kbOSDInstance" class="col-sm-2 col-md-6">
-  <div class="kbOSDViewer">
-    <div class="kbOSDToolbar"></div>
-    <div class="kbOSDContent"></div>
-  </div>
-</div>
+
 <div id="metadata" class="col-sm-12 col-md-6">
 
     <% document_show_fields(document).each do |field_name, field| -%>
@@ -16,6 +11,12 @@
     <% end -%>
 
 </div>
+  <div id="kbOSDInstance" class="col-sm-2 col-md-6">
+    <div class="kbOSDViewer">
+      <div class="kbOSDToolbar"></div>
+      <div class="kbOSDContent"></div>
+    </div>
+  </div>
 </div>
 
 <script type="text/javascript">
