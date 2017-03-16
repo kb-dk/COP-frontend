@@ -33,37 +33,32 @@ in the metadatasection of a landing page -->
     <xsl:element name="div">
       <xsl:attribute name="class">rightGrid</xsl:attribute>
       <section id="metaData">
-        <!-- START TITLE -->
-        <xsl:if test="md:mods/md:titleInfo[not(@type) and not(md:subTitle)]">
-
-          <xsl:for-each select="md:mods/md:titleInfo[not(@type) and not(md:subTitle)]">
-            <xsl:if test="md:title">
-              <xsl:element name="h3">
-                <xsl:attribute name="dir">ltr</xsl:attribute>
-                <xsl:attribute name="lang">
-                  <xsl:call-template name="get_language">
-                    <xsl:with-param name="cataloging_language" select="$cataloging_language"/>
-                  </xsl:call-template>
-                </xsl:attribute>
-                <xsl:apply-templates select="(md:nonSort|md:title)[not(@transliteration='rex')]"/>
-              </xsl:element>
-              <xsl:element name="h3">
-                <xsl:attribute name="lang">
-                  <xsl:call-template name="get_language">
-                    <xsl:with-param name="cataloging_language" select="$cataloging_language"/>
-                  </xsl:call-template>
-                </xsl:attribute>
-              </xsl:element>
-            </xsl:if>
-            <xsl:text>
-            </xsl:text>
-          </xsl:for-each>
-
-        </xsl:if>
-        <!-- END TITLE -->
-
 
         <dl class="dl-horizontal">
+
+        <xsl:if test="md:mods/md:titleInfo[not(@type) and not(md:subTitle)]">
+          <xsl:for-each select="md:mods/md:titleInfo[not(@type) and not(md:subTitle)]">
+            <xsl:if test="md:title">
+              <xsl:element name="dt">
+                <strong xml:lang="da">Titel</strong>
+                <strong xml:lang="en">Title</strong>
+              </xsl:element>
+              <xsl:element name="dd">
+
+                <xsl:attribute name="lang">
+                  <xsl:call-template name="get_language">
+                    <xsl:with-param name="cataloging_language" select="$cataloging_language"/>
+                  </xsl:call-template>
+                </xsl:attribute>
+                <xsl:if test="position()&lt;last() and last()&gt;1">
+                  <xsl:text>;</xsl:text>
+                </xsl:if>
+
+              </xsl:element>
+            </xsl:if>
+          </xsl:for-each>
+        </xsl:if>
+
 
           <!-- START SUBTITLE -->
           <xsl:if test="md:mods/md:titleInfo[md:subTitle]">
