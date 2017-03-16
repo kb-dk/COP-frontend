@@ -1,4 +1,12 @@
+section#metaData, section#category, section#userTags{
+  h3{
+    margin-top: 0;
+  }
+}
 #metadata {
+  :empty {                // Do not display empty DOMs
+    display: none;
+  }
   .dl-horizontal dd {
     margin-bottom: 4px;
   }
