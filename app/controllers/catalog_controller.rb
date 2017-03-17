@@ -129,7 +129,7 @@ class CatalogController < ApplicationController
     config.add_search_field 'all_fields', label: 'All Fields' do |field|
       # Free text search in these fields: title, creator, description
       field.solr_local_parameters = {
-          :qf => 'cobject_title_ssi^100 creator_tsim^80 description_tsim^50'
+          :qf => 'cobject_title_ssi^100 full_title_tsim^90 creator_tsim^80 description_tsim^50'
       }
     end
 
