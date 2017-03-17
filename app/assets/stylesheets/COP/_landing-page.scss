@@ -1,8 +1,41 @@
-#metadata {
-  .dl-horizontal dd {
-    margin-bottom: 4px;
-  }
+section#metaData, section#category, section#userTags{
   h3{
-    text-align: center;
+    margin-top: 0;
   }
 }
+#metadata {
+  :empty {                // Do not display empty DOMs
+    display: none;
+  }
+  .dl-horizontal {
+    dd {
+      margin-bottom: 4px;
+      margin-left: 140px;
+    }
+    dt{
+      width: 130px;
+    }
+  }
+  h3 {
+    text-align: center;
+  }
+
+  ul {
+    list-style-type: none;
+  }
+
+  ul li {
+    margin: 0 0 10px 0;
+  }
+}
+
+#kbOSDInstance {
+
+  height: 680px;
+
+  .kbOSDContent {
+    border-style: solid;
+    border-width: 1px;
+  }
+}
+
