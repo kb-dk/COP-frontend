@@ -936,7 +936,7 @@ This xsl does the formatting of metadata for a landing page
         </dl>
       </xsl:if>
 
-
+<!-- remove tags for now
       <dl class="dl-horizontal">
         <section id="userTags">
           <xsl:if test="md:mods/md:subject/md:topic">
@@ -981,8 +981,11 @@ This xsl does the formatting of metadata for a landing page
               </xsl:element>
             </xsl:for-each>
           </xsl:if>
-        </section>
-      </dl>
+
+
+
+  -->
+
     </xsl:element>
   </xsl:template>
 
