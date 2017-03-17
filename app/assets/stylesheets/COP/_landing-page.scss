@@ -1,20 +1,8 @@
 #metadata {
-  ul {
-    list-style-type: none;
+  .dl-horizontal dd {
+    margin-bottom: 4px;
   }
-
-  ul li {
-    margin: 0 0 10px 0;
-  }
-}
-
-#kbOSDInstance {
-
-  height: 680px;
-
-  .kbOSDContent {
-    border-style: solid;
-    border-width: 1px;
+  h3{
+    text-align: center;
   }
 }
-

@@ -11,6 +11,7 @@ $edition-card-height:350px;
   perspective: 1000; // for flip animation
   position: relative;
 
+  color : #000 !important;
 
   .flipper {
     position: relative;
@@ -37,7 +38,6 @@ $edition-card-height:350px;
   transform-style: preserve-3d;
   transition: 0.6s;
   width: 100%;
-
 }
 
 .card-title {

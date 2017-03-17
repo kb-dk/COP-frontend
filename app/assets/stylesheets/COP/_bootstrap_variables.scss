@@ -1,0 +1,15 @@
+// Colors available
+$color1: #ffc1a7; // Salmon
+$color2: #001f6a; // Dark blue
+$color3: #a3871e; // Gold
+
+// Bootstrap variables
+$brand-primary:         $color1 !default; // #337ab7
+$input-border-focus:    $color1;//** Border color for inputs on focus
+
+$link-color:            $color2;//** Global textual link color.
+$link-hover-color:      lighten($link-color, 35%);//** Link hover color set via `lighten()` function.
+$link-hover-decoration: none;//** Link hover decoration.
+
+$input-border:          $input-border-focus;
+$btn-primary-color:     #333;
