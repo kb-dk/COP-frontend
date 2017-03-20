@@ -39,3 +39,12 @@ section#metaData, section#category, section#userTags{
   }
 }
 
+.socialButtons{
+  position: relative;
+  top:20px;
+  z-index: 9999;
+  width: 80px;
+}
+.fa-facebook, .fa-twitter{
+  padding-right: 7px;
+}
