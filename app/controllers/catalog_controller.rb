@@ -3,7 +3,14 @@ class CatalogController < ApplicationController
 
   include Blacklight::Catalog
 
+  before_action :set_id, only: [:show,:track]
+
   configure_blacklight do |config|
+    config.view.gallery.partials = [:index_header, :index]
+    config.view.masonry.partials = [:index]
+
+    config.show.tile_source_field = :content_metadata_image_iiif_info_ssm
+    config.show.partials.insert(1, :openseadragon)
     ## Class for sending and receiving requests from a search index
     # config.repository_class = Blacklight::Solr::Repository
     #
@@ -15,7 +22,9 @@ class CatalogController < ApplicationController
 
     ## Default parameters to send to solr for all search-like requests. See also SearchBuilder#processed_parameters
     config.default_solr_params = {
-      rows: 10
+        rows: 10,
+        # Exclude the luftfoto images from everywhere
+        :fq => ['-cobject_edition_ssi:"/images/luftfo/2011/maj/luftfoto"', '-medium_ssi:categories','-medium_ssi:editions']
     }
 
     # solr path which will be added to solr base url before the other solr params.
@@ -38,6 +47,7 @@ class CatalogController < ApplicationController
     # solr field configuration for search results/index views
     config.index.title_field = 'cobject_title_ssi'
     config.index.display_type_field = 'format'
+    config.index.thumbnail_field = 'thumbnail_url_ssm'
 
     # solr field configuration for document/show views
     #config.show.title_field = 'title_display'
@@ -67,8 +77,9 @@ class CatalogController < ApplicationController
     #  (useful when user clicks "more" on a large facet and wants to navigate alphabetically across a large set of results)
     # :index_range can be an array or range of prefixes that will be used to create the navigation (note: It is case sensitive when searching values)
 
-    config.add_facet_field 'cobject_edition_ssi', label: 'Edition'
-    config.add_facet_field 'subject_topic_id_ssim', label: 'Kategori'
+    config.add_facet_field 'cobject_edition_ssi', label: 'Edition', helper_method: :show_edition_name, collapse: true, limit: 20
+    # I put the limit at 1000 here, to get all the facets to iterate through in the _facet_category.html.erb
+    config.add_facet_field 'subject_topic_id_ssim', label: 'Kategori', helper_method: :show_category_name, collapse: false, limit: 1000 , partial: 'facet_category'
     #config.add_facet_field 'subject_topic_facet', label: 'Topic', limit: 20, index_range: 'A'..'Z'
 
     #config.add_facet_field 'example_pivot_field', label: 'Pivot Field', :pivot => ['format', 'language_facet']
@@ -89,13 +100,12 @@ class CatalogController < ApplicationController
     #   The ordering of the field names is the order of the display
     config.add_index_field 'cobject_title_ssi', label: 'Title'
     config.add_index_field 'creator_tsim', label: 'Creator'
+    config.add_index_field 'description_tsim', label: 'Description'
     config.add_index_field 'pub_dat_tsim', label: 'Pub date'
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
-    config.add_show_field 'cobject_title_ssi', label: 'Title'
-    config.add_show_field 'creator_tsim', label: 'Creator'
-    config.add_show_field 'mods_ts', label: 'mods'
+    config.add_show_field 'mods_ts', label: 'mods',  helper_method: :show_mods_record
 
 
     # "fielded" search configuration. Used by pulldown among other places.
@@ -116,19 +126,31 @@ class CatalogController < ApplicationController
     # solr request handler? The one set in config[:default_solr_parameters][:qt],
     # since we aren't specifying it otherwise.
 
-    config.add_search_field 'all_fields', label: 'All Fields'
-
+    config.add_search_field 'all_fields', label: 'All Fields' do |field|
+      # Free text search in these fields: title, creator, description
+      field.solr_local_parameters = {
+          :qf => 'cobject_title_ssi^100 full_title_tsim^90 creator_tsim^80 description_tsim^50'
+      }
+    end
 
     # Now we see how to over-ride Solr request handler defaults, in this
     # case for a BL "search field", which is really a dismax aggregate
     # of Solr search fields.
 
-
     config.add_search_field('creator') do |field|
- #     field.solr_parameters = { :'spellcheck.dictionary' => 'author' }
+
+      # solr_parameters hash are sent to Solr as ordinary url query params.
+      field.solr_parameters = { :'spellcheck.dictionary' => 'title' }
+
       field.solr_local_parameters = {
-        qf: 'creator_tsim',
-        pf: 'creator_tsim'
+          qf: 'creator_tsim',
+          pf: 'creator_tsim'
+      }
+    end
+
+    config.add_search_field('editions') do |field|
+      field.solr_parameters = {
+          :fq => ['medium_ssi:editions']
       }
     end
 
@@ -148,4 +170,40 @@ class CatalogController < ApplicationController
     config.autocomplete_enabled = true
     config.autocomplete_path = 'suggest'
   end
+
+  def cobject
+    id = "/#{params[:medium]}/#{params[:collection]}/#{params[:year]}/#{params[:month]}/#{params[:edition]}/#{params[:cobjectId]}"
+    @response, @document = fetch id
+    respond_to do |format|
+      format.html { setup_next_and_previous_documents
+                    render 'show'}
+      format.json { render json: { response: { document: @document } } }
+      additional_export_formats(@document, format)
+    end
+  end
+
+  private
+  def set_id
+    params[:id] = "/#{params[:medium]}/#{params[:collection]}/#{params[:year]}/#{params[:month]}/#{params[:edition]}/#{params[:cobjectId]}" if params[:medium].present?
+  end
+
+  def fetch_editions
+    search_results({search_field: 'editions', rows: 100})
+  end
+  helper_method :fetch_editions
+
+  def get_edition_image_url(editionId)
+    res,docs = search_results({f:{cobject_edition_ssi: [editionId]},per_page: 1})
+    url = ""
+    if docs.size > 0
+      url = docs.first['thumbnail_url_ssm'].first
+    end
+    url
+  end
+  helper_method :get_edition_image_url
+
+  # Configuration for autocomplete suggestor
+  config.autocomplete_enabled = true
+  config.autocomplete_path = 'suggest'
+
 end
