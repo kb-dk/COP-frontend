@@ -1,22 +1,26 @@
-section#metaData, section#category, section#userTags{
-  h3{
+section#metaData, section#category, section#userTags {
+  h3 {
     margin-top: 0;
   }
 }
+
 #metadata {
-  :empty {                // Do not display empty DOMs
+  :empty { // Do not display empty DOMs
     display: none;
   }
-  .dl-horizontal {
-    dd {
-      margin-bottom: 4px;
-      margin-left: 180px;
-    }
-    dt{
-      width: 170px;
-      white-space: normal;
+  @media (min-width: 768px) {
+    .dl-horizontal {
+      dd {
+        margin-bottom: 4px;
+        margin-left: 180px;
+      }
+      dt {
+        width: 170px;
+        white-space: normal;
+      }
     }
   }
+
   h3 {
     text-align: center;
   }
@@ -28,6 +32,17 @@ section#metaData, section#category, section#userTags{
   ul li {
     margin: 0 0 10px 0;
   }
+
+}
+.fa{
+  &:hover{
+    color:$link-hover-color !important;
+  }
+  color: $link-color !important;
+}
+
+.kbOSDContent{
+  border-color: $nav-tabs-border-color !important;
 }
 
 #kbOSDInstance {
@@ -38,5 +53,13 @@ section#metaData, section#category, section#userTags{
     border-style: solid;
     border-width: 1px;
   }
+
+  @media only screen and (max-width: 1026px) {
+    .hideWhenSmall{
+      display:none !important;
+    }
+  }
 }
+
+
 
