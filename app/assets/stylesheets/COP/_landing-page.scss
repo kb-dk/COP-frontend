@@ -1,23 +1,21 @@
-section#metaData, section#category, section#userTags {
-  h3 {
+section#metaData, section#category, section#userTags{
+  h3{
     margin-top: 0;
   }
 }
 
 #metadata {
-  :empty { // Do not display empty DOMs
+  :empty {                // Do not display empty DOMs
     display: none;
   }
-  @media (min-width: 768px) {
-    .dl-horizontal {
-      dd {
-        margin-bottom: 4px;
-        margin-left: 180px;
-      }
-      dt {
-        width: 170px;
-        white-space: normal;
-      }
+  .dl-horizontal {
+    dd {
+      margin-bottom: 4px;
+      margin-left: 180px;
+    }
+    dt{
+      width: 170px;
+      white-space: normal;
     }
   }
 
@@ -63,3 +61,12 @@ section#metaData, section#category, section#userTags {
 
 
 
+.socialButtons{
+  position: relative;
+  top:20px;
+  z-index: 9999;
+  width: 80px;
+}
+.fa-facebook, .fa-twitter{
+  padding-right: 7px;
+}
