@@ -878,27 +878,30 @@ This xsl does the formatting of metadata for a landing page
             </xsl:for-each>
           </xsl:if>
 
+          <xsl:for-each select="md:mods/md:extension/h:div">
+            <xsl:if test="position() = 1">
+              <xsl:element name="dt">
+                <strong xml:lang="da">Indgår i</strong>
+                <strong xml:lang="en">Is part of</strong>
+              </xsl:element>
+            </xsl:if>
+            <xsl:if test="h:a">
+              <xsl:element name="dd">
+                <xsl:apply-templates select="."/>
+              </xsl:element>
+            </xsl:if>
+          </xsl:for-each>
+
 
         </dl>
       </section>
       <!-- END METADATAELEMENTS -->
 
-      <xsl:if test="md:mods/md:extension/h:div">
-        <xsl:element name="section">
-          <xsl:attribute name="id">category</xsl:attribute>
-          <h3 xml:lang="da">Indgår i</h3>
-          <h3 xml:lang="en">Is part of</h3>
-          <ul>
-              <xsl:for-each select="md:mods/md:extension/h:div">
-                <xsl:if test="h:a">
-                  <li>
-                      <xsl:apply-templates select="."/>
-                  </li>
-                </xsl:if>
-              </xsl:for-each>
-          </ul>
-        </xsl:element>
-      </xsl:if>
+
+
+
+
+
     </xsl:element>
 
   </xsl:template>
