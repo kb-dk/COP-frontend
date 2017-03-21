@@ -954,22 +954,27 @@ in the metadatasection of a landing page -->
 
           <!-- Technical, related to shop -->
           <xsl:if test="md:mods/md:extension/mix:mix/node()">
-            <xsl:variable name="sizeInBytes"
-                          select="md:mods/md:extension/mix:mix/mix:BasicDigitalObjectInformation/mix:fileSize"/>
-            <xsl:element name="dt">
-              <strong xml:lang="en">File size</strong>
-              <strong xml:lang="da">Filstørrelse</strong>
-            </xsl:element>
-            <xsl:element name="dd">
-              <xsl:if test="@xml:lang">
-                <xsl:attribute name="lang">
-                  <xsl:call-template name="get_language">
-                    <xsl:with-param name="cataloging_language" select="$cataloging_language"/>
-                  </xsl:call-template>
-                </xsl:attribute>
-              </xsl:if>
-              <xsl:value-of select="format-number($sizeInBytes div 1048576,'#.##')"/>mb.
-            </xsl:element>
+            <xsl:if test="md:mods/md:extension/mix:mix/mix:BasicDigitalObjectInformation/mix:fileSize/text()">
+	      <xsl:element name="dt">
+		<strong xml:lang="en">File size</strong>
+		<strong xml:lang="da">Filstørrelse</strong>
+	      </xsl:element>
+	      <xsl:element name="dd">
+		<xsl:if test="@xml:lang">
+		  <xsl:attribute name="lang">
+		    <xsl:call-template name="get_language">
+		      <xsl:with-param name="cataloging_language" select="$cataloging_language"/>
+		    </xsl:call-template>
+		  </xsl:attribute>
+		</xsl:if>
+		<xsl:variable name="sizeInBytes">
+		  <xsl:value-of select="md:mods/md:extension/mix:mix/mix:BasicDigitalObjectInformation/mix:fileSize/text()"/>
+		</xsl:variable>
+		<xsl:value-of select="$sizeInBytes"/>bytes
+		<xsl:value-of select="format-number($sizeInBytes div 1048576,'#.##')"/>mb.
+	      </xsl:element>
+	    </xsl:if>
+
             <xsl:element name="dt">
               <strong xml:lang="en">Dimension</strong>
               <strong xml:lang="da">Dimension</strong>
@@ -1027,6 +1032,25 @@ in the metadatasection of a landing page -->
               </xsl:element>
             </xsl:for-each>
           </xsl:if>
+
+
+      <xsl:if test="md:mods/md:extension/h:div">
+            <xsl:for-each select="md:mods/md:extension/h:div">
+              <xsl:if test="position() = 1">
+                <xsl:element name="dt">
+                  <strong xml:lang="da">Indgår i</strong>
+                  <strong xml:lang="en">Is part of</strong>
+                </xsl:element>
+              </xsl:if>
+              <xsl:if test="h:a">
+                <xsl:element name="dd">
+                  <xsl:apply-templates select="."/>
+                </xsl:element>
+              </xsl:if>
+            </xsl:for-each>
+      </xsl:if>
+
+
 
         </dl>
       </section>

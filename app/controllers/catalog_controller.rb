@@ -4,7 +4,7 @@ class CatalogController < ApplicationController
   include Blacklight::Catalog
 
 # Don't know what track does. Don't like what I don't understand
-#  before_action :set_id, only: [:show,:track]
+  before_action :set_id, only: [:show,:track]
   before_action :set_id, only: [:show]
   before_action :set_subject, only: [:index]
 
@@ -177,6 +177,7 @@ class CatalogController < ApplicationController
   private
 
   def set_id 
+    params[:locale]
     params[:id] = "/#{params[:medium]}/#{params[:collection]}/#{params[:year]}/#{params[:month]}/#{params[:edition]}/object#{params[:obj_id]}" if params[:medium].present?
   end
 

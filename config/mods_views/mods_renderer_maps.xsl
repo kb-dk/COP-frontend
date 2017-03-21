@@ -935,9 +935,28 @@ in the metadatasection of a landing page -->
             </xsl:for-each>
           </xsl:if>
 
+
+
+      <xsl:if test="md:mods/md:extension/h:div">
+            <xsl:for-each select="md:mods/md:extension/h:div">
+              <xsl:if test="position() = 1">
+                <xsl:element name="dt">
+                  <strong xml:lang="da">Indgår i</strong>
+                  <strong xml:lang="en">Is part of</strong>
+                </xsl:element>
+              </xsl:if>
+              <xsl:if test="h:a">
+                <xsl:element name="dd">
+                  <xsl:apply-templates select="."/>
+                </xsl:element>
+              </xsl:if>
+            </xsl:for-each>
+      </xsl:if>
         </dl>
       </section>
     </xsl:element>
+
+
 
   </xsl:template>
 

@@ -910,14 +910,9 @@ This xsl does the formatting of metadata for a landing page
               </xsl:element>
             </xsl:for-each>
           </xsl:if>
-
-        </dl>
-      </section>
       <!-- END METADATAELEMENTS -->
 
       <xsl:if test="md:mods/md:extension/h:div">
-        <dl class="dl-horizontal">
-          <xsl:element name="section">
             <xsl:for-each select="md:mods/md:extension/h:div">
               <xsl:if test="position() = 1">
                 <xsl:element name="dt">
@@ -932,9 +927,13 @@ This xsl does the formatting of metadata for a landing page
               </xsl:if>
             </xsl:for-each>
 
-          </xsl:element>
-        </dl>
       </xsl:if>
+
+
+        </dl>
+      </section>
+
+
 
 <!-- remove tags for now
       <dl class="dl-horizontal">
