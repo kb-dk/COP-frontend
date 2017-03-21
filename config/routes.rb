@@ -23,13 +23,32 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'editions/any/2009/jul/editions/:locale', to: 'catalog#index', constraint: {locale:/(en)|(da)/ }
-  get 'editions/any/2009/jul/editions/:locale/track', to: 'catalog#track', constraint: {locale:/(en)|(da)/ }
-  get ':medium/:collection/:year/:month/:edition/object:obj_id/:locale',   to: 'catalog#show', constraint: {obj_id: /\d+/, locale:/(en)|(da)/ }
-  get ':medium/:collection/:year/:month/:edition/object:obj_id/:locale/track',   to: 'catalog#track', constraint: {obj_id: /\d+/, locale:/(en)|(da)/ }
-  get ':medium/:collection/:year/:month/:edition/subject:subj_id/:locale', to: 'catalog#index', constraint: {subj_id: /\d+/, locale:/(en)|(da)/ }
-  get ':medium/:collection/:year/:month/:edition/subject:subj_id/:locale/track', to: 'catalog#track', constraint: {subj_id: /\d+/, locale:/(en)|(da)/ }
+  get ':medium/:collection/:year/:month/:edition/object:obj_id/:locale',   to: 'catalog#show',  constraint: {obj_id:  /\d+/, locale:/en|da/ }
+  get ':medium/:collection/:year/:month/:edition/subject:subj_id/:locale', to: 'catalog#index', constraint: {subj_id: /\d+/, locale:/en|da/ }
+  get ':medium/:collection/:year/:month/:edition/:cobjectId/:locale/track',to: 'catalog#track'
+
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+end
+
+
+
+#  get ':medium/:collection/:year/:month/:edition/:cobjectId', to: 'catalog#show', constraint: {medium: /[pamphlets|letters|maps|books|manus]/ }
+#  
+#  get ':medium/:collection/:year/:month/:edition/subject:subj_id', to: 'catalog#index', constraint: {subj_id: /\d+/ }
+
+
+
+# 
+#  
+
+
+#  get ':medium/:collection/:year/:month/:edition/subject:subj_id/:locale/track', to: 'catalog#track', constraint: {subj_id: /\d+/, locale:/(en)|(da)/ }
+#  get ':medium/:collection/:year/:month/:edition/subject:subj_id', to: 'catalog#index', constraint: {subj_id: /\d+/ }
+#  get ':medium/:collection/:year/:month/:edition/object:obj_id/:locale/track',   to: 'catalog#track', constraint: {obj_id: /\d+/, locale:/(en)|(da)/ }
+#  get 'editions/any/2009/jul/editions/:locale', to: 'catalog#index', constraint: {locale:/(en)|(da)/ }
+#  get 'editions/any/2009/jul/editions/:locale/track', to: 'catalog#track', constraint: {locale:/(en)|(da)/ }
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-end
+
