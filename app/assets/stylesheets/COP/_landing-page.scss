@@ -34,7 +34,7 @@ section#metaData, section#category, section#userTags {
 
 .socialButtons {
   position: relative;
-  top: 0px;
+  top: 10px;
   left: 2px;
   z-index: 9999;
   width: 120px;
@@ -56,10 +56,13 @@ section#metaData, section#category, section#userTags {
 }
 
 #kbOSDInstance {
-
   height: 680px;
   top: -20px;
-
+  .kbOSDViewer .icon {
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+  }
   .kbOSDContent {
     border-style: solid;
     border-width: 1px;
@@ -71,7 +74,12 @@ section#metaData, section#category, section#userTags {
     }
   }
 }
-
+.kbOSDToolbar {
+  ul, ol {
+    margin-top: 10px;
+    margin-bottom: 0;
+  }
+}
 
 /* Hide rotation and print icon  on phone Portrait */
 @media only screen

@@ -2,16 +2,25 @@
   .kbOSDToolbar, .kbOSDContent {
     background-color: white !important;
   }
+  .kbOSDToolbar{
+    padding-right:20px;
+  }
 }
 
 :-ms-fullscreen {
   .kbOSDToolbar, .kbOSDContent {
     background-color: white !important;
   }
+  .kbOSDToolbar{
+    padding-right:20px;
+  }
 }
 
 :-webkit-full-screen {
   .kbOSDToolbar, .kbOSDContent {
     background-color: white !important;
+  }
+  .kbOSDToolbar{
+    padding-right:20px;
   }
 }
