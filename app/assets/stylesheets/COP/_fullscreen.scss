@@ -1,0 +1,17 @@
+:-moz-full-screen {
+  .kbOSDToolbar, .kbOSDContent {
+    background-color: white !important;
+  }
+}
+
+:-ms-fullscreen {
+  .kbOSDToolbar, .kbOSDContent {
+    background-color: white !important;
+  }
+}
+
+:-webkit-full-screen {
+  .kbOSDToolbar, .kbOSDContent {
+    background-color: white !important;
+  }
+}
