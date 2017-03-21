@@ -4,6 +4,7 @@ class CatalogController < ApplicationController
   include Blacklight::Catalog
 
   before_action :set_id, only: [:show,:track]
+  before_action :set_subject, only: [:index]
 
   configure_blacklight do |config|
     config.view.gallery.partials = [:index_header, :index]
@@ -170,22 +171,17 @@ class CatalogController < ApplicationController
     config.autocomplete_enabled = true
     config.autocomplete_path = 'suggest'
   end
-
-  def cobject
-    id = "/#{params[:medium]}/#{params[:collection]}/#{params[:year]}/#{params[:month]}/#{params[:edition]}/#{params[:cobjectId]}"
-    @response, @document = fetch id
-    respond_to do |format|
-      format.html { setup_next_and_previous_documents
-                    render 'show'}
-      format.json { render json: { response: { document: @document } } }
-      additional_export_formats(@document, format)
-    end
-  end
-
+  
   private
-  def set_id
-    params[:id] = "/#{params[:medium]}/#{params[:collection]}/#{params[:year]}/#{params[:month]}/#{params[:edition]}/#{params[:cobjectId]}" if params[:medium].present?
+
+  def set_id 
+    params[:id] = "/#{params[:medium]}/#{params[:collection]}/#{params[:year]}/#{params[:month]}/#{params[:edition]}/object#{params[:obj_id]}" if params[:medium].present?
   end
+
+  def set_subject 
+    params[:subject_topic_id_ssim] = "/#{params[:medium]}/#{params[:collection]}/#{params[:year]}/#{params[:month]}/#{params[:edition]}/subject#{params[:subj_id]}" if params[:medium].present?
+  end
+
 
   def fetch_editions
     search_results({search_field: 'editions', rows: 100})

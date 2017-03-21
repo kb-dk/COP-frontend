@@ -23,8 +23,11 @@ Rails.application.routes.draw do
     end
   end
 
-  get ':medium/:collection/:year/:month/:edition/:cobjectId', to: 'catalog#show', constraint: {medium: /[pamphlets|letters|maps|books|manus]/ }
-  get ':medium/:collection/:year/:month/:edition/:cobjectId/track', to: 'catalog#track'
+  get ':medium/:collection/:year/:month/:edition/object:obj_id', to: 'catalog#show', constraint: {obj_id: /\d+/ }
+
+  get ':medium/:collection/:year/:month/:edition/subject:subj_id', to: 'catalog#index', constraint: {subj_id: /\d+/ }
+
+  get ':medium/:collection/:year/:month/:edition/object:objId/track', to: 'catalog#track'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
