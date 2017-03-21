@@ -29,15 +29,22 @@
 
 <script type="text/javascript">
     var jsonurl = <%= @document['content_metadata_image_iiif_info_ssm'].to_s.html_safe %>;
+    var readDirection  ='<%= @document['read_direction_ssi']%>';
+
+    var rtl = false;
+    if (readDirection == "RTL") rtl = true;
+
+    //hack for now to have the first page at the last position in order to see the cover as the first element in osd
+    jsonurl.push(jsonurl.shift());
 
     var kbOSDconfig = [{
         "id": "kbOSDInstance",
         "showDownloadControl": true,
         "toolbar": "kbOSDToolbar",
         "showNavigator": true,
-        "initialPage": 1,
         "defaultZoomLevel": 0,
         "sequenceMode": true,
+        "rtl": rtl,
         "tileSources": jsonurl
     }];
 </script>
