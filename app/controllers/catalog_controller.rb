@@ -3,7 +3,9 @@ class CatalogController < ApplicationController
 
   include Blacklight::Catalog
 
-  before_action :set_id, only: [:show,:track]
+# Don't know what track does. Don't like what I don't understand
+#  before_action :set_id, only: [:show,:track]
+  before_action :set_id, only: [:show]
   before_action :set_subject, only: [:index]
 
   configure_blacklight do |config|

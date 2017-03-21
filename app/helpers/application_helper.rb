@@ -41,7 +41,8 @@ module ApplicationHelper
     lang_selector_sheet = Rails.root.join('config', 'mods_views', 'choose_lang.xsl')
     stylesheet          = Nokogiri::XSLT(File.open(xslt_file_path))
     lang_selector       = Nokogiri::XSLT(File.open(lang_selector_sheet))
-    transformed_doc     = lang_selector.transform(stylesheet.transform(mods_dom, {}),["lang","'da'"])
+    locale              = params['locale']
+    transformed_doc     = lang_selector.transform(stylesheet.transform(mods_dom, {}),["lang","'" + locale + "'"])
     transformed_doc.to_s.html_safe
   end
 
