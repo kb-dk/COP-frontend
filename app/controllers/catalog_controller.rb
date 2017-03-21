@@ -179,7 +179,10 @@ class CatalogController < ApplicationController
   end
 
   def set_subject 
-    params[:subject_topic_id_ssim] = "/#{params[:medium]}/#{params[:collection]}/#{params[:year]}/#{params[:month]}/#{params[:edition]}/subject#{params[:subj_id]}" if params[:medium].present?
+    params[:q]                     = ""
+    params[:search_field]          = "all_fields"
+    params[:cobject_edition_ssi]   = "/#{params[:medium]}/#{params[:collection]}/#{params[:year]}/#{params[:month]}/#{params[:edition]}"
+    params[:subject_topic_id_ssim] = "/#{params[:medium]}/#{params[:collection]}/#{params[:year]}/#{params[:month]}/#{params[:edition]}/subject#{params[:subj_id]}"
   end
 
 
