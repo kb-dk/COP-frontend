@@ -6,7 +6,7 @@ class CatalogController < ApplicationController
 # Don't know what track does. Don't like what I don't understand
   before_action :set_id, only: [:show,:track]
 #  before_action :set_id, only: [:show]
-  before_action :set_subject, only: [:index]
+#  before_action :set_subject, only: [:index]
 
   configure_blacklight do |config|
     config.view.gallery.partials = [:index_header, :index]
@@ -82,9 +82,8 @@ class CatalogController < ApplicationController
 
     config.add_facet_field 'cobject_edition_ssi', label: 'Edition', helper_method: :show_edition_name, collapse: true, limit: 20
     # I put the limit at 1000 here, to get all the facets to iterate through in the _facet_category.html.erb
-    config.add_facet_field 'subject_topic_id_ssim', label: 'Kategori', helper_method: :show_category_name, collapse: false, limit: 1000 , partial: 'facet_category'
-    #config.add_facet_field 'subject_topic_facet', label: 'Topic', limit: 20, index_range: 'A'..'Z'
-
+#    config.add_facet_field 'subject_topic_id_ssim', label: 'Kategori', helper_method: :show_category_name, collapse: false, limit: 1000 , partial: 'facet_category'
+    config.add_facet_field 'contributor_tsim', label: 'Contributor', limit: 20
     #config.add_facet_field 'example_pivot_field', label: 'Pivot Field', :pivot => ['format', 'language_facet']
 
     #config.add_facet_field 'example_query_facet_field', label: 'Publish Date', :query => {
@@ -181,13 +180,13 @@ class CatalogController < ApplicationController
     params[:id] = "/#{params[:medium]}/#{params[:collection]}/#{params[:year]}/#{params[:month]}/#{params[:edition]}/object#{params[:obj_id]}" if params[:medium].present? and params[:obj_id].present?
   end
 
-  def set_subject 
-    params[:q]                     = "" if(!params[:q])
-    params[:search_field]          = "all_fields" if(!params[:search_field])
-    params[:locale] = "da" unless params[:locale].present?
-    params[:cobject_edition_ssi]   = "/#{params[:medium]}/#{params[:collection]}/#{params[:year]}/#{params[:month]}/#{params[:edition]}"
-    params[:f]  = {'subject_topic_id_ssim' => ["/#{params[:medium]}/#{params[:collection]}/#{params[:year]}/#{params[:month]}/#{params[:edition]}/subject#{params[:subj_id]}"]} if params[:subj_id].present?
-  end
+#  def set_subject
+#    params[:q]                     = "" if(!params[:q])
+#    params[:search_field]          = "all_fields" if(!params[:search_field])
+#    params[:locale] = "da" unless params[:locale].present?
+#    params[:cobject_edition_ssi]   = "/#{params[:medium]}/#{params[:collection]}/#{params[:year]}/#{params[:month]}/#{params[:edition]}"
+#    params[:f]  = {'subject_topic_id_ssim' => ["/#{params[:medium]}/#{params[:collection]}/#{params[:year]}/#{params[:month]}/#{params[:edition]}/subject#{params[:subj_id]}"]} if params[:subj_id].present?
+#  end
 
 
   def fetch_editions
