@@ -1,12 +1,6 @@
 <ul class="facet-values list-unstyled">
 
-  <% subject_id = "/#{params[:medium]}/#{params[:collection]}/#{params[:year]}/#{params[:month]}/#{params[:edition]}/subject#{params[:subj_id]}" %>
-  <!--if there is a category facet-->
-  <% if !subject_id.blank? %>
-      <!--find the subcategories of this category-->
-      <% subcat_array = find_subcategories(subject_id) %>
-  <% end %>
-
+  <% subcat_array = find_subcategories("/editions/any/2009/jul/editions") %>
 
   <% table={}
      display_facet.items.each do |x|
@@ -23,6 +17,4 @@
         </span>
       </li>
   <% end %>
-
-  
 </ul>
