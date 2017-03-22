@@ -25,9 +25,12 @@
       <% subcat_array = find_subcategories(top_cat_edition_facet) %>
   <% end %>
 
+
+
   <!--display facets, are the ones that BL by default would print (class: Blacklight::Solr::Response::Facets::FacetField)
   <!-- so we iterate throught the array of the facets and we delete the ones that do NOT match the subcategories array-->
-      <% display_facet.items.delete_if do |x|
+      <%#= display_facet.inspect %>
+      <%# display_facet.items.delete_if do |x|
         if !subcat_array.include? x.value
           true
         else
@@ -35,9 +38,25 @@
         end
       end %>
 
+  <% table={}
+     display_facet.items.each do |x|
+       table[x.value] = x.hits
+     end %>
+
+  <% subcat_array.each do |content| %>
+      <div>
+        <span class="facet-label">
+          <%= link_to content["node"], content["uri"] %>
+          </span>
+        <span class="facet-count">
+          <%= table[content["id"]] %>
+        </span>
+      </div>
+  <% end %>
+
   <!--and now the paginator renders only the subcategories we want-->
   <% paginator = facet_paginator(facet_field, display_facet) %>
-  <%= render_facet_limit_list paginator, field_name %>
+  <% render_facet_limit_list paginator, field_name %>
 
   <% unless paginator.last_page? || params[:action] == "facet" %>
     <li class="more_facets_link">

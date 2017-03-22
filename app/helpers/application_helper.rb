@@ -14,15 +14,21 @@ module ApplicationHelper
     doc['node_tdsim'].first unless doc['node_tdsim'].blank?
   end
 
-  # Helper to return an array with all the ids of the subcategories for a facet
+  # Helper to return an array with all the subcategories for a facet in this format
+  # [{"uri" =>"...", "id"=>"...", "node"=>"..."}, ...]
   def find_subcategories subject_id
-    ids = []
+    content = []
+    lang=params['locale']
     docs = Finder.get_subcats_by_id subject_id
     docs.each do |doc|
-      ids << doc['id']
+      if lang.eql? 'en' and !doc['node_tesim'].nil?
+        node=doc['node_tesim'].first
+      else
+        node=doc['node_tdsim'].first
+      end
+      content << {"uri" =>"#{doc['id']}/#{lang}/", "id"=>doc['id'], "node"=>node}
     end
-    # Returns an array with the subcategories' ids
-    return ids
+    return content
   end
 
   # Helper to find the top_category of an edition
