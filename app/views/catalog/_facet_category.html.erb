@@ -14,14 +14,14 @@
      end %>
 
   <% subcat_array.each do |content| %>
-      <div>
+      <li>
         <span class="facet-label">
           <%= link_to content["node"], content["uri"] %>
           </span>
         <span class="facet-count">
           <%= table[content["id"]] %>
         </span>
-      </div>
+      </li>
   <% end %>
 
   
