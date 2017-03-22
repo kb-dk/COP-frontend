@@ -1,16 +1,10 @@
 <ul class="facet-values list-unstyled">
 
-  <!--for the edition, find the top category so you can search for the subcategories-->
-  <% top_cat_edition_facet = get_top_category(edition_facet) unless edition_facet.blank? %>
-
   <% subject_id = "/#{params[:medium]}/#{params[:collection]}/#{params[:year]}/#{params[:month]}/#{params[:edition]}/subject#{params[:subj_id]}" %>
   <!--if there is a category facet-->
   <% if !subject_id.blank? %>
       <!--find the subcategories of this category-->
       <% subcat_array = find_subcategories(subject_id) %>
-  <% else %>
-      <!--else find the subcategories of the top category of the edition-->
-      <% subcat_array = find_subcategories(top_cat_edition_facet) %>
   <% end %>
 
 
