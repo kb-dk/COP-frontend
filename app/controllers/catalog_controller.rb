@@ -5,7 +5,6 @@ class CatalogController < ApplicationController
 
 # Don't know what track does. Don't like what I don't understand
   before_action :set_id, only: [:show,:track]
-#  before_action :set_id, only: [:show]
   before_action :set_subject, only: [:index]
 
   configure_blacklight do |config|
@@ -185,8 +184,13 @@ class CatalogController < ApplicationController
     params[:q]                     = "" if(!params[:q])
     params[:search_field]          = "all_fields" if(!params[:search_field])
     params[:locale] = "da" unless params[:locale].present?
-    params[:cobject_edition_ssi]   = "/#{params[:medium]}/#{params[:collection]}/#{params[:year]}/#{params[:month]}/#{params[:edition]}"
-    params[:f]  = {'subject_topic_id_ssim' => ["/#{params[:medium]}/#{params[:collection]}/#{params[:year]}/#{params[:month]}/#{params[:edition]}/subject#{params[:subj_id]}"]} if params[:subj_id].present?
+    if params[:medium].present?
+      params[:cobject_edition_ssi]   = "/#{params[:medium]}/#{params[:collection]}/#{params[:year]}/#{params[:month]}/#{params[:edition]}"
+    end
+    if params[:subj_id].present?
+      params[:f]  = {}
+      params[:f]  = {'subject_topic_id_ssim' => ["/#{params[:medium]}/#{params[:collection]}/#{params[:year]}/#{params[:month]}/#{params[:edition]}/subject#{params[:subj_id]}"]} if params[:subj_id].present?
+    end
   end
 
 
