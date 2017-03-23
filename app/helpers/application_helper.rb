@@ -24,15 +24,10 @@ module ApplicationHelper
   # [{"uri" =>"...", "id"=>"...", "node"=>"..."}, ...]
   def find_subcategories subject_id
     content = []
-    lang=params['locale']
+    lang = params['locale']
     docs = Finder.get_subcats_by_id subject_id
     docs.each do |doc|
-      if lang.eql? 'en' and !doc['node_tesim'].nil?
-        node = doc['node_tesim'].first
-      else
-        node = doc['node_tdsim'].first
-      end
-      content << {"uri" =>"#{doc['id']}/#{lang}/", "id"=>doc['id'], "node"=>node}
+      content << {"uri" =>"#{doc['id']}/#{lang}/", "id"=>doc['id'], "node"=>show_category_name(doc['id'])}
     end
     return content
   end
