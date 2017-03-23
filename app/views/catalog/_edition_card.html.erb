@@ -1,6 +1,6 @@
 <% result, editions = fetch_editions %>
 <% editions.each do |edi| %>
-<% uri = "#{edi[:id]}/#{params["locale"]}/" %>
+<% uri = "#{edi[:top_cat_ssi]}/#{params["locale"]}/" %>
 <a href='<%= uri %>'>
 <div class="col-xs-12 col-sm-4 edition-card">
   <div class="flipper">
