@@ -1,0 +1,12 @@
+<% subject_id = "/#{params[:medium]}/#{params[:collection]}/#{params[:year]}/#{params[:month]}/#{params[:edition]}/subject#{params[:subj_id]}" %>
+<% lang = params['locale'] %>
+
+You are here:
+<!-- Show the home pge link -->
+<%= link_to 'Hjem', "/editions/any/2009/jul/editions/#{lang}/" %>
+<!--Iterate through the subcategories-->
+<% get_breadcrumb_path(subject_id).each do |sub| %>
+  > <%= link_to show_category_name(sub), "#{sub}/#{lang}/" %>
+<% end %>
+<!--Show the current link location-->
+> <%= link_to show_category_name(subject_id), "#{subject_id}/#{lang}/" %>
