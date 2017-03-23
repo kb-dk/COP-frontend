@@ -5,8 +5,6 @@ class CatalogController < ApplicationController
 
 # Don't know what track does. Don't like what I don't understand
   before_action :set_id, only: [:show,:track]
-#  before_action :set_id, only: [:show]
-#  before_action :set_subject, only: [:index]
 
   configure_blacklight do |config|
     config.view.gallery.partials = [:index_header, :index]
@@ -180,15 +178,6 @@ class CatalogController < ApplicationController
     params[:locale] = "da" unless params[:locale].present?
     params[:id] = "/#{params[:medium]}/#{params[:collection]}/#{params[:year]}/#{params[:month]}/#{params[:edition]}/object#{params[:obj_id]}" if params[:medium].present? and params[:obj_id].present?
   end
-
-#  def set_subject
-#    params[:q]                     = "" if(!params[:q])
-#    params[:search_field]          = "all_fields" if(!params[:search_field])
-#    params[:locale] = "da" unless params[:locale].present?
-#    params[:cobject_edition_ssi]   = "/#{params[:medium]}/#{params[:collection]}/#{params[:year]}/#{params[:month]}/#{params[:edition]}"
-#    params[:f]  = {'subject_topic_id_ssim' => ["/#{params[:medium]}/#{params[:collection]}/#{params[:year]}/#{params[:month]}/#{params[:edition]}/subject#{params[:subj_id]}"]} if params[:subj_id].present?
-#  end
-
 
   def fetch_editions
     search_results({search_field: 'editions', rows: 100})

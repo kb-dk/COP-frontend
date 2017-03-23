@@ -7,18 +7,22 @@
       <% subcat_array = find_subcategories(subject_id) %>
   <% end %>
 
-
+  <!-- Create a hash with the facet-value (that is the id of the subcategory) and its hits,
+  so we can print it further down-->
   <% table={}
      display_facet.items.each do |x|
        table[x.value] = x.hits
      end %>
 
+  <!--Iterate through the subcategories (array with hashes) -->
   <% subcat_array.each do |content| %>
       <li>
         <span class="facet-label">
+          <!--For each subcategory make a link -->
           <%= link_to content["node"], content["uri"] %>
           </span>
         <span class="facet-count">
+          <!--And print the number of hits-->
           <%= table[content["id"]] %>
         </span>
       </li>
