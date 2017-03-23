@@ -11,7 +11,7 @@ module ApplicationHelper
   def show_category_name id
     # Find the document with the specific id
     doc = Finder.get_doc_by_id(id)
-    lang = params['locale']
+    params['locale'].blank? ? lang = "da" : lang = params['locale']
     # Check if there in an english version for the name
     if lang.eql? 'en' and !doc['node_tesim'].nil?
       doc['node_tesim'].first
@@ -24,7 +24,7 @@ module ApplicationHelper
   # [{"uri" =>"...", "id"=>"...", "node"=>"..."}, ...]
   def find_subcategories subject_id
     content = []
-    lang = params['locale']
+    params['locale'].blank? ? lang = "da" : lang = params['locale']
     docs = Finder.get_subcats_by_id subject_id
     docs.each do |doc|
       content << {"uri" =>"#{doc['id']}/#{lang}/", "id"=>doc['id'], "node"=>show_category_name(doc['id'])}
