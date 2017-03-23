@@ -37,7 +37,7 @@ module ApplicationHelper
     # Find the document with the specific id
     doc = Finder.get_doc_by_id(cat_id)
     # Get the array and revert the order
-    return doc['bread_crumb_ssim'].reverse
+    return doc['bread_crumb_ssim'].reverse unless doc['bread_crumb_ssim'].nil?
   end
 
   def show_mods_record args
