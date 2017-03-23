@@ -1,17 +1,19 @@
-<% subject_id = "/#{params[:medium]}/#{params[:collection]}/#{params[:year]}/#{params[:month]}/#{params[:edition]}/subject#{params[:subj_id]}" %>
+<% subject_id = "/#{params[:medium]}/#{params[:collection]}/#{params[:year]}/#{params[:month]}/#{params[:edition]}/subject#{params[:subj_id]}"  unless params[:medium].blank? %>
 <% lang = params['locale'] %>
 
-You are here:
-<!-- Show the home pge link -->
-<%= link_to 'Hjem', "/editions/any/2009/jul/editions/#{lang}/" %>
+<% if subject_id %>
+    You are here:
+    <!-- Show the home pge link -->
+    <%= link_to 'Hjem', "/editions/any/2009/jul/editions/#{lang}/" %>
 
-<!--If there is a breadcrumb (that means we are in a subcategory and NOT an edition)-->
-<% unless get_breadcrumb_path(subject_id).nil? %>
-    <!--Iterate through the subcategories-->
-    <% get_breadcrumb_path(subject_id).each do |sub| %>
-        > <%= link_to show_category_name(sub), "#{sub}/#{lang}/" %>
+    <!--If there is a breadcrumb (that means we are in a subcategory and NOT an edition)-->
+    <% unless get_breadcrumb_path(subject_id).nil? %>
+        <!--Iterate through the subcategories-->
+        <% get_breadcrumb_path(subject_id).each do |sub| %>
+            > <%= link_to show_category_name(sub), "#{sub}/#{lang}/" %>
+        <% end %>
     <% end %>
-<% end %>
 
-<!--Show the current link location-->
-> <%= link_to show_category_name(subject_id), "#{subject_id}/#{lang}/" %>
+    <!--Show the current link location-->
+    > <%= link_to show_category_name(subject_id), "#{subject_id}/#{lang}/" %>
+<% end %>
