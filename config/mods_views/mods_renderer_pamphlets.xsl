@@ -421,12 +421,6 @@ This xsl does the formatting of metadata for a landing page
               </xsl:if>
               <xsl:element name="dd">
                 <xsl:apply-templates select="md:note"/>
-                <xsl:choose>
-                  <xsl:otherwise>
-                    <xsl:text>
-                    </xsl:text>
-                  </xsl:otherwise>
-                </xsl:choose>
               </xsl:element>
             </xsl:for-each>
 
