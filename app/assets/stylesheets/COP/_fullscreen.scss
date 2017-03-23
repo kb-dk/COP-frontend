@@ -1,0 +1,38 @@
+:-moz-full-screen {
+  .kbOSDToolbar, .kbOSDContent {
+    background-color: white !important;
+  }
+  .kbOSDToolbar{
+    padding-right:20px;
+      ul, ol {
+        margin-top: 10px;
+        margin-bottom: 0;
+    }
+  }
+}
+
+:-ms-fullscreen {
+  .kbOSDToolbar, .kbOSDContent {
+    background-color: white !important;
+  }
+  .kbOSDToolbar{
+    padding-right:20px;
+    ul, ol {
+      margin-top: 10px;
+      margin-bottom: 0;
+    }
+  }
+}
+
+:-webkit-full-screen {
+  .kbOSDToolbar, .kbOSDContent {
+    background-color: white !important;
+  }
+  .kbOSDToolbar{
+    padding-right:20px;
+    ul, ol {
+      margin-top: 10px;
+      margin-bottom: 0;
+    }
+  }
+}
