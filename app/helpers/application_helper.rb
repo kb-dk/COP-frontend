@@ -11,31 +11,33 @@ module ApplicationHelper
   def show_category_name id
     # Find the document with the specific id
     doc = Finder.get_doc_by_id(id)
-    doc['node_tdsim'].first unless doc['node_tdsim'].blank?
+    params['locale'].blank? ? lang = "da" : lang = params['locale']
+    # Check if there in an english version for the name
+    if lang.eql? 'en' and !doc['node_tesim'].nil?
+      doc['node_tesim'].first
+    else
+      doc['node_tdsim'].first
+    end
   end
 
   # Helper to return an array with all the subcategories for a facet in this format
   # [{"uri" =>"...", "id"=>"...", "node"=>"..."}, ...]
   def find_subcategories subject_id
     content = []
-    lang=params['locale']
+    params['locale'].blank? ? lang = "da" : lang = params['locale']
     docs = Finder.get_subcats_by_id subject_id
     docs.each do |doc|
-      if lang.eql? 'en' and !doc['node_tesim'].nil?
-        node=doc['node_tesim'].first
-      else
-        node=doc['node_tdsim'].first
-      end
-      content << {"uri" =>"#{doc['id']}/#{lang}/", "id"=>doc['id'], "node"=>node}
+      content << {"uri" =>"#{doc['id']}/#{lang}/", "id"=>doc['id'], "node"=>show_category_name(doc['id'])}
     end
     return content
   end
 
-  # Helper to find the top_category of an edition
-  def get_top_category edition_id
+  # Helper to get the breadcrumb for a category
+  def get_breadcrumb_path cat_id
     # Find the document with the specific id
-    doc = Finder.get_doc_by_id(edition_id)
-    doc['top_cat_ssi']
+    doc = Finder.get_doc_by_id(cat_id)
+    # Get the array and revert the order
+    return doc['bread_crumb_ssim'].reverse unless doc['bread_crumb_ssim'].nil?
   end
 
   def show_mods_record args
