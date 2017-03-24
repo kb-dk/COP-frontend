@@ -9,5 +9,11 @@
     background-size: cover;
   }
 
+  a {
+    color: #fff !important;
+    &:focus, &:hover, &:active {
+      color: gray !important;
+    }
+  }
 
 }
