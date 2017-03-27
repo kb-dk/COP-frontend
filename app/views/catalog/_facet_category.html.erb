@@ -7,6 +7,8 @@
       <% subcat_array = find_subcategories(subject_id) %>
       <% else %>
       <% subcat_array = find_subcategories("/editions/any/2009/jul/editions") %>
+      <!--Remove the LUFTFOTO category-->
+      <% subcat_array.delete_if { |x| x["id"]=="/images/luftfo/2011/maj/luftfoto/subject203"} %>
   <% end %>
 
       <!-- Create a hash with the facet-value (that is the id of the subcategory) and its hits,
