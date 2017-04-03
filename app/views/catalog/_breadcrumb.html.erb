@@ -2,7 +2,7 @@
 <% lang = params['locale'] %>
 
 <% if subject_id %>
-    <ul id="breadcrumbs">
+    <ol class="breadcrumb">
       <!-- Show the home pge link -->
       <li>
         <%= link_to 'Hjem', "/editions/any/2009/jul/editions/#{lang}/" %>
@@ -20,5 +20,5 @@
       <li>
         <%= link_to show_category_name(subject_id), "#{subject_id}/#{lang}/" %>
       </li>
-    </ul>
+    </ol>
 <% end %>
