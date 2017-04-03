@@ -1,3 +1,7 @@
 en:
   blacklight:
     application_name: 'Digitale Samlinger'
+
+  views:
+    header_links:
+      user_guide: 'User guide'
