@@ -1,6 +1,12 @@
 <ul class="facet-values list-unstyled">
 
   <% subject_id = "/#{params[:medium]}/#{params[:collection]}/#{params[:year]}/#{params[:month]}/#{params[:edition]}/subject#{params[:subj_id]}" if params[:medium] %>
+
+  <!--keep the filter parameters (like the query, facets etc)-->
+  <% params.keep_if{ |x| ['q', 'search_field', 'sort', 'f'].include?(x) } %>
+  <!--create a URL with these parameters and remove the base URL-->
+  <% filter_params_url = search_action_path(params).sub(request.base_url+"/", "") %>
+
   <!--if there is a category facet-->
   <% if !subject_id.blank? %>
       <!--find the subcategories of this category-->
@@ -23,7 +29,7 @@
           <li>
         <span class="facet-label">
           <!--For each subcategory make a link -->
-          <%= link_to content["node"], content["uri"] %>
+          <%= link_to content["node"], content["uri"]+filter_params_url %>
           </span>
             <span class="facet-count">
           <!--And print the number of hits-->
