@@ -1,32 +1,36 @@
 <ul class="facet-values list-unstyled">
 
-  <% subject_id = "/#{params[:medium]}/#{params[:collection]}/#{params[:year]}/#{params[:month]}/#{params[:edition]}/subject#{params[:subj_id]}" %>
+  <% subject_id = "/#{params[:medium]}/#{params[:collection]}/#{params[:year]}/#{params[:month]}/#{params[:edition]}/subject#{params[:subj_id]}" if params[:medium] %>
   <!--if there is a category facet-->
   <% if !subject_id.blank? %>
       <!--find the subcategories of this category-->
       <% subcat_array = find_subcategories(subject_id) %>
+      <% else %>
+      <% subcat_array = find_subcategories("/editions/any/2009/jul/editions") %>
+      <!--Remove the LUFTFOTO category-->
+      <% subcat_array.delete_if { |x| x["id"]=="/images/luftfo/2011/maj/luftfoto/subject203"} %>
   <% end %>
 
-  <!-- Create a hash with the facet-value (that is the id of the subcategory) and its hits,
-  so we can print it further down-->
-  <% table={}
-     display_facet.items.each do |x|
-       table[x.value] = x.hits
-     end %>
+      <!-- Create a hash with the facet-value (that is the id of the subcategory) and its hits,
+      so we can print it further down-->
+      <% table={}
+         display_facet.items.each do |x|
+           table[x.value] = x.hits
+         end %>
 
-  <!--Iterate through the subcategories (array with hashes) -->
-  <% subcat_array.each do |content| %>
-      <li>
+      <!--Iterate through the subcategories (array with hashes) -->
+      <% subcat_array.each do |content| %>
+          <li>
         <span class="facet-label">
           <!--For each subcategory make a link -->
           <%= link_to content["node"], content["uri"] %>
           </span>
-        <span class="facet-count">
+            <span class="facet-count">
           <!--And print the number of hits-->
-          <%= table[content["id"]] %>
+              <%= table[content["id"]] %>
         </span>
-      </li>
-  <% end %>
+          </li>
+      <% end %>
 
-  
+
 </ul>
