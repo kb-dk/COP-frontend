@@ -23,10 +23,10 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'editions/any/2009/jul/editions/:locale',   to: 'catalog#index',  constraint: {locale:/en|da/ }
-  get ':medium/:collection/:year/:month/:edition/:locale',   to: 'catalog#index',  constraint: {locale:/en|da/ }
-  get ':medium/:collection/:year/:month/:edition/object:obj_id/:locale',   to: 'catalog#show',  constraint: {obj_id:  /\d+/, locale:/en|da/ }
-  get ':medium/:collection/:year/:month/:edition/subject:subj_id/:locale', to: 'catalog#index', constraint: {subj_id: /\d+/, locale:/en|da/ }
+  get 'editions/any/2009/jul/editions/:locale',   to: 'catalog#index'
+  get ':medium/:collection/:year/:month/:edition/:locale',   to: 'catalog#index'
+  get ':medium/:collection/:year/:month/:edition/object:obj_id/:locale',   to: 'catalog#show'
+  get ':medium/:collection/:year/:month/:edition/subject:subj_id/:locale', to: 'catalog#index'
   get ':medium/:collection/:year/:month/:edition/:cobjectId/:locale/track',to: 'catalog#track'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
