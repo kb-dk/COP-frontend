@@ -21,6 +21,9 @@ da:
       saved_searches: 'Gemte søgninger'
       search_history: 'Historik'
       user_guides: 'Vejledninger'
+      change_language_to: 'English'
+      language_path: '../en/'
+
 
     welcome: 'Velkommen!'
     and: 'og'

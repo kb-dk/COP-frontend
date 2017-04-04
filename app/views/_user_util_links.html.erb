@@ -9,6 +9,10 @@
     <li><a href="http://www.kb.dk/<%= locale %>/nb/samling/copinfo.html" target="_blank"> <%= t('blacklight.header_links.user_guides') %></a></li>
   </ul>
 
+  <ul class="nav navbar-nav">
+    <li><a href="<%= t('blacklight.header_links.language_path') %>"> <%= t('blacklight.header_links.change_language_to') %></a></li>
+  </ul>
+
   <% if has_user_authentication_provider? %>
     <ul class="nav navbar-nav">
       <% if current_user %>

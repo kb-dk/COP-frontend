@@ -21,6 +21,8 @@ en:
       saved_searches: 'Saved Searches'
       search_history: 'History'
       user_guides: 'User guides'
+      change_language_to: 'Dansk'
+      language_path: '../da/'
 
     welcome: 'Welcome!'
     and: 'and'
