@@ -4,7 +4,8 @@
 
   <!--I take the params by splitting the URL, and NOT by using blacklight functionality, because the params returned
   different format for the facets-->
-  <% filter_params_url = '?' + request.original_url.partition('?').last %>
+  <% filter_params_url = ""%>
+  <% filter_params_url = '?' + request.original_url.partition('?').last if request.original_url.include?('?') %>
 
   <!--if there is a category facet-->
   <% if !subject_id.blank? %>
