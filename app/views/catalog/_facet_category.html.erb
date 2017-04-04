@@ -3,7 +3,7 @@
   <% subject_id = "/#{params[:medium]}/#{params[:collection]}/#{params[:year]}/#{params[:month]}/#{params[:edition]}/subject#{params[:subj_id]}" if params[:medium] %>
 
   <!--keep the filter parameters (like the query, facets etc)-->
-  <% params.keep_if{ |x| ['q', 'search_field', 'sort', 'f'].include?(x) } %>
+  <% params.keep_if{ |x| ['q', 'search_field', 'sort', 'f', 'controller', 'action'].include?(x) } %>
   <!--create a URL with these parameters and remove the base URL-->
   <% filter_params_url = search_action_path(params).sub(request.base_url+"/", "") %>
 
@@ -29,7 +29,7 @@
           <li>
         <span class="facet-label">
           <!--For each subcategory make a link -->
-          <%= link_to content["node"], content["uri"]+filter_params_url %>
+          <%= link_to content["node"], content["uri"]+URI.unescape(filter_params_url) %>
           </span>
             <span class="facet-count">
           <!--And print the number of hits-->
