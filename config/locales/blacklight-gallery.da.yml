@@ -1,0 +1,15 @@
+da:
+  blacklight:
+    search:
+      view:
+        gallery: "Galleri"
+        slideshow: "Slideshow"
+        masonry: "Murværk"
+  blacklight_gallery:
+    catalog:
+      grid_slideshow:
+        missing_image: 'Mangler'
+      document_slideshow:
+        header: "Start et slideshow ved at vælge et billede"
+      modal_slideshow:
+        counter: "%{counter} af %{count}"
