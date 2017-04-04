@@ -40,6 +40,16 @@ module ApplicationHelper
     return doc['bread_crumb_ssim'].reverse unless doc['bread_crumb_ssim'].nil?
   end
 
+  def show_pdf_link doc
+    # Get hold of the mods record from the solr doc and transform it in relation to the medium
+    mods = doc['processed_mods_ts']
+    mods_dom = Nokogiri::XML(mods) do |config|
+      config.strict
+    end
+    md="http://www.loc.gov/mods/v3" 
+    mods_dom.xpath("//md:mods/md:identifier[@displayLabel='pdf' and @type='uri']/text()",'md' => md).to_s
+  end
+
   def show_mods_record args
     # Get hold of the mods record from the solr doc and transform it in relation to the medium
     mods = args[:document]['processed_mods_ts']

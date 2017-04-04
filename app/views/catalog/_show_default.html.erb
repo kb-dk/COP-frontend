@@ -9,7 +9,7 @@
     <% end -%>
   </div>
 
-  <div class="socialButtons col-sm-1">
+  <div class="socialButtons col-sm-1 hidden-print">
     <a href="javascript:window.open('https://www.facebook.com/sharer/sharer.php?s=100&amp;u=http://www.kb.dk/<%= document.id %>', '_blank', 'width=626,height=436');void(0);">
       <i class="fa fa-facebook fa-lg" aria-hidden="true"></i>
     </a>
@@ -19,6 +19,10 @@
     <a href="javascript:window.print();">
       <i class="fa fa-print fa-lg" aria-hidden="true"></i>
     </a>
+    <a href=" <%= show_pdf_link(document) %>" target="_blank">
+      <i class="fa fa-file-pdf-o fa-lg" aria-hidden="true"></i>
+    </a>
+
   </div>
 
   <div id="kbOSDInstance" class="col-sm-12 col-md-6">
