@@ -1,7 +1,235 @@
-en:
-  blacklight:
-    application_name: 'Digitale Samlinger'
-
+da:
   views:
+    pagination:
+      first: '&laquo; Første'
+      last: 'Sidste &raquo;'
+      previous: '&laquo; Forrige'
+      next: 'Næste &raquo;'
+      truncate: '…'
+
+    pagination_compact:
+      previous: '&laquo; Forrige'
+      next: 'Næste &raquo;'
+
+  blacklight:
+    application_name: 'Digitale samlinger'
+
     header_links:
+      login: 'Log ind'
+      logout: 'Log ud'
+      bookmarks: 'Bogmærker'
+      saved_searches: 'Gemte søgninger'
+      search_history: 'Historik'
       user_guides: 'Vejledninger'
+      change_language_to: 'English'
+      language_path: '../en/'
+
+
+    welcome: 'Velkommen!'
+    and: 'og'
+    or: 'eller'
+
+    bookmarks:
+      title: 'Bogmærker'
+      page_title: 'Bogmærker - %{application_name}'
+      no_bookmarks: 'Du har ingen bogmærker'
+      add:
+        button: 'Set bogmærke'
+        success:
+          one: 'Bogmærket er tilføjet.'
+          other: 'Bogmærker er blevet tilføjet.'
+        failure:  'Beklager, bogmærkerne kunne ikke gemmes.'
+      remove:
+        button: 'Fjern bogmærke'
+        success: 'Bogmærket er blevet fjernet.'
+        failure: 'Beklager, bogmærkerne kunne ikke fjernes.'
+        action_confirm: 'Skal dette bogmærke fjernes?'
+      clear:
+        action_title: 'Slet bogmærker'
+        action_confirm: 'Skal dine bogmærker slettes?'
+        success: 'Dine bogmærker er blevet slettet.'
+        failure: 'Beklager, der var problemer med at fjerne dine bogmærker.'
+      need_login: 'Log ind for at se og administrere dine bogmærker.'
+      list_title: 'Dine bogmærker'
+      delete: 'Fjern'
+
+    saved_searches:
+      add:
+        success: 'Din søgning er blevet gemt.'
+        failure: 'Der var problemer med at gemme din søgning.'
+      remove:
+        success: 'Den gemte søgning blev fjernet.'
+        failure: 'Der var problemer med at fjerne din gemte søgning.'
+      clear:
+        action_title: 'Slet gemte søgninger'
+        action_confirm: 'Vil du slette dine gemte søgninger?'
+        success: 'Dine gemte søgninger er blevet slettet.'
+        failure: 'Der var problemer med at slette dine søgninger.'
+      title: 'Gemte søgninger'
+      page_title: 'Gemte søgninger - %{application_name}'
+      need_login: 'Log ind for at se og administrere dine gemte søgninger.'
+      no_searches: 'Du har ingen gemte søgninger'
+      list_title: 'Dine gemte søgninger'
+      delete: 'Slet'
+
+    search_history:
+      clear:
+        action_title: 'Slet søgehistorik'
+        action_confirm: 'Vil du slette din søgehistorik?'
+        success: 'Din søgehistorik blev slettet.'
+        failure: 'Der var problemer med at slette din søgehistorik.'
+      title: 'Søgehistorik'
+      page_title: 'Søgehistorik - %{application_name}'
+      no_history: 'Du har ingen søgehistorik'
+      recent: 'Dine seneste søgninger'
+      forget: 'Glem'
+      save: 'Gem'
+
+    tools:
+      title: 'Værktøjer'
+      citation: 'Citat'
+      email: 'E-mail'
+      sms: 'SMS om dette'
+      clear: 'Slet'
+
+    citation:
+      mla: 'MLA'
+      apa: 'APA'
+      chicago: 'Chicago'
+
+    email:
+      form:
+        title: 'E-mail om dette'
+        to: 'E-mail:'
+        message: 'Tekst:'
+        submit: 'Send'
+      text:
+        default_title: '(ingen)'
+        title: 'Titel: %{value}'
+        author: 'Forfatter: %{value}'
+        format: 'Format: %{value}'
+        language: 'Sprog: %{value}'
+        subject:
+          one: 'Indgang: %{title}'
+          other: 'Indgange'
+        url: 'URL: %{url}'
+        message: 'Tekst: %{message}'
+
+      success: "E-mail'en er blevet sendt"
+
+      errors:
+        to:
+          invalid: 'Du skal indtaste en korrekt e-mail-adresse'
+          blank: 'Du skal angive en modtager for at kunne sende denne meddelelse'
+    sms:
+      form:
+        title: 'SMS om dette'
+        to: 'Telefonnr.:'
+        carrier: 'Tjenesteyder'
+        carrier_prompt: 'Vælg din tjenesteyder'
+        submit: 'Send'
+      text:
+        title: '%{value}'
+        author: ' by %{value}'
+        url: 'Link: %{url}'
+      success: "SMS'en er sendt"
+      errors:
+        to:
+          invalid: 'Du skal indtaste et korrekt 10-cifret telefonnummer'
+          blank: "Du skal angive en modtagers telefonnummer for at kunne sende denne meddelelse"
+        carrier:
+          blank: 'Du skal vælge en tjenesteyder'
+          invalid: "Du skal indtaste en korrekt tjenesteyder"
+
+    back_to_search: 'Tilbage til søgning'
+    back_to_bookmarks: 'Tilbage til bogmærker'
+
+    search:
+      # i18n key 'title' is deprecated and will be removed in Blacklight 6.0
+      title: '%{application_name} Søgeresultater'
+      page_title:
+        title: '%{constraints} - %{application_name} Søgeresultater'
+        constraint: '%{label}: %{value}'
+        many_constraint_values: '%{values} valgt'
+      search_results_header: 'Søgebegrænsninger'
+      search_results: 'Søgeresultater'
+      errors:
+        request_error: "Beklager, din søgning kan ikke forstås."
+        invalid_solr_id: "Beklager, du har bedt om en indgang som ikke eksisterer."
+      per_page:
+        label: '%{count}<span class="sr-only"> pr. side</span>'
+        button_label: '%{count} pr. side'
+        title: 'Antal resultater som vises pr. side'
+        submit: 'Opdater'
+      sort:
+        label: 'Sorter efter %{field}'
+        submit: 'Sorter resultater'
+      form:
+        search_field:
+          label: 'Søg i'
+          title: 'Udvalgte søgemuligheder' # Targeted search options
+          post_label: 'for'
+        search:
+          label: 'søg efter'
+          placeholder: 'Søg...'
+        submit: 'Søg'
+      pagination:
+        title: 'Resultater' # 'Results navigation'
+      pagination_info:
+        no_items_found: '%{entry_name} ikke fundet'
+        single_item_found: '<strong>1</strong> %{entry_name} fundet'
+        pages:
+          one: '<strong>%{start_num}</strong> - <strong>%{end_num}</strong> af <strong>%{total_num}</strong>'
+          other: '<strong>%{start_num}</strong> - <strong>%{end_num}</strong> af <strong>%{total_num}</strong>'
+      entry_pagination_info:
+        one: '<strong>1 of 1</strong>'
+        other: '<strong>%{current}</strong> af <strong>%{total}</strong>'
+      documents:
+        counter: '%{counter}. '
+      facets:
+        title: 'Afgræns søgning'
+        clear: 'Slet filter'
+        sort:
+          count: 'Numerisk sortering'
+          index: 'Alfabetisk sortering'
+        count: '%{number}'
+        more_html: 'flere <span class="sr-only">%{field_name}</span> »'
+        selected:
+          remove: '[fjern]'
+        missing: "[Mangler]"
+      group:
+        more: 'mere »'
+      filters:
+        title: 'Du søgte efter:'
+        label: '%{label}:'
+        remove:
+          value: 'Fjern begrænsing %{value}'
+          label_value: 'Fjern begrænsning %{label}: %{value}'
+      start_over: 'Begynd forfra' # 'Start Over'
+      index:
+        label: '%{label}:'
+      show:
+        title: '%{document_title} - %{application_name}'
+        label: '%{label}:'
+      rss_feed: 'RSS for resultater'
+      atom_feed: 'Atom for resultater' # unknown meaning om "atom", needs translation
+      fields:
+        default: 'Nøgleord'
+      bookmarks:
+        present: "I bogmærker"
+        absent: "Bogmærke"
+        inprogress: "Der gemmes..."
+      zero_results:
+        title: "Din søgning gav ingen resultater"
+        modify_search: "Forsøg at ændre din søgning"
+        use_fewer_keywords: "Start med at anvende færre nøgleord. Senere kan du afgrænse søgningen ved at anvende linkene til venstre."
+        search_fields: "du søgte efter %{search_fields}"
+        search_everything: "forsøg at søge uden afgrænsning"
+      view_title: "Se resultater som: "
+      view:
+        list: "Liste"
+
+    entry_name:
+      default: 'indgang'
+
+    did_you_mean: 'Var det din mening at indtaste: %{options}?'
