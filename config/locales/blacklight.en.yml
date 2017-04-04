@@ -1,7 +1,5 @@
 en:
   views:
-    header_links:
-      user_guides: 'User guide'
     pagination:
       first: '&laquo; First'
       last: 'Last &raquo;'
@@ -22,6 +20,7 @@ en:
       bookmarks: 'Bookmarks'
       saved_searches: 'Saved Searches'
       search_history: 'History'
+      user_guides: 'User guides'
 
     welcome: 'Welcome!'
     and: 'and'

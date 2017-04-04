@@ -1,7 +1,5 @@
 da:
   views:
-    header_links:
-      user_guides: 'Vejledninger'
     pagination:
       first: '&laquo; Første'
       last: 'Sidste &raquo;'
@@ -22,6 +20,7 @@ da:
       bookmarks: 'Bogmærker'
       saved_searches: 'Gemte søgninger'
       search_history: 'Historik'
+      user_guides: 'Vejledninger'
 
     welcome: 'Velkommen!'
     and: 'og'
