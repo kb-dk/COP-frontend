@@ -3,7 +3,7 @@
   <% subject_id = "/#{params[:medium]}/#{params[:collection]}/#{params[:year]}/#{params[:month]}/#{params[:edition]}/subject#{params[:subj_id]}" if params[:medium] %>
 
   <!--I take the params by splitting the URL, and NOT by using blacklight functionality, because the params returned
-  different format for the facets-->
+  different format for the facets (I think it's bug in Blacklight)-->
   <% filter_params_url = ""%>
   <% filter_params_url = '?' + request.original_url.partition('?').last if request.original_url.include?('?') %>
 
