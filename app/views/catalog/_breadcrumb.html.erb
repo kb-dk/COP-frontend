@@ -1,6 +1,11 @@
 <% subject_id = "/#{params[:medium]}/#{params[:collection]}/#{params[:year]}/#{params[:month]}/#{params[:edition]}/subject#{params[:subj_id]}" unless params[:medium].blank? %>
 <% lang = params['locale'] %>
 
+<!--I take the params by splitting the URL, and NOT by using blacklight functionality, because the params returned
+different format for the facets (I think it's bug in Blacklight)-->
+<% filter_params_url = ""%>
+<% filter_params_url = '?' + request.original_url.partition('?').last if request.original_url.include?('?') %>
+
 <% if subject_id %>
     <ol class="breadcrumb">
       <!-- Show the home pge link -->
@@ -12,13 +17,13 @@
           <!--Iterate through the subcategories-->
           <% get_breadcrumb_path(subject_id).each do |sub| %>
               <li>
-                <%= link_to show_category_name(sub), "#{sub}/#{lang}/" %>
+                <%= link_to show_category_name(sub), "#{sub}/#{lang}/"+filter_params_url %>
               </li>
           <% end %>
       <% end %>
       <!--Show the current link location-->
       <li>
-        <%= link_to show_category_name(subject_id), "#{subject_id}/#{lang}/" %>
+        <%= link_to show_category_name(subject_id), "#{subject_id}/#{lang}/"+filter_params_url %>
       </li>
     </ol>
 <% end %>
