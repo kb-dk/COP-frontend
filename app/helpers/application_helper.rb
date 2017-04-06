@@ -27,7 +27,12 @@ module ApplicationHelper
     params['locale'].blank? ? lang = "da" : lang = params['locale']
     docs = Finder.get_subcats_by_id subject_id
     docs.each do |doc|
-      content << {"uri" =>"#{doc['id']}/#{lang}/", "id"=>doc['id'], "node"=>show_category_name(doc['id'])}
+      content << {
+        "uri" =>"#{doc['id']}/#{lang}/", 
+        "id"=>doc['id'], 
+        "node"=>show_category_name(doc['id']),
+        "key"=>show_category_name(doc['id']).strip.downcase
+      }
     end
     return content
   end

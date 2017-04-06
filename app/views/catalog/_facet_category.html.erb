@@ -9,15 +9,16 @@
 
   <!--if there is a category facet-->
   <% if !subject_id.blank? %>
-      <!--find the subcategories of this category-->
-      <% subcat_array = find_subcategories(subject_id) %>
-      <% else %>
-      <% subcat_array = find_subcategories("/editions/any/2009/jul/editions") %>
-      <!--Remove the LUFTFOTO category-->
-      <% subcat_array.delete_if { |x| x["id"]=="/images/luftfo/2011/maj/luftfoto/subject203"} %>
+  <!--find the subcategories of this category-->
+  <% subcat_array_in = find_subcategories(subject_id) %>
+  <% else %>
+  <% subcat_array_in = find_subcategories("/editions/any/2009/jul/editions") %>
+  <!--Remove the LUFTFOTO category-->
+  <% subcat_array.delete_if { |x| x["id"]=="/images/luftfo/2011/maj/luftfoto/subject203"} %>
   <% end %>
+  <% subcat_array = subcat_array_in.sort_by {|h| h['key']} %>
 
-      <!-- Create a hash with the facet-value (that is the id of the subcategory) and its hits,
+  <!-- Create a hash with the facet-value (that is the id of the subcategory) and its hits,
       so we can print it further down-->
       <% table={}
          display_facet.items.each do |x|
@@ -26,7 +27,10 @@
 
       <!--Iterate through the subcategories (array with hashes) -->
       <% subcat_array.each do |content| %>
-          <li>
+      <!-- ensure that categories without hits doesn't enter the result set -->
+
+        <% if table[content["id"]] != nil &&  table[content["id"]] > 0 %>
+  <li>
         <span class="facet-label">
           <!--For each subcategory make a link and add the parameters of the current URL-->
           <%= link_to content["node"], content["uri"]+filter_params_url %>
@@ -36,7 +40,8 @@
               <%= table[content["id"]] %>
         </span>
           </li>
-      <% end %>
+	  <% end %>
+	  <% end %>
 
 
 </ul>
