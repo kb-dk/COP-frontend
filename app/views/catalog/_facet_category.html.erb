@@ -14,7 +14,7 @@
   <% else %>
   <% subcat_array_in = find_subcategories("/editions/any/2009/jul/editions") %>
   <!--Remove the LUFTFOTO category-->
-  <% subcat_array.delete_if { |x| x["id"]=="/images/luftfo/2011/maj/luftfoto/subject203"} %>
+  <% subcat_array_in.delete_if { |x| x["id"]=="/images/luftfo/2011/maj/luftfoto/subject203"} %>
   <% end %>
   <% subcat_array = subcat_array_in.sort_by {|h| h['key']} %>
 
