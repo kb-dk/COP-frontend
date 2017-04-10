@@ -10,7 +10,7 @@ different format for the facets (I think it's bug in Blacklight)-->
     <ol class="breadcrumb">
       <!-- Show the home pge link -->
       <li>
-        <%= link_to 'Hjem', "/editions/any/2009/jul/editions/#{lang}/" %>
+        <%= link_to t('blacklight.home'), "/editions/any/2009/jul/editions/#{lang}/" %>
       </li>
       <!--If there is a breadcrumb (that means we are in a subcategory and NOT an edition)-->
       <% unless get_breadcrumb_path(subject_id).nil? %>

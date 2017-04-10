@@ -28,6 +28,7 @@ da:
     welcome: 'Velkommen!'
     and: 'og'
     or: 'eller'
+    home: 'Hjem'
 
     bookmarks:
       title: 'Bogmærker'

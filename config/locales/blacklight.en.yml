@@ -27,6 +27,7 @@ en:
     welcome: 'Welcome!'
     and: 'and'
     or: 'or'
+    home: 'Home'
 
     bookmarks:
       title: 'Bookmarks'
