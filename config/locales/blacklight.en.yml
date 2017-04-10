@@ -24,6 +24,9 @@ en:
       change_language_to: 'Dansk'
       language_path: '../da/'
 
+    footer_links:
+      info: 'Contact the library'
+
     welcome: 'Welcome!'
     and: 'and'
     or: 'or'

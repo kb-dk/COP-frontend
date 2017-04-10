@@ -24,6 +24,9 @@ da:
       change_language_to: 'English'
       language_path: '../en/'
 
+    footer_links:
+      info: 'Kontakt biblioteket'
+
 
     welcome: 'Velkommen!'
     and: 'og'
