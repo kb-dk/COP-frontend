@@ -38,10 +38,11 @@
     var readDirection  ='<%= @document['read_direction_ssi']%>';
 
     var rtl = false;
-    if (readDirection == "RTL") rtl = true;
-
-    //hack for now to have the first page at the last position in order to see the cover as the first element in osd
-    //jsonurl.push(jsonurl.shift());
+    if (readDirection == "RTL"){
+        //hack for now to have the first page at the last position in order to see the cover as the first element in osd
+        jsonurl.push(jsonurl.shift());
+        rtl = true;
+    }
 
     var kbOSDconfig = [{
         "id": "kbOSDInstance",
