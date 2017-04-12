@@ -14,6 +14,8 @@ en:
   blacklight:
     application_name: 'Digital collections'
 
+    kategori: 'Collections'
+
     header_links:
       login: 'Login'
       logout: 'Log Out'
@@ -24,9 +26,13 @@ en:
       change_language_to: 'Dansk'
       language_path: '../da/'
 
+    footer_links:
+      info: 'Contact the library'
+
     welcome: 'Welcome!'
     and: 'and'
     or: 'or'
+    home: 'Home'
 
     bookmarks:
       title: 'Bookmarks'

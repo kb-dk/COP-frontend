@@ -14,6 +14,8 @@ da:
   blacklight:
     application_name: 'Digitale samlinger'
 
+    kategori: 'Samlinger'
+
     header_links:
       login: 'Log ind'
       logout: 'Log ud'
@@ -24,10 +26,14 @@ da:
       change_language_to: 'English'
       language_path: '../en/'
 
+    footer_links:
+      info: 'Kontakt biblioteket'
+
 
     welcome: 'Velkommen!'
     and: 'og'
     or: 'eller'
+    home: 'Hjem'
 
     bookmarks:
       title: 'Bogmærker'

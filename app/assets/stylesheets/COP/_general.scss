@@ -7,6 +7,10 @@ h3 {
 }
 
 #search-navbar{
+  a {
+    color: #333;
+  }
+
   .input-group .input-group-addon{
     padding: 0;
     &:focus {
