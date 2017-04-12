@@ -14,6 +14,8 @@ en:
   blacklight:
     application_name: 'Digital collections'
 
+    kategori: 'Collections'
+
     header_links:
       login: 'Login'
       logout: 'Log Out'

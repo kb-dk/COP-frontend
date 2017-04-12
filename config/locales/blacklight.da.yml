@@ -14,6 +14,8 @@ da:
   blacklight:
     application_name: 'Digitale samlinger'
 
+    kategori: 'Samlinger'
+
     header_links:
       login: 'Log ind'
       logout: 'Log ud'

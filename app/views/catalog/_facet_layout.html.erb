@@ -5,8 +5,12 @@
   <div class="<%= "collapsed" if should_collapse_facet?(facet_field) %> collapse-toggle panel-heading" data-toggle="collapse" data-target="#<%= facet_field_id(facet_field) %>">
     <h3 class="panel-title facet-field-heading">
       <!--Check if the facet is the 'kategori', and if the subject_id exists-->
-      <% if facet_field_id(facet_field) == "facet-subject_topic_id_ssim"  and !subject_id.nil? %>
-          <%= link_to show_category_name(subject_id), "#", :"data-no-turbolink" => true %>
+      <% if facet_field_id(facet_field) == "facet-subject_topic_id_ssim" %>
+          <% if !subject_id.nil? %>
+              <%= link_to show_category_name(subject_id), "#", :"data-no-turbolink" => true %>
+          <% else %>
+              <%= link_to t('blacklight.kategori'), "#", :"data-no-turbolink" => true %>
+          <% end %>
       <% else %>
           <%= link_to facet_field_label(facet_field.key), "#", :"data-no-turbolink" => true %>
       <% end %>

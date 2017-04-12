@@ -133,7 +133,7 @@ module Blacklight
           max_per_page: 100,
           # Options for the user for number of results to show per page
           per_page: [10, 20, 50, 100],
-          default_per_page: 50,
+          default_per_page: 20,
           # how many searches to save in session history
           search_history_window: 100,
           default_facet_limit: 10
