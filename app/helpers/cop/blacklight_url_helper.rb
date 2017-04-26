@@ -30,6 +30,10 @@ module Cop
 
       link_url = if query_params.empty?
                    search_action_path(only_path: true)
+      # NOT a great solution, FIX the bug: "Back to search" link does not work when you come from a search on all collections.
+      # When there is no subj_id in the back_url, it means that there has been a search at the home screen. So I create 
+      # the url as it is created in the other cases and I keep the parameters from the URL and replace its base with 
+      # our "/editions/any/2009/jul/editions/"
                  elsif !current_search_session.query_params['subj_id']
                    "/editions/any/2009/jul/editions/#{get_lang(params)}?"+scope.url_for(query_params).partition('?').last
                  else
