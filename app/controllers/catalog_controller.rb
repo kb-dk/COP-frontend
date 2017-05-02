@@ -146,8 +146,8 @@ class CatalogController < ApplicationController
     config.add_search_field 'creator', label: 'Ophav' do |field|
 
       field.solr_local_parameters = {
-          qf: 'creator_tsim',
-          pf: 'creator_tsim'
+          qf: 'creator_nasim',
+          pf: 'creator_nasim'
       }
     end
 
