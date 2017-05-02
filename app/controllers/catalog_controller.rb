@@ -151,6 +151,22 @@ class CatalogController < ApplicationController
       }
     end
 
+    config.add_search_field 'person', label: 'Person' do |field|
+
+      field.solr_local_parameters = {
+          qf: 'cobject_person_tsim',
+          pf: 'cobject_person_tsim'
+      }
+    end
+
+    config.add_search_field 'location', label: 'Lokalitet' do |field|
+
+      field.solr_local_parameters = {
+          qf: 'cobject_location_tsim',
+          pf: 'cobject_location_tsim'
+      }
+    end
+
     config.add_search_field('editions') do |field|
       field.solr_parameters = {
           :fq => ['medium_ssi:editions']
