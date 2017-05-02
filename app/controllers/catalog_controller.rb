@@ -124,7 +124,7 @@ class CatalogController < ApplicationController
     # solr request handler? The one set in config[:default_solr_parameters][:qt],
     # since we aren't specifying it otherwise.
 
-    config.add_search_field 'all_fields', label: 'All Fields' do |field|
+    config.add_search_field 'all_fields', label: 'Fritekst' do |field|
       # Free text search in these fields: title, creator, description
       field.solr_local_parameters = {
           :qf => 'cobject_title_ssi^100 full_title_tsim^90 creator_tsim^80 description_tsim^50'
@@ -135,10 +135,7 @@ class CatalogController < ApplicationController
     # case for a BL "search field", which is really a dismax aggregate
     # of Solr search fields.
 
-    config.add_search_field('creator') do |field|
-
-      # solr_parameters hash are sent to Solr as ordinary url query params.
-      field.solr_parameters = { :'spellcheck.dictionary' => 'title' }
+    config.add_search_field 'creator', label: 'Ophav' do |field|
 
       field.solr_local_parameters = {
           qf: 'creator_tsim',
