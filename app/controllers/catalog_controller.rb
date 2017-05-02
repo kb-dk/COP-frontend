@@ -135,6 +135,14 @@ class CatalogController < ApplicationController
     # case for a BL "search field", which is really a dismax aggregate
     # of Solr search fields.
 
+    config.add_search_field 'title', label: 'Titel' do |field|
+
+      field.solr_local_parameters = {
+          qf: 'full_title_tsim',
+          pf: 'full_title_tsim'
+      }
+    end
+
     config.add_search_field 'creator', label: 'Ophav' do |field|
 
       field.solr_local_parameters = {
