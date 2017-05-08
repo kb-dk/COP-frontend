@@ -712,7 +712,7 @@ in the metadatasection of a landing page -->
 
               <!-- START Topic -->
               <xsl:element name="dd">
-                <xsl:attribute name="xml:lang">
+                <xsl:attribute name="lang">
                   <xsl:call-template name="get_language">
                     <xsl:with-param name="cataloging_language" select="$cataloging_language"/>
                   </xsl:call-template>
@@ -721,9 +721,9 @@ in the metadatasection of a landing page -->
                 <xsl:if test="position()!=last()">
                 </xsl:if>
 
-              <xsl:call-template name="break_semicolon">
-                <xsl:with-param name="cataloging_language" select="$cataloging_language"/>
-              </xsl:call-template>
+		<xsl:call-template name="break_semicolon">
+		  <xsl:with-param name="cataloging_language" select="$cataloging_language"/>
+		</xsl:call-template>
               </xsl:element>
             </xsl:for-each>
 

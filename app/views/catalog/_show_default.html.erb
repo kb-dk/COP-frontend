@@ -19,9 +19,12 @@
     <a href="javascript:window.print();">
       <i class="fa fa-print fa-lg" aria-hidden="true"></i>
     </a>
+    <% pdf_uri = show_pdf_link(document) %>
+    <% if pdf_uri.length > 0 %>
     <a href=" <%= show_pdf_link(document) %>" target="_blank">
       <i class="fa fa-file-pdf-o fa-lg" aria-hidden="true"></i>
     </a>
+    <% end %>
 
   </div>
 
