@@ -840,7 +840,7 @@ This xsl does the formatting of metadata for a landing page
           </xsl:if>
 
           <!-- Copyright -->
-          <xsl:if test="md:mods/md:accessCondition/node()">
+          <xsl:if test="md:mods/md:accessCondition">
             <xsl:element name="dt">
               <strong xml:lang="en">Copyright</strong>
               <strong xml:lang="da">Ophavsret</strong>
@@ -849,10 +849,10 @@ This xsl does the formatting of metadata for a landing page
               <xsl:element name="dd">
                 <xsl:choose>
                   <xsl:when test="not(contains(.,'CC BY-NC-ND'))">
-                    <xsl:attribute name="xml:lang">
+                    <xsl:attribute name="lang">
                       <xsl:value-of select="@xml:lang"/>
                     </xsl:attribute>
-                    <xsl:apply-templates/>
+                    <xsl:value-of select="."/>
                   </xsl:when>
 		  <xsl:otherwise>
                     <span xml:lang="da">
