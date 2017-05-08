@@ -11,9 +11,8 @@ module ApplicationHelper
   def show_category_name id
     # Find the document with the specific id
     doc = Finder.get_doc_by_id(id)
-    params['locale'].blank? ? lang = "da" : lang = params['locale']
     # Check if there in an english version for the name
-    if lang.eql? 'en' and !doc['node_tesim'].nil?
+    if get_lang(params).eql? 'en' and !doc['node_tesim'].nil?
       doc['node_tesim'].first
     else
       doc['node_tdsim'].first
@@ -24,17 +23,22 @@ module ApplicationHelper
   # [{"uri" =>"...", "id"=>"...", "node"=>"..."}, ...]
   def find_subcategories subject_id
     content = []
-    params['locale'].blank? ? lang = "da" : lang = params['locale']
     docs = Finder.get_subcats_by_id subject_id
     docs.each do |doc|
       content << {
-        "uri" =>"#{doc['id']}/#{lang}/", 
+        "uri" =>"#{doc['id']}/#{get_lang(params)}/",
         "id"=>doc['id'], 
         "node"=>show_category_name(doc['id']),
         "key"=>show_category_name(doc['id']).strip.downcase
       }
     end
     return content
+  end
+
+  # Get the language parameter from the URL
+  def get_lang params
+    params['locale'].blank? ? lang = "da" : lang = params['locale']
+    return lang
   end
 
   # Helper to get the breadcrumb for a category
