@@ -635,12 +635,12 @@ This xsl does the formatting of metadata for a landing page
               <!-- START Topic -->
               <xsl:element name="dd">
                 <span style="white-space: pre-wrap;">
-                  <xsl:attribute name="xml:lang">
+                  <xsl:attribute name="lang">
                     <xsl:call-template name="get_language">
                       <xsl:with-param name="cataloging_language" select="$cataloging_language"/>
                     </xsl:call-template>
                   </xsl:attribute>
-                  <xsl:apply-templates/>
+                  <xsl:value-of select="."/>
                   <xsl:call-template name="break_semicolon">
                     <xsl:with-param name="cataloging_language" select="$cataloging_language"/>
                   </xsl:call-template>
@@ -763,7 +763,7 @@ This xsl does the formatting of metadata for a landing page
                 </xsl:element>
               </xsl:if>
               <xsl:element name="dd">
-                <xsl:apply-templates/>
+                <xsl:value-of select="."/>
               </xsl:element>
             </xsl:for-each>
           </xsl:if>
@@ -785,7 +785,7 @@ This xsl does the formatting of metadata for a landing page
                     </xsl:call-template>
                   </xsl:attribute>
                 </xsl:if>
-                <xsl:apply-templates select="md:titleInfo"/>
+                <xsl:value-of select="md:titleInfo"/>
               </xsl:element>
             </xsl:for-each>
           </xsl:if>
@@ -875,15 +875,13 @@ This xsl does the formatting of metadata for a landing page
             <xsl:for-each select="md:mods/md:accessCondition">
               <xsl:element name="dd">
                 <xsl:choose>
-                  <xsl:when test="text()!='CC BY-NC-ND'">
-                    <xsl:attribute name="xml:lang">
+                  <xsl:when test="not(contains(.,'CC BY-NC-ND'))">
+                    <xsl:attribute name="lang">
                       <xsl:value-of select="@xml:lang"/>
                     </xsl:attribute>
                     <xsl:apply-templates/>
                   </xsl:when>
-                </xsl:choose>
-                <xsl:choose>
-                  <xsl:when test="text()='CC BY-NC-ND'">
+		  <xsl:otherwise>
                     <span xml:lang="da">
                       Dette værk er licenseret under en <a rel="license"
                                                            href="http://creativecommons.org/licenses/by-nc-nd/3.0/">
@@ -899,7 +897,7 @@ This xsl does the formatting of metadata for a landing page
                       <img alt="Creative Commons licens" style="border-width:0"
                            src="http://i.creativecommons.org/l/by-nc-nd/3.0/88x31.png"/>
                     </a>
-                  </xsl:when>
+		  </xsl:otherwise>
                 </xsl:choose>
               </xsl:element>
             </xsl:for-each>
