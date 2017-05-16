@@ -49,6 +49,15 @@ module ApplicationHelper
     return doc['bread_crumb_ssim'].reverse unless doc['bread_crumb_ssim'].nil?
   end
 
+  def show_scaled_image(doc, opts)
+    uri = doc['thumbnail_url_ssm'].first
+    if uri[/ull\/ful/]
+      uri = uri.gsub(/full\/full/,'full/!225,')
+    end
+    img_tag = image_tag(URI(uri))
+    return img_tag
+  end
+
   def show_pdf_link doc
     # Get hold of the mods record from the solr doc and transform it in relation to the medium
     mods = doc['processed_mods_ts']
