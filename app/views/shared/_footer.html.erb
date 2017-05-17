@@ -10,11 +10,11 @@
       </span>
       <span>|</span>
       <span>
-         <%= link_to 'Cookie- og Privatlivspolitik', page_path('politik'), class: '' %>
+         <%= link_to 'Cookie- og Privatlivspolitik', page_path('politik'), class: '', :target => '_blank'  %>
       </span>
       <span>|</span>
       <span>
-         <%= link_to t('blacklight.footer_links.info'), 'http://kontaktbiblioteket.kb.dk/q.php', class: '' %>
+         <%= link_to t('blacklight.footer_links.info'), 'http://kontaktbiblioteket.kb.dk/q.php', class: '', :target => '_blank'  %>
       </span>
     </div>
     <div class="visible-xs-block">
@@ -23,10 +23,8 @@
           Det Kgl. Bibliotek
         </a>
       </div>
-      <div class="col-sm-12"><%= link_to 'Cookie- og Privatlivspolitik', page_path('politik'), class: '' %></div>
-      <div class="col-sm-12">
-        <%= link_to t('blacklight.footer_links.info'), 'http://kontaktbiblioteket.kb.dk/q.php', class: '' %>
-      </div>
+      <div class="col-sm-12"><%= link_to 'Cookie- og Privatlivspolitik', page_path('politik'), class: '' , :target => "_blank" %></div>
+      <div class="col-sm-12"><%= link_to t('blacklight.footer_links.info'), 'http://kontaktbiblioteket.kb.dk/q.php', class: '' , :target => '_blank' %></div>
     </div>
   </div>
 </footer>
