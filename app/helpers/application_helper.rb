@@ -82,10 +82,8 @@ module ApplicationHelper
     transformed_doc.to_s.html_safe
   end
 
-  def get_subject_id(opts={:label=>nil})
-    scope = opts.delete(:route_set) || self
+  def get_subject_id
     query_params = current_search_session.try(:query_params) || ActionController::Parameters.new
-
     query_params[:subj_id]
   end
 
