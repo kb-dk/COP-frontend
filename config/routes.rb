@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
-  
+  # concern :searchable, Blacklight::Routes::Searchable2.new
   mount Blacklight::Engine => '/'
   root to: "catalog#index"
-    concern :searchable, Blacklight::Routes::Searchable.new
+    concern :searchable2, Blacklight::Searchable2.new
 
   resource :catalog, only: [:index], as: 'catalog', path: '/catalog', controller: 'catalog' do
-    concerns :searchable
+    concerns :searchable2
   end
 
   devise_for :users

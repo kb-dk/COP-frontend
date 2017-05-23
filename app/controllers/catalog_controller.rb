@@ -189,6 +189,7 @@ class CatalogController < ApplicationController
     end
     url
   end
+
   helper_method :get_edition_image_url
 
   # Configuration for autocomplete suggestor

@@ -13,6 +13,9 @@ module COPFrontendNew
     # -- all .rb files in that directory are automatically loaded.
     I18n.available_locales = [:en, :da]
 
+    # NKH added due searchable2 class
+    config.autoload_paths += Dir[Rails.root.join('lib')]
+
     # Setting da as default language
     config.i18n.enforce_available_locales = true
     config.i18n.default_locale = :da

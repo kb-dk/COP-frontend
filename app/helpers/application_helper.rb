@@ -82,4 +82,30 @@ module ApplicationHelper
     transformed_doc.to_s.html_safe
   end
 
+  def get_subject_id(opts={:label=>nil})
+    scope = opts.delete(:route_set) || self
+    query_params = current_search_session.try(:query_params) || ActionController::Parameters.new
+
+    query_params[:subj_id]
+  end
+
+
+  # Default route to the search action (used e.g. in global partials). Override this method
+  # in a controller or in your ApplicationController to introduce custom logic for choosing
+  # which action the search form should use
+  def search_action_url_local options = {}
+    # Rails 4.2 deprecated url helpers accepting string keys for 'controller' or 'action'
+    #search_catalog_url(options.except(:controller, :action))
+    sub_id =  get_subject_id
+    if params[:subj_id]
+      "/#{params[:medium]}/#{params[:collection]}/#{params[:year]}/#{params[:month]}/#{params[:edition]}/subject#{params[:subj_id]}/#{params[:locale]}/"
+    elsif !sub_id
+      lang = params[:locale]? params[:locale]:"da"
+      "/editions/any/2009/jul/editions/#{lang}/"
+    else
+      "/#{params[:medium]}/#{params[:collection]}/#{params[:year]}/#{params[:month]}/#{params[:edition]}/subject#{sub_id}/#{params[:locale]}/"
+    end
+  end
+
+
 end

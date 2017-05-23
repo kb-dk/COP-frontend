@@ -16,4 +16,5 @@ class ApplicationController < ActionController::Base
     { locale: I18n.locale }.merge options
   end
 
+
 end

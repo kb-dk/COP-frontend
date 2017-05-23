@@ -1,13 +1,13 @@
 <footer class="pageFooter dkbreveFooter">
   <div class="container">
     <div class="row text-center hidden-xs">
-      <span>
+      <sp>
           <a href="http://www.kb.dk" target="_blank">
             <span>
               <h5>Det Kgl. Bibliotek</h5>
             </span>
           </a>
-      </span>
+      </sp
       <span>|</span>
       <span>
          <%= link_to 'Cookie- og Privatlivspolitik', page_path('politik'), class: '' %>
@@ -25,7 +25,7 @@
       </div>
       <div class="col-sm-12"><%= link_to 'Cookie- og Privatlivspolitik', page_path('politik'), class: '' %></div>
       <div class="col-sm-12">
-        <%= link_to t('blacklight.footer_links.info'), 'http://kontaktbiblioteket.kb.dk/q.php', class: '' %>
+        <%= link_to t('blacklight.footer_links.info'), 'http://kontaktbiblioteket.kb.dk/q.php', :target => "_blank", class: ''  %>
       </div>
     </div>
   </div>
