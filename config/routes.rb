@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     end
   end
 
+  get ':locale', to: 'catalog#index'
   get 'editions/any/2009/jul/editions/:locale',   to: 'catalog#index'
   get ':medium/:collection/:year/:month/:edition/:locale',   to: 'catalog#index'
   get ':medium/:collection/:year/:month/:edition/object:obj_id/:locale',   to: 'catalog#show'
