@@ -11,10 +11,10 @@ section#metaData, section#category, section#userTags {
   .dl-horizontal {
     dd {
       margin-bottom: 4px;
-      margin-left: 180px;
+      margin-left: 200px;
     }
     dt {
-      width: 170px;
+      width: 190px;
       white-space: normal;
     }
   }
@@ -34,13 +34,13 @@ section#metaData, section#category, section#userTags {
 
 .socialButtons {
   position: relative;
-  top: 0px;
+  top: 0;
   left: 2px;
   z-index: 9999;
-  width: 120px;
+  width: 130px;
 }
 
-.fa-facebook, .fa-twitter {
+.fa-facebook, .fa-twitter, .fa-print {
   padding-right: 7px;
 }
 
@@ -51,16 +51,17 @@ section#metaData, section#category, section#userTags {
   color: $link-color !important;
 }
 
-.kbOSDContent {
-  border-color: $nav-tabs-border-color !important;
-}
-
+// kbOSD
 #kbOSDInstance {
-
   height: 680px;
   top: -20px;
-
+  .kbOSDViewer .icon {
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+  }
   .kbOSDContent {
+    border-color: $nav-tabs-border-color !important;
     border-style: solid;
     border-width: 1px;
   }

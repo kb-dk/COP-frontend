@@ -712,7 +712,7 @@ in the metadatasection of a landing page -->
 
               <!-- START Topic -->
               <xsl:element name="dd">
-                <xsl:attribute name="xml:lang">
+                <xsl:attribute name="lang">
                   <xsl:call-template name="get_language">
                     <xsl:with-param name="cataloging_language" select="$cataloging_language"/>
                   </xsl:call-template>
@@ -721,9 +721,9 @@ in the metadatasection of a landing page -->
                 <xsl:if test="position()!=last()">
                 </xsl:if>
 
-              <xsl:call-template name="break_semicolon">
-                <xsl:with-param name="cataloging_language" select="$cataloging_language"/>
-              </xsl:call-template>
+		<xsl:call-template name="break_semicolon">
+		  <xsl:with-param name="cataloging_language" select="$cataloging_language"/>
+		</xsl:call-template>
               </xsl:element>
             </xsl:for-each>
 
@@ -954,22 +954,27 @@ in the metadatasection of a landing page -->
 
           <!-- Technical, related to shop -->
           <xsl:if test="md:mods/md:extension/mix:mix/node()">
-            <xsl:variable name="sizeInBytes"
-                          select="md:mods/md:extension/mix:mix/mix:BasicDigitalObjectInformation/mix:fileSize"/>
-            <xsl:element name="dt">
-              <strong xml:lang="en">File size</strong>
-              <strong xml:lang="da">Filstørrelse</strong>
-            </xsl:element>
-            <xsl:element name="dd">
-              <xsl:if test="@xml:lang">
-                <xsl:attribute name="lang">
-                  <xsl:call-template name="get_language">
-                    <xsl:with-param name="cataloging_language" select="$cataloging_language"/>
-                  </xsl:call-template>
-                </xsl:attribute>
-              </xsl:if>
-              <xsl:value-of select="format-number($sizeInBytes div 1048576,'#.##')"/>mb.
-            </xsl:element>
+            <xsl:if test="md:mods/md:extension/mix:mix/mix:BasicDigitalObjectInformation/mix:fileSize/text()">
+	      <xsl:element name="dt">
+		<strong xml:lang="en">File size</strong>
+		<strong xml:lang="da">Filstørrelse</strong>
+	      </xsl:element>
+	      <xsl:element name="dd">
+		<xsl:if test="@xml:lang">
+		  <xsl:attribute name="lang">
+		    <xsl:call-template name="get_language">
+		      <xsl:with-param name="cataloging_language" select="$cataloging_language"/>
+		    </xsl:call-template>
+		  </xsl:attribute>
+		</xsl:if>
+		<xsl:variable name="sizeInBytes">
+		  <xsl:value-of select="md:mods/md:extension/mix:mix/mix:BasicDigitalObjectInformation/mix:fileSize/text()"/>
+		</xsl:variable>
+		<xsl:value-of select="$sizeInBytes"/>bytes
+		<xsl:value-of select="format-number($sizeInBytes div 1048576,'#.##')"/>mb.
+	      </xsl:element>
+	    </xsl:if>
+
             <xsl:element name="dt">
               <strong xml:lang="en">Dimension</strong>
               <strong xml:lang="da">Dimension</strong>
@@ -1000,15 +1005,13 @@ in the metadatasection of a landing page -->
             <xsl:for-each select="md:mods/md:accessCondition">
               <xsl:element name="dd">
                 <xsl:choose>
-                  <xsl:when test="text()!='CC BY-NC-ND'">
-                    <xsl:attribute name="xml:lang">
+                  <xsl:when test="not(contains(.,'CC BY-NC-ND'))">
+                    <xsl:attribute name="lang">
                       <xsl:value-of select="@xml:lang"/>
                     </xsl:attribute>
-                    <xsl:apply-templates/>
+                    <xsl:value-of select="."/>
                   </xsl:when>
-                </xsl:choose>
-                <xsl:choose>
-                  <xsl:when test="text()='CC BY-NC-ND'">
+		  <xsl:otherwise>
                     <span xml:lang="da">
                       Dette værk er licenseret under en <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/">
                       Creative Commons Navngivelse-IkkeKommerciel-IngenBearbejdelse 3.0 Unported Licens</a>.
@@ -1022,7 +1025,7 @@ in the metadatasection of a landing page -->
                       <img alt="Creative Commons licens" style="border-width:0"
                            src="http://i.creativecommons.org/l/by-nc-nd/3.0/88x31.png"/>
                     </a>
-                  </xsl:when>
+		  </xsl:otherwise>
                 </xsl:choose>
               </xsl:element>
             </xsl:for-each>

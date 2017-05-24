@@ -1,6 +1,5 @@
-<% unless has_search_parameters? %>
+<% unless has_search_parameters? || params[:medium].present? %> <%# TODO: fix this so that it does not render home in edition and subject urls %>
     <div id="content" class="col-xs-12">
-
       <%# if there are no input/search related params, display the "home" partial -%>
       <%= render 'home' %>
       <%= render 'shared/sitelinks_search_box' %>

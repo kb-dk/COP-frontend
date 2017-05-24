@@ -3,6 +3,7 @@ class CatalogController < ApplicationController
 
   include Blacklight::Catalog
 
+# Don't know what track does. Don't like what I don't understand
   before_action :set_id, only: [:show,:track]
 
   configure_blacklight do |config|
@@ -47,7 +48,7 @@ class CatalogController < ApplicationController
     # solr field configuration for search results/index views
     config.index.title_field = 'cobject_title_ssi'
     config.index.display_type_field = 'format'
-    config.index.thumbnail_field = 'thumbnail_url_ssm'
+    config.index.thumbnail_method =  :show_scaled_image
 
     # solr field configuration for document/show views
     #config.show.title_field = 'title_display'
@@ -77,12 +78,10 @@ class CatalogController < ApplicationController
     #  (useful when user clicks "more" on a large facet and wants to navigate alphabetically across a large set of results)
     # :index_range can be an array or range of prefixes that will be used to create the navigation (note: It is case sensitive when searching values)
 
-    config.add_facet_field 'cobject_edition_ssi', label: 'Edition', helper_method: :show_edition_name, collapse: true, limit: 20
-    # I put the limit at 1000 here, to get all the facets to iterate through in the _facet_category.html.erb
-    config.add_facet_field 'subject_topic_id_ssim', label: 'Kategori', helper_method: :show_category_name, collapse: false, limit: 1000 , partial: 'facet_category'
-    #config.add_facet_field 'subject_topic_facet', label: 'Topic', limit: 20, index_range: 'A'..'Z'
-
-    #config.add_facet_field 'example_pivot_field', label: 'Pivot Field', :pivot => ['format', 'language_facet']
+    # I put the limit at 300000 here, to get all the facets to iterate through in the _facet_category.html.erb so we can
+    # calculate the hits. SO FAR we have ~30000 subjects in solr (search for: parent_ssi:[* TO *])
+    config.add_facet_field 'subject_topic_id_ssim', label: 'Kategori', helper_method: :show_category_name, collapse: false, limit: 300000 , partial: 'facet_category'
+    config.add_facet_field 'contributor_tsim', label: 'Contributor', limit: 20
 
     #config.add_facet_field 'example_query_facet_field', label: 'Publish Date', :query => {
     #   :years_5 => { label: 'within 5 Years', fq: "pub_date:[#{Time.zone.now.year - 5 } TO *]" },
@@ -106,7 +105,6 @@ class CatalogController < ApplicationController
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
     config.add_show_field 'mods_ts', label: 'mods',  helper_method: :show_mods_record
-
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields
@@ -158,7 +156,7 @@ class CatalogController < ApplicationController
     # label in pulldown is followed by the name of the SOLR field to sort by and
     # whether the sort is ascending or descending (it must be asc or desc
     # except in the relevancy case).
-    config.add_sort_field 'score desc', label: 'relevance'
+    config.add_sort_field 'score desc', label: '' #search after relevance
     config.add_sort_field 'cobject_title_ssi asc, score desc', label: 'title'
 
 
@@ -170,21 +168,12 @@ class CatalogController < ApplicationController
     config.autocomplete_enabled = true
     config.autocomplete_path = 'suggest'
   end
-
-  def cobject
-    id = "/#{params[:medium]}/#{params[:collection]}/#{params[:year]}/#{params[:month]}/#{params[:edition]}/#{params[:cobjectId]}"
-    @response, @document = fetch id
-    respond_to do |format|
-      format.html { setup_next_and_previous_documents
-                    render 'show'}
-      format.json { render json: { response: { document: @document } } }
-      additional_export_formats(@document, format)
-    end
-  end
-
+  
   private
-  def set_id
-    params[:id] = "/#{params[:medium]}/#{params[:collection]}/#{params[:year]}/#{params[:month]}/#{params[:edition]}/#{params[:cobjectId]}" if params[:medium].present?
+
+  def set_id 
+    params[:locale] = "da" unless params[:locale].present?
+    params[:id] = "/#{params[:medium]}/#{params[:collection]}/#{params[:year]}/#{params[:month]}/#{params[:edition]}/object#{params[:obj_id]}" if params[:medium].present? and params[:obj_id].present?
   end
 
   def fetch_editions
@@ -200,6 +189,7 @@ class CatalogController < ApplicationController
     end
     url
   end
+
   helper_method :get_edition_image_url
 
   # Configuration for autocomplete suggestor

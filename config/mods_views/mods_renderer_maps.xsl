@@ -905,15 +905,15 @@ in the metadatasection of a landing page -->
             <xsl:for-each select="md:mods/md:accessCondition">
               <xsl:element name="dd">
                 <xsl:choose>
-                  <xsl:when test="text()!='CC BY-NC-ND'">
-                    <xsl:attribute name="xml:lang">
-                      <xsl:value-of select="@xml:lang"/>
-                    </xsl:attribute>
-                    <xsl:apply-templates/>
+                  <xsl:when test="not(contains(.,'CC BY-NC-ND'))">
+		    <span>
+		      <xsl:attribute name="lang">
+			<xsl:value-of select="@xml:lang"/>
+		      </xsl:attribute>
+		      <xsl:apply-templates/>
+		    </span>
                   </xsl:when>
-                </xsl:choose>
-                <xsl:choose>
-                  <xsl:when test="text()='CC BY-NC-ND'">
+		  <xsl:otherwise>
                     <span xml:lang="da">
                       Dette værk er licenseret under en <a rel="license"
                                                            href="http://creativecommons.org/licenses/by-nc-nd/3.0/">
@@ -929,7 +929,7 @@ in the metadatasection of a landing page -->
                       <img alt="Creative Commons licens" style="border-width:0"
                            src="http://i.creativecommons.org/l/by-nc-nd/3.0/88x31.png"/>
                     </a>
-                  </xsl:when>
+		  </xsl:otherwise>
                 </xsl:choose>
               </xsl:element>
             </xsl:for-each>
@@ -947,10 +947,11 @@ in the metadatasection of a landing page -->
               </xsl:element>
             </xsl:if>
           </xsl:for-each>
-
         </dl>
       </section>
     </xsl:element>
+
+
 
   </xsl:template>
 

@@ -1,15 +1,16 @@
 <% result, editions = fetch_editions %>
 <% editions.each do |edi| %>
-<a href="/?f[cobject_edition_ssi][]=<%= edi[:id] %>&q=&search_field=all_fields">
-<div class="col-xs-12 col-sm-4 edition-card">
-  <div class="flipper">
-    <div class="card-front card-face">
-      <%= render 'edition_card_front', edition: edi, img_url: get_edition_image_url(edi.id) %>
-    </div>
-    <div class="card-back card-face">
-      <%= render 'edition_card_back', edition: edi %>
-    </div>
-  </div>
-</div>
-</a>
+    <% uri = "#{edi[:top_cat_ssi]}/#{get_lang(params)}/" %>
+    <a href='<%= uri %>'>
+      <div class="col-xs-12 col-sm-4 edition-card">
+        <div class="flipper">
+          <div class="card-front card-face">
+            <%= render 'edition_card_front', edition: edi, img_url: get_edition_image_url(edi.id) %>
+          </div>
+          <div class="card-back card-face">
+            <%= render 'edition_card_back', edition: edi %>
+          </div>
+        </div>
+      </div>
+    </a>
 <% end %>

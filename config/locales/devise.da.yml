@@ -1,0 +1,6 @@
+da:
+  devise:
+    mailer:
+      invitation_instructions:
+        subject: 'Forklaring til udstillingsinvitation' # or 'Vis invitationsforklaring'; 'Exhibit invitation instructions' has unknown meaning
+ 
