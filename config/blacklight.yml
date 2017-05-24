@@ -19,3 +19,4 @@ test: &test
 production:
   adapter: solr
   url: <%= ENV['SOLR_URL'] || "http://index-test.kb.dk/solr/cop-editions" %>
+ 

@@ -51,4 +51,5 @@ module Cop
     end
 
   end
+
 end
