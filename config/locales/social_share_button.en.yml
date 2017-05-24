@@ -16,3 +16,8 @@ en:
     tumblr: Tumblr
     plurk: Plurk
     email: Email
+  social_button_title:
+    facebook: Share on Facebook
+    twitter: Share on Twitter
+    print: Print
+    pdf: PDF
