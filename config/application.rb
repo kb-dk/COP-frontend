@@ -14,7 +14,7 @@ module COPFrontendNew
     I18n.available_locales = [:en, :da]
 
     # NKH added due searchable2 class
-    config.autoload_paths += Dir[Rails.root.join('lib')]
+    #config.autoload_paths += Dir[Rails.root.join('lib')]
 
     # Setting da as default language
     config.i18n.enforce_available_locales = true
