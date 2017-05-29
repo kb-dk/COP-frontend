@@ -83,10 +83,8 @@ module ApplicationHelper
   end
 
   def get_subject_id
-   # if current_searcn_session
       query_params = current_search_session.try(:query_params) || ActionController::Parameters.new
       query_params[:subj_id]
-    #end
   end
 
 
