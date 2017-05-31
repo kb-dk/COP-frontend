@@ -48,7 +48,7 @@ class CatalogController < ApplicationController
     # solr field configuration for search results/index views
     config.index.title_field = 'cobject_title_ssi'
     config.index.display_type_field = 'format'
-    config.index.thumbnail_field = 'thumbnail_url_ssm'
+    config.index.thumbnail_method =  :show_scaled_image
 
     # solr field configuration for document/show views
     #config.show.title_field = 'title_display'
@@ -212,6 +212,7 @@ class CatalogController < ApplicationController
     end
     url
   end
+
   helper_method :get_edition_image_url
 
   # Configuration for autocomplete suggestor

@@ -11,9 +11,8 @@ module ApplicationHelper
   def show_category_name id
     # Find the document with the specific id
     doc = Finder.get_doc_by_id(id)
-    params['locale'].blank? ? lang = "da" : lang = params['locale']
     # Check if there in an english version for the name
-    if lang.eql? 'en' and !doc['node_tesim'].nil?
+    if get_lang(params).eql? 'en' and !doc['node_tesim'].nil?
       doc['node_tesim'].first
     else
       doc['node_tdsim'].first
@@ -24,11 +23,10 @@ module ApplicationHelper
   # [{"uri" =>"...", "id"=>"...", "node"=>"..."}, ...]
   def find_subcategories subject_id
     content = []
-    params['locale'].blank? ? lang = "da" : lang = params['locale']
     docs = Finder.get_subcats_by_id subject_id
     docs.each do |doc|
       content << {
-        "uri" =>"#{doc['id']}/#{lang}/", 
+        "uri" =>"#{doc['id']}/#{get_lang(params)}/",
         "id"=>doc['id'], 
         "node"=>show_category_name(doc['id']),
         "key"=>show_category_name(doc['id']).strip.downcase
@@ -37,12 +35,27 @@ module ApplicationHelper
     return content
   end
 
+  # Get the language parameter from the URL
+  def get_lang params
+    params['locale'].blank? ? lang = "da" : lang = params['locale']
+    return lang
+  end
+
   # Helper to get the breadcrumb for a category
   def get_breadcrumb_path cat_id
     # Find the document with the specific id
     doc = Finder.get_doc_by_id(cat_id)
     # Get the array and revert the order
     return doc['bread_crumb_ssim'].reverse unless doc['bread_crumb_ssim'].nil?
+  end
+
+  def show_scaled_image(doc, opts)
+    uri = doc['thumbnail_url_ssm'].first
+    if uri[/ull\/ful/]
+      uri = uri.gsub(/full\/full/,'full/!225,')
+    end
+    img_tag = image_tag(URI(uri))
+    return img_tag
   end
 
   def show_pdf_link doc
@@ -68,5 +81,29 @@ module ApplicationHelper
     transformed_doc     = lang_selector.transform(stylesheet.transform(mods_dom, {}),["lang","'" + locale + "'"])
     transformed_doc.to_s.html_safe
   end
+
+  def get_subject_id
+      query_params = ActionController::Parameters.new
+      query_params[:subj_id]
+  end
+
+
+  # Default route to the search action (used e.g. in global partials). Override this method
+  # in a controller or in your ApplicationController to introduce custom logic for choosing
+  # which action the search form should use
+  def search_action_url_local options = {}
+    # Rails 4.2 deprecated url helpers accepting string keys for 'controller' or 'action'
+    #search_catalog_url(options.except(:controller, :action))
+    sub_id =  get_subject_id
+    if params[:subj_id]
+      "/#{params[:medium]}/#{params[:collection]}/#{params[:year]}/#{params[:month]}/#{params[:edition]}/subject#{params[:subj_id]}/#{params[:locale]}/"
+    elsif !sub_id
+      lang = params[:locale]? params[:locale]:"da"
+      "/editions/any/2009/jul/editions/#{lang}/"
+    else
+      "/#{params[:medium]}/#{params[:collection]}/#{params[:year]}/#{params[:month]}/#{params[:edition]}/subject#{sub_id}/#{params[:locale]}/"
+    end
+  end
+
 
 end

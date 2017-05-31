@@ -10,18 +10,21 @@
   </div>
 
   <div class="socialButtons col-sm-1 hidden-print">
-    <a href="javascript:window.open('https://www.facebook.com/sharer/sharer.php?s=100&amp;u=http://www.kb.dk/<%= document.id %>', '_blank', 'width=626,height=436');void(0);">
+    <a href="javascript:window.open('https://www.facebook.com/sharer/sharer.php?s=100&amp;u=http://www.kb.dk/<%= document.id %>', '_blank', 'width=626,height=436');void(0);" title="<%= t('social_button_title.facebook')%>">
       <i class="fa fa-facebook fa-lg" aria-hidden="true"></i>
     </a>
-    <a href="https://twitter.com/intent/tweet?via=kb.dk&amp;url=http://www.kb.dk/<%= document.id %>" target="_blank">
+    <a href="https://twitter.com/intent/tweet?via=kb.dk&amp;url=http://www.kb.dk/<%= document.id %>" target="_blank" title="<%= t('social_button_title.twitter')%>">
       <i class="fa fa-twitter fa-lg" aria-hidden="true"></i>
     </a>
-    <a href="javascript:window.print();">
+    <a href="javascript:window.print();" title="<%= t('social_button_title.print')%>">
       <i class="fa fa-print fa-lg" aria-hidden="true"></i>
     </a>
-    <a href=" <%= show_pdf_link(document) %>" target="_blank">
+    <% pdf_uri = show_pdf_link(document) %>
+    <% if pdf_uri.length > 0 %>
+    <a href=" <%= show_pdf_link(document) %>" target="_blank" title="<%= t('social_button_title.pdf')%>">
       <i class="fa fa-file-pdf-o fa-lg" aria-hidden="true"></i>
     </a>
+    <% end %>
 
   </div>
 

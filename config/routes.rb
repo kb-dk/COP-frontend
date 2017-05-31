@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+  # concern :searchable, Blacklight::Routes::Searchable2.new
   mount Blacklight::Engine => '/'
   root to: "catalog#index"
     concern :searchable, Blacklight::Routes::Searchable.new
@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     end
   end
 
+  get ':locale', to: 'catalog#index'
   get 'editions/any/2009/jul/editions/:locale',   to: 'catalog#index'
   get ':medium/:collection/:year/:month/:edition/:locale',   to: 'catalog#index'
   get ':medium/:collection/:year/:month/:edition/object:obj_id/:locale',   to: 'catalog#show'
