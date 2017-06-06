@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/Det-Kongelige-Bibliotek/kbcookie.git
-  revision: aa797344e75246c609313ccad28ea7f0a40430ad
+  revision: 889b61d6a36d213d367bef0ece1280c9a266e90e
   specs:
-    kbcookie (0.0.0)
+    kbcookie (0.0.1)
 
 GEM
   remote: https://rubygems.org/
