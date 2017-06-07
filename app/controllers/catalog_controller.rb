@@ -11,15 +11,6 @@ class CatalogController < ApplicationController
     config.view.masonry.partials = [:index]
 
     config.show.tile_source_field = :content_metadata_image_iiif_info_ssm
-
-    config.index.document_actions.delete(:bookmark)
-
-    config.show.document_actions.delete(:bookmark)
-    config.show.document_actions.delete(:email)
-    config.show.document_actions.delete(:citation)
-    config.show.document_actions.delete(:sms)
-    config.show.document_actions.delete(:tools)
-
     config.show.partials.insert(1, :openseadragon)
     ## Class for sending and receiving requests from a search index
     # config.repository_class = Blacklight::Solr::Repository
@@ -136,7 +127,7 @@ class CatalogController < ApplicationController
     config.add_search_field 'all_fields', label: 'All Fields' do |field|
       # Free text search in these fields: title, creator, description
       field.solr_local_parameters = {
-          :qf => 'cobject_title_ssi^100 full_title_tsim^90 creator_tsim^80 description_tsim^50 pub_dat_tsim^40 readable_dat_string_tsim^40 type_tdsim^30 dc_type_ssim^30 subject_tdsim^30 coverage_tdsim^30 local_id_ssi^30 shelf_mark_tdsim^20 subject_topic_facet_tdsim^20 subject_topic_facet_tesim^20 processed_mods_ts^10'
+          :qf => 'cobject_title_ssi^100 full_title_tsim^90 creator_tsim^80 description_tsim^50'
       }
     end
 
@@ -176,7 +167,6 @@ class CatalogController < ApplicationController
     # Configuration for autocomplete suggestor
     config.autocomplete_enabled = true
     config.autocomplete_path = 'suggest'
-
   end
   
   private
