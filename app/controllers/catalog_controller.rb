@@ -12,14 +12,6 @@ class CatalogController < ApplicationController
 
     config.show.tile_source_field = :content_metadata_image_iiif_info_ssm
 
-    config.index.document_actions.delete(:bookmark)
-
-    config.show.document_actions.delete(:bookmark)
-    config.show.document_actions.delete(:email)
-    config.show.document_actions.delete(:citation)
-    config.show.document_actions.delete(:sms)
-    config.show.document_actions.delete(:tools)
-
     config.show.partials.insert(1, :openseadragon)
     ## Class for sending and receiving requests from a search index
     # config.repository_class = Blacklight::Solr::Repository
@@ -178,10 +170,10 @@ class CatalogController < ApplicationController
     config.autocomplete_path = 'suggest'
 
   end
-  
+
   private
 
-  def set_id 
+  def set_id
     params[:locale] = "da" unless params[:locale].present?
     params[:id] = "/#{params[:medium]}/#{params[:collection]}/#{params[:year]}/#{params[:month]}/#{params[:edition]}/object#{params[:obj_id]}" if params[:medium].present? and params[:obj_id].present?
   end
@@ -202,7 +194,7 @@ class CatalogController < ApplicationController
 
   helper_method :get_edition_image_url
 
-  # Configuration for autocomplete suggestor
+# Configuration for autocomplete suggestor
   config.autocomplete_enabled = true
   config.autocomplete_path = 'suggest'
 
