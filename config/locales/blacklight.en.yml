@@ -194,6 +194,8 @@ en:
         counter: '%{counter}. '
       facets:
         title: 'Limit your search'
+        category:
+          title: 'Select a category'
         clear: 'Clear Filter'
         sort:
           count: 'Numerical Sort'
