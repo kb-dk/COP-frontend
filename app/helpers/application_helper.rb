@@ -54,7 +54,7 @@ module ApplicationHelper
     if uri[/full\/full/]
       uri = uri.gsub(/full\/full/,'full/!225,')
     end
-    #hack: needs to be removed when we are sure that all thumbnails have the right size 
+    #hack: needs to be removed when we are sure that all thumbnails have the right size
     if uri[/full\/!400/]
       uri = uri.gsub(/full\/!400/,'full/!225')
     end

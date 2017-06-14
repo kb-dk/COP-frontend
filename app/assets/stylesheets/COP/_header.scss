@@ -2,11 +2,10 @@
   box-shadow: 0 10px 6px -6px #ccc;
 
   .navbar-brand {
-    background: transparent url(asset-path('logo_inverse.png')) no-repeat top left !important;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+    text-indent: 0 !important;
+    background:transparent!important;
+    padding: 15px !important;
+    width: 160px;
   }
 
   a {
