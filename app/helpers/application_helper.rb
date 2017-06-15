@@ -49,6 +49,24 @@ module ApplicationHelper
     return doc['bread_crumb_ssim'].reverse unless doc['bread_crumb_ssim'].nil?
   end
 
+  # Helper to get the siblings of a category
+  def get_siblings cat_id
+    # Find the document with the specific id
+    doc = Finder.get_doc_by_id(cat_id)
+    # Get the parent id
+    parent = doc['parent_ssi']
+    # Find the subcategories of this parent
+    siblings = Finder.get_subcats_by_id(parent)
+    return siblings
+  end
+
+  # Helper to get the
+  def get_children cat_id
+    # Find the subcategories of a specific id
+    children = Finder.get_subcats_by_id(cat_id)
+    return children
+  end
+
   def show_scaled_image(doc, opts)
     uri = doc['thumbnail_url_ssm'].first
     if uri[/ull\/ful/]

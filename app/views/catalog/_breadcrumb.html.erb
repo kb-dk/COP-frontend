@@ -3,27 +3,33 @@
 
 <!--I take the params by splitting the URL, and NOT by using blacklight functionality, because the params returned
 different format for the facets (I think it's bug in Blacklight)-->
-<% filter_params_url = ""%>
+<% filter_params_url = "" %>
 <% filter_params_url = '?' + request.original_url.partition('?').last if request.original_url.include?('?') %>
 
 <% if subject_id %>
-    <ol class="breadcrumb">
+    <ul class="breadcrumb">
       <!-- Show the home pge link -->
       <li>
         <%= link_to t('blacklight.home'), "/editions/any/2009/jul/editions/#{lang}/" %>
-      </li>
-      <!--If there is a breadcrumb (that means we are in a subcategory and NOT an edition)-->
-      <% unless get_breadcrumb_path(subject_id).nil? %>
-          <!--Iterate through the subcategories-->
-          <% get_breadcrumb_path(subject_id).each do |sub| %>
-              <li>
-                <%= link_to show_category_name(sub), "#{sub}/#{lang}/"+filter_params_url %>
-              </li>
+        <ul>
+          <!--If there is a breadcrumb (that means we are in a subcategory and NOT an edition)-->
+          <% unless get_breadcrumb_path(subject_id).nil? %>
+              <!--Iterate through the subcategories-->
+              <% array = get_breadcrumb_path(subject_id) %>
+              <% i=0 %>
+              <% puts 'mm='+ array[i] %>
+                  <ul>
+                    <%= render :partial =>'siblings', locals: { :array => array, :i => i, :lang => lang, :filter_params_url => filter_params_url} %>
+
+                  </ul>
           <% end %>
-      <% end %>
-      <!--Show the current link location-->
-      <li>
-        <%= link_to show_category_name(subject_id), "#{subject_id}/#{lang}/"+filter_params_url %>
+          <!--Show the current link location-->
+          <li>
+            <%= link_to show_category_name(subject_id), "#{subject_id}/#{lang}/"+filter_params_url %>
+          </li>
+        </ul>
+
       </li>
-    </ol>
+
+    </ul>
 <% end %>

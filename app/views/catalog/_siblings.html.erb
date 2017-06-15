@@ -1,0 +1,21 @@
+<% get_siblings(array[i]).each do |sibling| %>
+    <% if array[i] == sibling['id'] %>
+        <li>
+          <%= link_to show_category_name(sibling['id']), "#{sibling['id']}/#{lang}/"+filter_params_url %>
+          <ul>
+            <% if i < array.length-1 %>
+                <%= render :partial => 'siblings', locals: {:array => array, :i => i+1, :lang => lang, :filter_params_url => filter_params_url} %>
+            <% end %>
+            <% if i == array.length-1 %>
+                <%= get_children(array[i]) %>
+            <% end %>
+          </ul>
+
+        </li>
+
+    <% else %>
+        <li>
+          <%= link_to show_category_name(sibling['id']), "#{sibling['id']}/#{lang}/"+filter_params_url %>
+        </li>
+    <% end %>
+<% end %>
