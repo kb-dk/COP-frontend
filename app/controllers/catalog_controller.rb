@@ -82,7 +82,6 @@ class CatalogController < ApplicationController
 
     # I put the limit at 300000 here, to get all the facets to iterate through in the _facet_category.html.erb so we can
     # calculate the hits. SO FAR we have ~30000 subjects in solr (search for: parent_ssi:[* TO *])
-    config.add_facet_field 'subject_topic_id_ssim', label: 'Kategori', helper_method: :show_category_name, collapse: false, limit: 300000 , partial: 'facet_category'
     config.add_facet_field 'contributor_tsim', label: 'Contributor', limit: 20
 
     #config.add_facet_field 'example_query_facet_field', label: 'Publish Date', :query => {
