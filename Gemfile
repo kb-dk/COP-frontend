@@ -74,3 +74,5 @@ gem 'font-awesome-rails'
 gem 'kbcookie', '>=0.0.0', :git => 'https://github.com/Det-Kongelige-Bibliotek/kbcookie.git'
 # Makes it possible to xraying the partials from the browser
 
+# jstree
+gem "jstree-rails-4"

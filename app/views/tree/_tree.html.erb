@@ -2,7 +2,8 @@
 <h2 class="facets-heading">
   <%= t('blacklight.search.facets.category.title') %>
 </h2>
-<ul class="tree">
+  <div id="tree">
+<ul>
   <!-- Show the home pge link -->
   <li>
     <%= link_to t('blacklight.home'), "/editions/any/2009/jul/editions/#{lang}/" %>
@@ -21,3 +22,10 @@
 
 </ul>
 </div>
+</div>
+
+<script>
+  $(function() {
+    $('#tree').jstree();
+  });
+</script>
