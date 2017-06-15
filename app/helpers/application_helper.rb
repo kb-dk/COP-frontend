@@ -45,8 +45,10 @@ module ApplicationHelper
   def get_breadcrumb_path cat_id
     # Find the document with the specific id
     doc = Finder.get_doc_by_id(cat_id)
+    # add its own id in breadcrumb
+    breadcrumb = doc['bread_crumb_ssim'].reverse << cat_id
     # Get the array and revert the order
-    return doc['bread_crumb_ssim'].reverse unless doc['bread_crumb_ssim'].nil?
+    return breadcrumb unless doc['bread_crumb_ssim'].nil?
   end
 
   # Helper to get the siblings of a category
