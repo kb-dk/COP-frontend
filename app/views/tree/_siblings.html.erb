@@ -6,7 +6,7 @@
           <%= link_to show_category_name(sibling['id']), "#{sibling['id']}/#{lang}/"+filter_params_url %>
           <ul>
             <% if i < array.length-1 %>
-                <%= render :partial => 'siblings', locals: {:array => array, :i => i+1, :lang => lang, :filter_params_url => filter_params_url} %>
+                <%= render :partial => 'tree/siblings', locals: {:array => array, :i => i+1, :lang => lang, :filter_params_url => filter_params_url} %>
             <% end %>
             <% if i == array.length-1 %>
 

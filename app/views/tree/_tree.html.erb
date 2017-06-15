@@ -1,0 +1,18 @@
+<ul class="breadcrumb">
+  <!-- Show the home pge link -->
+  <li>
+    <%= link_to t('blacklight.home'), "/editions/any/2009/jul/editions/#{lang}/" %>
+    <!--If there is a breadcrumb (that means we are in a subcategory and NOT an edition)-->
+    <% unless get_breadcrumb_path(subject_id).nil? %>
+        <!--Iterate through the subcategories-->
+        <% array = get_breadcrumb_path(subject_id) %>
+        <% i=0 %>
+        <ul>
+          <%= render :partial =>'tree/siblings', locals: { :array => array, :i => i, :lang => lang, :filter_params_url => filter_params_url} %>
+
+        </ul>
+    <% end %>
+
+  </li>
+
+</ul>
