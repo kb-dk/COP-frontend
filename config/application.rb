@@ -16,5 +16,6 @@ module COPFrontendNew
     # Setting da as default language
     config.i18n.enforce_available_locales = true
     config.i18n.default_locale = :da
+
   end
 end

@@ -147,7 +147,7 @@ en:
           blank: 'You must select a carrier'
           invalid: "You must enter a valid carrier"
 
-    back_to_search: 'Back to Search'
+    back_to_search: 'Back'
     back_to_bookmarks: 'Back to Bookmarks'
 
     search:

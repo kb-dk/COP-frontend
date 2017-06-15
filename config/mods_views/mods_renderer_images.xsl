@@ -1031,7 +1031,7 @@ in the metadatasection of a landing page -->
             </xsl:for-each>
           </xsl:if>
 
-          <xsl:for-each select="md:mods/md:extension/h:div">
+          <xsl:for-each select="md:mods/md:extension/h:div[text()]">
             <xsl:if test="position() = 1">
               <xsl:element name="dt">
                 <strong xml:lang="da">Indgår i</strong>
