@@ -51,12 +51,8 @@ module ApplicationHelper
 
   def show_scaled_image(doc, opts)
     uri = doc['thumbnail_url_ssm'].first
-    if uri[/full\/full/]
-      uri = uri.gsub(/full\/full/,'full/!225,')
-    end
-    #hack: needs to be removed when we are sure that all thumbnails have the right size
-    if uri[/full\/!400/]
-      uri = uri.gsub(/full\/!400/,'full/!225')
+    if uri[/ull\/[^\/]*?/]
+      uri = uri.gsub(/full\/[^\/]*?\//,'full/!225,/')
     end
     img_tag = image_tag(URI(uri))
     return img_tag
