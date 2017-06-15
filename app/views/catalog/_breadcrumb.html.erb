@@ -11,7 +11,6 @@ different format for the facets (I think it's bug in Blacklight)-->
       <!-- Show the home pge link -->
       <li>
         <%= link_to t('blacklight.home'), "/editions/any/2009/jul/editions/#{lang}/" %>
-        <ul>
           <!--If there is a breadcrumb (that means we are in a subcategory and NOT an edition)-->
           <% unless get_breadcrumb_path(subject_id).nil? %>
               <!--Iterate through the subcategories-->
@@ -23,11 +22,6 @@ different format for the facets (I think it's bug in Blacklight)-->
 
                   </ul>
           <% end %>
-          <!--Show the current link location-->
-          <li>
-            <%= link_to show_category_name(subject_id), "#{subject_id}/#{lang}/"+filter_params_url %>
-          </li>
-        </ul>
 
       </li>
 
