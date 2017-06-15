@@ -9,8 +9,13 @@
                 <%= render :partial => 'siblings', locals: {:array => array, :i => i+1, :lang => lang, :filter_params_url => filter_params_url} %>
             <% end %>
             <% if i == array.length-1 %>
-                <%= get_children(array[i]) %>
-            <% end %>
+
+                <% get_children(array[i]).each do |child| %>
+                  <li>
+                    <%= link_to show_category_name(child['id']), "#{child['id']}/#{lang}/"+filter_params_url %>
+                  </li>
+                <% end%>
+          <% end %>
           </ul>
 
         </li>
