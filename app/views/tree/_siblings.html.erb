@@ -1,23 +1,30 @@
-<% get_siblings(array[i]).each do |sibling| %>
-    <% if array[i] == sibling['id'] %>
-        <li data-jstree='{ "opened" : true <% if i == array.length-1 %> , "selected" : true<% end%>}'>
+<!-- Call recursively for subcategories-->
+<!-- For each ancestor get its siblings -->
+<% get_siblings(array_of_ancestors[i]).each do |sibling| %>
+    <!-- If this sibling is one of the ancestors of the selected node -->
+    <% if array_of_ancestors[i] == sibling['id'] %>
+        <!-- Show its children -->
+        <li data-jstree='{ "opened" : true
+          <% if i == array_of_ancestors.length-1 %> , "selected" : true
+          <% end %>}'>
           <%= link_to show_category_name(sibling['id']), "#{sibling['id']}/#{lang}/"+filter_params_url %>
           <ul>
-            <% if i < array.length-1 %>
-                <%= render :partial => 'tree/siblings', locals: {:array => array, :i => i+1, :lang => lang, :filter_params_url => filter_params_url} %>
+            <!-- Call recursively for siblings of the members of the array of ancestors -->
+            <% if i < array_of_ancestors.length-1 %>
+                <%= render :partial => 'tree/siblings', locals: {:array_of_ancestors => array_of_ancestors, :i => i+1, :lang => lang, :filter_params_url => filter_params_url} %>
             <% end %>
-            <% if i == array.length-1 %>
-
-                <% get_children(array[i]).each do |child| %>
-                  <li>
-                    <%= link_to show_category_name(child['id']), "#{child['id']}/#{lang}/"+filter_params_url %>
-                  </li>
-                <% end%>
-          <% end %>
+            <!-- When we are at the selected child-->
+            <% if i == array_of_ancestors.length-1 %>
+                <!-- Show its children -->
+                <% get_children(array_of_ancestors[i]).each do |child| %>
+                    <li>
+                      <%= link_to show_category_name(child['id']), "#{child['id']}/#{lang}/"+filter_params_url %>
+                    </li>
+                <% end %>
+            <% end %>
           </ul>
-
         </li>
-
+        <!-- If it's a sibling that is NOT a member of the array of ancestors, only show itself -->
     <% else %>
         <li>
           <%= link_to show_category_name(sibling['id']), "#{sibling['id']}/#{lang}/"+filter_params_url %>

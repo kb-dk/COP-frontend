@@ -1,38 +1,37 @@
 <div class="facets">
-<h2 class="facets-heading">
-  <%= t('blacklight.search.facets.category.title') %>
-</h2>
+  <h2 class="facets-heading">
+    <%= t('blacklight.search.facets.category.title') %>
+  </h2>
   <div id="tree">
-<ul>
-  <!-- Show the home pge link -->
-  <li data-jstree='{"opened" : true }'>
-    <%= link_to t('blacklight.home'), "/editions/any/2009/jul/editions/#{lang}/" %>
-    <!--If there is a breadcrumb (that means we are in a subcategory and NOT an edition)-->
-    <% unless get_breadcrumb_path(subject_id).nil? %>
-        <!--Iterate through the subcategories-->
-        <% array = get_breadcrumb_path(subject_id) %>
-        <% i=0 %>
-        <ul>
-          <%= render :partial =>'tree/siblings', locals: { :array => array, :i => i, :lang => lang, :filter_params_url => filter_params_url} %>
-
-        </ul>
-    <% end %>
-
-  </li>
-
-</ul>
-</div>
+    <ul>
+      <!-- Show the home page node -->
+      <li data-jstree='{"opened" : true }'>
+        <%= link_to t('blacklight.home'), "/editions/any/2009/jul/editions/#{lang}/" %>
+        <!--If there is a breadcrumb (that means we are in a subcategory and NOT an edition)-->
+        <% unless get_breadcrumb_path(subject_id).nil? %>
+            <!--Iterate through the subcategories-->
+            <% array_of_ancestors = get_breadcrumb_path(subject_id) %>
+            <% i=0 %>
+            <!-- Show the siblings of the category using array_of_ancestors, which includes all the ancestors including the category itself-->
+            <ul>
+              <%= render :partial => 'tree/siblings', locals: {:array_of_ancestors => array_of_ancestors, :i => i, :lang => lang, :filter_params_url => filter_params_url} %>
+            </ul>
+        <% end %>
+      </li>
+    </ul>
+  </div>
 </div>
 
 <script>
-  $(function() {
+  $(function () {
     $('#tree').jstree()
-    .bind("select_node.jstree", function (e, data) {
-      $('#jstree').jstree('save_state');
-    })
 
-    .on("activate_node.jstree", function(e,data){
-      window.location.href = data.node.a_attr.href;
-    })
+    // Activating the links in the tree
+        .bind("select_node.jstree", function (e, data) {
+          $('#jstree').jstree('save_state');
+        })
+        .on("activate_node.jstree", function (e, data) {
+          window.location.href = data.node.a_attr.href;
+        })
   });
 </script>
