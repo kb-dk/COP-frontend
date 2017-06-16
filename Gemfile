@@ -58,6 +58,7 @@ gem 'blacklight-gallery'
 
 group :development, :test do
   gem 'solr_wrapper', '>= 0.3'
+  gem 'better_errors'
 end
 
 gem 'rsolr', '~> 1.0'
