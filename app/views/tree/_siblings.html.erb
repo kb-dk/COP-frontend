@@ -1,8 +1,6 @@
 <% get_siblings(array[i]).each do |sibling| %>
-    <% puts 'arr='%>
-    <% puts array%>
     <% if array[i] == sibling['id'] %>
-        <li>
+        <li data-jstree='{ "opened" : true <% if i == array.length-1 %> , "selected" : true<% end%>}'>
           <%= link_to show_category_name(sibling['id']), "#{sibling['id']}/#{lang}/"+filter_params_url %>
           <ul>
             <% if i < array.length-1 %>

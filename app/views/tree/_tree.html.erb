@@ -5,7 +5,7 @@
   <div id="tree">
 <ul>
   <!-- Show the home pge link -->
-  <li>
+  <li data-jstree='{"opened" : true }'>
     <%= link_to t('blacklight.home'), "/editions/any/2009/jul/editions/#{lang}/" %>
     <!--If there is a breadcrumb (that means we are in a subcategory and NOT an edition)-->
     <% unless get_breadcrumb_path(subject_id).nil? %>
@@ -26,6 +26,13 @@
 
 <script>
   $(function() {
-    $('#tree').jstree();
+    $('#tree').jstree()
+    .bind("select_node.jstree", function (e, data) {
+      $('#jstree').jstree('save_state');
+    })
+
+    .on("activate_node.jstree", function(e,data){
+      window.location.href = data.node.a_attr.href;
+    })
   });
 </script>
