@@ -5,14 +5,14 @@
   <div id="tree">
     <ul>
       <!-- Show the home page node -->
-      <li data-jstree='{"opened" : true }'>
+      <li data-jstree='{"opened" : true, "icon" : "glyphicon glyphicon-minus" }'>
         <%= link_to t('blacklight.home'), "/editions/any/2009/jul/editions/#{lang}/" %>
         <!--If the subject_id is the home page id (that means we have a search across all the editions)-->
         <% if subject_id == "/editions/any/2009/jul/editions" %>
             <!-- We only show the editions list in the tree-->
         <ul>
           <% get_children("/editions/any/2009/jul/editions").each do |child| %>
-              <li>
+              <li data-jstree='{"icon" : "glyphicon glyphicon-plus" }'>
                 <%= link_to show_category_name(child['id']), "#{child['id']}/#{lang}/"+filter_params_url %>
               </li>
           <% end %>
@@ -43,5 +43,17 @@
         .on("activate_node.jstree", function (e, data) {
           window.location.href = data.node.a_attr.href;
         })
+    var id = $('#tree').jstree('get_selected');
+    var topPos = document.getElementById(id).offsetTop;
+    var height = document.getElementById(id).offsetHeight;
+    var leftPos = document.getElementById(id).offsetLeft;
+    var width = document.getElementById(id).offsetWidth;
+
+    //debugger;
+    console.log('xxx'+topPos);
+    document.getElementById('tree').scrollTop = topPos - 20;
+    document.getElementById('tree').scrollLeft = leftPos - width;
+
   });
+
 </script>
