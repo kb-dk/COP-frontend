@@ -7,8 +7,18 @@
       <!-- Show the home page node -->
       <li data-jstree='{"opened" : true }'>
         <%= link_to t('blacklight.home'), "/editions/any/2009/jul/editions/#{lang}/" %>
-        <!--If there is a breadcrumb (that means we are in a subcategory and NOT an edition)-->
-        <% unless get_breadcrumb_path(subject_id).nil? %>
+        <!--If the subject_id is the home page id (that means we have a search across all the editions)-->
+        <% if subject_id == "/editions/any/2009/jul/editions" %>
+            <!-- We only show the editions list in the tree-->
+        <ul>
+          <% get_children("/editions/any/2009/jul/editions").each do |child| %>
+              <li>
+                <%= link_to show_category_name(child['id']), "#{child['id']}/#{lang}/"+filter_params_url %>
+              </li>
+          <% end %>
+        </ul>
+            <!--If there is a breadcrumb (that means we are in a subcategory and NOT an edition)-->
+      <% elsif !get_breadcrumb_path(subject_id).nil? %>
             <!--Iterate through the subcategories-->
             <% array_of_ancestors = get_breadcrumb_path(subject_id) %>
             <% i=0 %>
@@ -17,8 +27,8 @@
               <%= render :partial => 'tree/siblings', locals: {:array_of_ancestors => array_of_ancestors, :i => i, :lang => lang, :filter_params_url => filter_params_url} %>
             </ul>
         <% end %>
-      </li>
-    </ul>
+        </li>
+        </ul>
   </div>
 </div>
 
