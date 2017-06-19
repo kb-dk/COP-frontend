@@ -46,10 +46,11 @@
     // Focus on the selected node
     var id = $('#tree').jstree('get_selected');
     var treeHeight = document.getElementById('tree').offsetHeight;
+    var treeWidth = document.getElementById('tree').offsetWidth;
     var topPos = document.getElementById(id).offsetTop;
     var leftPos = document.getElementById(id).offsetLeft;
     document.getElementById('tree').scrollTop = topPos - treeHeight/2;
-    document.getElementById('tree').scrollLeft = leftPos;
+    document.getElementById('tree').scrollLeft = leftPos - treeWidth/4;
   });
 
 </script>
