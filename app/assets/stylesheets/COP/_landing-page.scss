@@ -67,7 +67,6 @@ section#metaData, section#category, section#userTags {
   top: 0;
   left: 2px;
   z-index: 9999;
-  width: 130px;
 }
 
 .fa-facebook, .fa-twitter, .fa-print {
@@ -84,11 +83,14 @@ section#metaData, section#category, section#userTags {
 // kbOSD
 #kbOSDInstance {
   height: 680px;
-  top: -20px;
+  .kbOSDViewer{
+    top: -20px;
+  }
   .kbOSDViewer .icon {
     display: inline-block;
     height: 30px;
     width: 30px;
+
   }
   .kbOSDContent {
     border-color: $nav-tabs-border-color !important;
