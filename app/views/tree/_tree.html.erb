@@ -1,8 +1,14 @@
 <div class="facets">
-  <h2 class="facets-heading">
+  <h2 class="top-panel-heading">
     <%= t('blacklight.search.facets.category.title') %>
   </h2>
-  <div id="tree">
+  <div class="panel panel-default">
+  <div class="panel-heading collapse-toggle" data-toggle="collapse" data-target="#tree" aria-expanded="true">
+    <h3 class="panel-title">
+      <%= t('blacklight.search.facets.category.heading') %>
+    </h3>
+  </div>
+  <div id="tree" class="panel-body collapse in">
     <ul>
       <!-- Show the home page node -->
       <li data-jstree='{"opened" : true, "icon" : "glyphicon glyphicon-minus" }'>
@@ -31,7 +37,7 @@
         </ul>
   </div>
 </div>
-
+</div>
 <script>
   $(function () {
     $('#tree').jstree()
