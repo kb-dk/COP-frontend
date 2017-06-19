@@ -1,7 +1,4 @@
 <div class="facets">
-  <h2 class="top-panel-heading">
-    <%= t('blacklight.search.facets.category.title') %>
-  </h2>
   <div class="panel panel-default">
   <div class="panel-heading collapse-toggle" data-toggle="collapse" data-target="#tree" aria-expanded="true">
     <h3 class="panel-title">
@@ -9,10 +6,7 @@
     </h3>
   </div>
   <div id="tree" class="panel-body collapse in">
-    <ul>
       <!-- Show the home page node -->
-      <li data-jstree='{"opened" : true, "icon" : "glyphicon glyphicon-minus" }'>
-        <%= link_to t('blacklight.home'), "/editions/any/2009/jul/editions/#{lang}/" %>
         <!--If the subject_id is the home page id (that means we have a search across all the editions)-->
         <% if subject_id == "/editions/any/2009/jul/editions" %>
             <!-- We only show the editions list in the tree-->
@@ -22,6 +16,7 @@
                 <%= link_to show_category_name(child['id']), "#{child['id']}/#{lang}/"+filter_params_url %>
               </li>
           <% end %>
+          </li>
         </ul>
             <!--If there is a breadcrumb (that means we are in a subcategory and NOT an edition)-->
       <% elsif !get_breadcrumb_path(subject_id).nil? %>
@@ -33,8 +28,6 @@
               <%= render :partial => 'tree/siblings', locals: {:array_of_ancestors => array_of_ancestors, :i => i, :lang => lang, :filter_params_url => filter_params_url} %>
             </ul>
         <% end %>
-        </li>
-        </ul>
   </div>
 </div>
 </div>
@@ -53,11 +46,10 @@
     // Focus on the selected node
     var id = $('#tree').jstree('get_selected');
     var treeHeight = document.getElementById('tree').offsetHeight;
-    var treeWidth = document.getElementById('tree').offsetWidth;
     var topPos = document.getElementById(id).offsetTop;
     var leftPos = document.getElementById(id).offsetLeft;
     document.getElementById('tree').scrollTop = topPos - treeHeight/2;
-    document.getElementById('tree').scrollLeft = leftPos - treeWidth/2;
+    document.getElementById('tree').scrollLeft = leftPos;
   });
 
 </script>
