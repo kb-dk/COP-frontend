@@ -43,20 +43,15 @@
         .on("activate_node.jstree", function (e, data) {
           window.location.href = data.node.a_attr.href;
         })
-    var id = $('#tree').jstree('get_selected');
 
+    // Focus on the selected node
+    var id = $('#tree').jstree('get_selected');
     var treeHeight = document.getElementById('tree').offsetHeight;
     var treeWidth = document.getElementById('tree').offsetWidth;
-
-
     var topPos = document.getElementById(id).offsetTop;
     var leftPos = document.getElementById(id).offsetLeft;
-
     document.getElementById('tree').scrollTop = topPos - treeHeight/2;
     document.getElementById('tree').scrollLeft = leftPos - treeWidth/2;
-
-
-
   });
 
 </script>
