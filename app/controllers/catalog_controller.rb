@@ -34,6 +34,7 @@ class CatalogController < ApplicationController
 
     # items to show per page, each number in the array represent another option to choose from.
     #config.per_page = [10,20,50,100]
+    config.default_per_page = 20
 
     ## Default parameters to send on single-document requests to Solr. These settings are the Blackligt defaults (see SearchHelper#solr_doc_params) or
     ## parameters included in the Blacklight-jetty document requestHandler.
@@ -81,7 +82,6 @@ class CatalogController < ApplicationController
 
     # I put the limit at 300000 here, to get all the facets to iterate through in the _facet_category.html.erb so we can
     # calculate the hits. SO FAR we have ~30000 subjects in solr (search for: parent_ssi:[* TO *])
-    config.add_facet_field 'subject_topic_id_ssim', label: 'Kategori', helper_method: :show_category_name, collapse: false, limit: 300000 , partial: 'facet_category'
     config.add_facet_field 'contributor_tsim', label: 'Contributor', limit: 20
 
     #config.add_facet_field 'example_query_facet_field', label: 'Publish Date', :query => {

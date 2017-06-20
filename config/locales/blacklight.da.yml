@@ -199,6 +199,9 @@ da:
         counter: '%{counter}. '
       facets:
         title: 'Afgræns søgning'
+        category:
+          title: 'Vælg en kategori'
+          heading: 'Kategori'
         clear: 'Slet filter'
         sort:
           count: 'Numerisk sortering'
