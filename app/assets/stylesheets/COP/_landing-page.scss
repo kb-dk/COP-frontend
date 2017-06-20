@@ -4,6 +4,35 @@ section#metaData, section#category, section#userTags {
   }
 }
 
+@media print {
+
+  footer, #kbOSD-0-PageCount {
+    display: none;
+  }
+
+  body {
+    font-size: 16px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  #previousNextDocument {
+    display: none;
+  }
+
+  .print-break {
+    page-break-after: always;
+  }
+
+}
+
+@media screen {
+  .print-break {
+    display: none;
+  }
+}
+
 #metadata {
   :empty { // Do not display empty DOMs
     display: none;
@@ -30,6 +59,7 @@ section#metaData, section#category, section#userTags {
   ul li {
     margin: 0 0 10px 0;
   }
+
 }
 
 .socialButtons {
@@ -37,7 +67,6 @@ section#metaData, section#category, section#userTags {
   top: 0;
   left: 2px;
   z-index: 9999;
-  width: 130px;
 }
 
 .fa-facebook, .fa-twitter, .fa-print {
@@ -54,11 +83,14 @@ section#metaData, section#category, section#userTags {
 // kbOSD
 #kbOSDInstance {
   height: 680px;
-  top: -20px;
+  .kbOSDViewer{
+    top: -20px;
+  }
   .kbOSDViewer .icon {
     display: inline-block;
     height: 30px;
     width: 30px;
+
   }
   .kbOSDContent {
     border-color: $nav-tabs-border-color !important;
@@ -73,15 +105,10 @@ section#metaData, section#category, section#userTags {
   }
 }
 
-
 /* Hide rotation and print icon  on phone Portrait */
-@media only screen
-and (min-device-width: 320px)
-and (max-device-width: 480px)
-and (-webkit-min-device-pixel-ratio: 2)
-and (orientation: portrait) {
-  .rotateRight, .rotateLeft, .fa-print{
-    display:none !important;
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+  .rotateRight, .rotateLeft, .fa-print {
+    display: none !important;
   }
 }
 
