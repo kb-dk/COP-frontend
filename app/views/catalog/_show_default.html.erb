@@ -44,12 +44,9 @@
     var jsonurl = <%= @document['content_metadata_image_iiif_info_ssm'].to_s.html_safe %>;
     var readDirection  ='<%= @document['read_direction_ssi']%>';
 
-    var rtl = false;
-    if (readDirection == "RTL"){
-        //hack for now to have the first page at the last position in order to see the cover as the first element in osd
-        jsonurl.push(jsonurl.shift());
-        rtl = true;
-    }
+
+    (readDirection == "RTL") ? rtl = true : rtl = false;
+
 
     var kbOSDconfig = [{
         "id": "kbOSDInstance",
@@ -62,4 +59,4 @@
         "tileSources": jsonurl
     }];
 </script>
-<script src="http://static-test-01.kb.dk/kbOpenSeadragon/2.3.0/js/KbOSD_bundle_min.js"></script>
+<script src="http://static-test-01.kb.dk/kbOpenSeadragon/2.4.0/js/KbOSD_bundle_min.js"></script>
