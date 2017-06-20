@@ -171,6 +171,10 @@ da:
       sort:
         label: 'Sorter efter %{field}'
         submit: 'Sorter resultater'
+        title: 'Titel'
+        author: 'Ophav'
+        not_before: 'Tidligst'
+        not_after: 'Senest'
       form:
         search_field:
           label: 'Søg i'

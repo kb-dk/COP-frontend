@@ -179,9 +179,10 @@ class CatalogController < ApplicationController
     # whether the sort is ascending or descending (it must be asc or desc
     # except in the relevancy case).
     config.add_sort_field 'score desc', label: '' #search after relevance
-    config.add_sort_field 'cobject_title_ssi asc, score desc', label: 'Titel'
-    config.add_sort_field 'cobject_not_before_dtsi asc', label: 'Tidligst'
-    config.add_sort_field 'cobject_not_after_dtsi desc', label: 'Senest'
+    config.add_sort_field 'cobject_title_ssi asc, score desc', label: I18n.t('blacklight.search.sort.title')
+    config.add_sort_field 'creator_tsi asc, score desc', label: I18n.t('blacklight.search.sort.author')
+    config.add_sort_field 'cobject_not_before_dtsi asc', label: I18n.t('blacklight.search.sort.not_before')
+    config.add_sort_field 'cobject_not_after_dtsi desc', label: I18n.t('blacklight.search.sort.not_after')
 
 
     # If there are more than this many search results, no spelling ("did you

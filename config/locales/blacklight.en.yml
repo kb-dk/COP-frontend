@@ -170,6 +170,10 @@ en:
       sort:
         label: 'Sort by %{field}'
         submit: 'sort results'
+        title: 'Titel'
+        author: 'Author'
+        not_before: 'Earliest'
+        not_after: 'Latest'
       form:
         search_field:
           label: 'Search in'
