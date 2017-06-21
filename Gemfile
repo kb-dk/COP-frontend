@@ -58,6 +58,7 @@ gem 'blacklight-gallery'
 
 group :development, :test do
   gem 'solr_wrapper', '>= 0.3'
+  gem 'better_errors'
 end
 
 gem 'rsolr', '~> 1.0'
@@ -71,6 +72,8 @@ gem 'high_voltage', '~> 3.0.0'
 gem 'font-awesome-rails'
 
 # kb cookie policy
-gem 'kbcookie', '>=0.0.0', :git => 'https://github.com/Det-Kongelige-Bibliotek/kbcookie.git'
+gem 'kbcookie', '>=0.0.1', :git => 'https://github.com/Det-Kongelige-Bibliotek/kbcookie.git'
 # Makes it possible to xraying the partials from the browser
 
+# jstree
+gem "jstree-rails-4"

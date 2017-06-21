@@ -15,5 +15,6 @@
 //= require turbolinks//
 // Required by Blacklight
 //= require blacklight/blacklight
+//= require jstree
 
 //= require_tree .

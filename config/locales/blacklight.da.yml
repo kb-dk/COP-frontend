@@ -148,7 +148,7 @@ da:
           blank: 'Du skal vælge en tjenesteyder'
           invalid: "Du skal indtaste en korrekt tjenesteyder"
 
-    back_to_search: 'Tilbage til søgning'
+    back_to_search: 'Tilbage'
     back_to_bookmarks: 'Tilbage til bogmærker'
 
     search:
@@ -195,6 +195,9 @@ da:
         counter: '%{counter}. '
       facets:
         title: 'Afgræns søgning'
+        category:
+          title: 'Vælg en kategori'
+          heading: 'Kategori'
         clear: 'Slet filter'
         sort:
           count: 'Numerisk sortering'

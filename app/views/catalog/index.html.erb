@@ -7,6 +7,7 @@
 
 <% else %>
     <div id="sidebar" class="<%= sidebar_classes %>">
+      <%= render 'tree/show_tree' %>
       <%= render 'search_sidebar' %>
     </div>
     <div id="content" class="<%= main_content_classes %>">
