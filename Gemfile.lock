@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/Det-Kongelige-Bibliotek/kbcookie.git
-  revision: aa797344e75246c609313ccad28ea7f0a40430ad
+  revision: 6e7e7751b34560f062b5ef21c6d1726784a4b89b
   specs:
-    kbcookie (0.0.0)
+    kbcookie (0.0.1)
 
 GEM
   remote: https://rubygems.org/
@@ -258,7 +258,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   jstree-rails-4
-  kbcookie (>= 0.0.0)!
+  kbcookie (>= 0.0.1)!
   listen (~> 3.0.5)
   puma (~> 3.0)
   rails (~> 5.0.1)
