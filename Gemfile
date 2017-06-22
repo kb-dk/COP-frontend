@@ -72,7 +72,7 @@ gem 'high_voltage', '~> 3.0.0'
 gem 'font-awesome-rails'
 
 # kb cookie policy
-gem 'kbcookie', '>=0.0.0', :git => 'https://github.com/Det-Kongelige-Bibliotek/kbcookie.git'
+gem 'kbcookie', '>=0.0.1', :git => 'https://github.com/Det-Kongelige-Bibliotek/kbcookie.git'
 # Makes it possible to xraying the partials from the browser
 
 # jstree

@@ -100,20 +100,18 @@ module ApplicationHelper
     end
   end
 
+  def search_query(opts={:label=>nil})
+     scope = opts.delete(:route_set) || self
+     query_params = current_search_session.try(:query_params) || ActionController::Parameters.new
 
+     if search_session['counter']
+       per_page = (search_session['per_page'] || default_per_page).to_i
+       counter = search_session['counter'].to_i
 
+       query_params[:per_page] = per_page unless search_session['per_page'].to_i == default_per_page
+       query_params[:page] = params[:page]? params[:page]:((counter - 1)/ per_page) + 1
+     end
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+     scope.url_for(query_params).partition('?').last
+  end
 end

@@ -261,7 +261,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   jstree-rails-4
-  kbcookie (>= 0.0.0)!
+  kbcookie (>= 0.0.1)!
   listen (~> 3.0.5)
   puma (~> 3.0)
   rails (~> 5.0.1)
