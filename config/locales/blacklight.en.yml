@@ -170,6 +170,10 @@ en:
       sort:
         label: 'Sort by %{field}'
         submit: 'sort results'
+        title: 'Titel'
+        author: 'Author'
+        not_before: 'Earliest'
+        not_after: 'Latest'
       form:
         search_field:
           label: 'Search in'
@@ -224,6 +228,13 @@ en:
       atom_feed: 'Atom for results'
       fields:
         default: 'Keyword'
+        cobject_title_ssi: 'Title'
+        creator_tsim: 'Creator'
+        description_tsim: 'Description'
+        pub_dat_tsim: 'Publication date'
+        add_show_field: 'Mods'
+        cobject_not_before_dtsi: 'Earliest'
+        cobject_not_after_dtsi: 'Latest'
       bookmarks:
         present: "In Bookmarks"
         absent: "Bookmark"
