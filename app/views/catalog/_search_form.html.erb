@@ -9,7 +9,7 @@
 
           <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
 
-            <div class="input-group">
+            <div class="input-group-inline">
 
               <% if search_fields.length > 1 %>
       <span class="input-group-addon for-search-field ">
@@ -26,6 +26,10 @@
               <%= text_field_tag :q, params[:q], placeholder: t('blacklight.search.form.search.placeholder'),
                                  :class => "search_q q form-control", :id => "q", :autofocus => should_autofocus_on_search_box? %>
 
+
+                <input type="text" class="form-control" id="datepicker1" placeholder="<%=t('blacklight.search.not_before')%> yyyy-mm-dd" <%= text_field_tag :notBefore, params[:notBefore] %>
+              <input type="text" class="form-control" id="datepicker2" placeholder="<%=t('blacklight.search.not_after')%> yyyy-mm-dd" <%= text_field_tag :notAfter, params[:notAfter] %>
+
               <span class="input-group-btn">
       <button type="submit" class="btn btn-primary search-btn" id="search">
         <span class="submit-search-text"><%= t('blacklight.search.form.submit') %></span>
@@ -35,12 +39,20 @@
 
     </span>
 
-
             </div>
-            <label for="notBefore">tidligst</label><%= text_field_tag :notBefore, params[:notBefore] %>
-            <label for="notAfter">senest</label><%= text_field_tag :notAfter, params[:notAfter] %>
           </div>
       <% end %>
     </div>
   </div>
 </div>
+<script>
+
+    $( function() {
+        $( "#datepicker1" ).datepicker({
+            dateFormat: 'yy-mm-dd'
+        });
+        $( "#datepicker2" ).datepicker({
+            dateFormat: 'yy-mm-dd'
+        });
+    } );
+</script>

@@ -154,6 +154,8 @@ da:
     search:
       # i18n key 'title' is deprecated and will be removed in Blacklight 6.0
       title: '%{application_name} Søgeresultater'
+      not_before: 'Tidligst'
+      not_after: 'Senest'
       page_title:
         title: '%{constraints} - %{application_name} Søgeresultater'
         constraint: '%{label}: %{value}'
