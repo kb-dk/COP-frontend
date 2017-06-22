@@ -1,22 +1,38 @@
 #search-navbar, #search-navbar .form-wrapper {
+
+
+
   min-height: 70px !important;
   .search-query-form{
     width: 100% !important;
   }
-  form {
+  .form-inline {
     position: absolute;
     top: 50%;
-    margin-top: -15px;
+    margin-top: -25px;
     .input-group-btn{
       width: 1px;
     }
   }
 
-  .search_field{
-    height: 32px;
-    padding: 7px 17px;
-  
+  .left-inner-addon {
+    position: relative;
+  }
+  .left-inner-addon input {
+    padding-left: 30px;
+  }
+  .left-inner-addon i {
+    position: absolute;
+    padding: 10px 12px;
+    pointer-events: none;
   }
 
+  #datepicker1, #datepicker2 {
+    width: 170px;
+  }
+
+  .search_q {
+    min-width: 310px;
+  }
 }
 
