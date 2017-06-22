@@ -14,10 +14,10 @@ module ApplicationHelper
     # Find the document with the specific id
     doc = Finder.get_doc_by_id(id)
     # Check if there in an english version for the name
-    if get_lang(params).eql? 'en' and !doc['node_tesim'].nil?
-      doc['node_tesim'].first
+    if get_lang(params).eql? 'en' and !doc['node_tesi'].nil?
+      doc['node_tesi']
     else
-      doc['node_tdsim'].first
+      doc['node_tdsi']
     end
   end
 
@@ -83,6 +83,8 @@ module ApplicationHelper
   end
 
 
+
+
   # Default route to the search action (used e.g. in global partials). Override this method
   # in a controller or in your ApplicationController to introduce custom logic for choosing
   # which action the search form should use
@@ -98,6 +100,10 @@ module ApplicationHelper
     else
       "/#{params[:medium]}/#{params[:collection]}/#{params[:year]}/#{params[:month]}/#{params[:edition]}/subject#{sub_id}/#{params[:locale]}/"
     end
+  end
+
+  def force_translation
+
   end
 
 

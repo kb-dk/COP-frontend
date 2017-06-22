@@ -98,10 +98,10 @@ class CatalogController < ApplicationController
 
     # solr fields to be displayed in the index (search results) view
     #   The ordering of the field names is the order of the display
-    config.add_index_field 'cobject_title_ssi', label: 'Title'
-    config.add_index_field 'creator_tsim', label: 'Creator'
-    config.add_index_field 'description_tsim', label: 'Description'
-    config.add_index_field 'pub_dat_tsim', label: 'Pub date'
+    config.add_index_field 'cobject_title_ssi'
+    config.add_index_field 'creator_tsim'
+    config.add_index_field 'description_tsim'
+    config.add_index_field 'pub_dat_tsim'
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
@@ -125,7 +125,7 @@ class CatalogController < ApplicationController
     # solr request handler? The one set in config[:default_solr_parameters][:qt],
     # since we aren't specifying it otherwise.
 
-    config.add_search_field 'all_fields', label: 'All Fields' do |field|
+    config.add_search_field 'all_fields', label: 'Fritekst' do |field|
       # Free text search in these fields: title, creator, description
       field.solr_local_parameters = {
           :qf => 'cobject_title_ssi^100 full_title_tsim^90 creator_tsim^80 description_tsim^50 pub_dat_tsim^40 readable_dat_string_tsim^40 type_tdsim^30 dc_type_ssim^30 subject_tdsim^30 coverage_tdsim^30 local_id_ssi^30 shelf_mark_tdsim^20 subject_topic_facet_tdsim^20 subject_topic_facet_tesim^20 processed_mods_ts^10'
@@ -136,14 +136,35 @@ class CatalogController < ApplicationController
     # case for a BL "search field", which is really a dismax aggregate
     # of Solr search fields.
 
-    config.add_search_field('creator') do |field|
-
-      # solr_parameters hash are sent to Solr as ordinary url query params.
-      field.solr_parameters = { :'spellcheck.dictionary' => 'title' }
+    config.add_search_field 'title', label: 'Titel' do |field|
 
       field.solr_local_parameters = {
-          qf: 'creator_tsim',
-          pf: 'creator_tsim'
+          qf: 'full_title_tsim',
+          pf: 'full_title_tsim'
+      }
+    end
+
+    config.add_search_field 'creator', label: 'Ophav' do |field|
+
+      field.solr_local_parameters = {
+          qf: 'creator_nasim',
+          pf: 'creator_nasim'
+      }
+    end
+
+    config.add_search_field 'person', label: 'Person' do |field|
+
+      field.solr_local_parameters = {
+          qf: 'cobject_person_tsim',
+          pf: 'cobject_person_tsim'
+      }
+    end
+
+    config.add_search_field 'location', label: 'Lokalitet' do |field|
+
+      field.solr_local_parameters = {
+          qf: 'cobject_location_tsim',
+          pf: 'cobject_location_tsim'
       }
     end
 
@@ -158,7 +179,10 @@ class CatalogController < ApplicationController
     # whether the sort is ascending or descending (it must be asc or desc
     # except in the relevancy case).
     config.add_sort_field 'score desc', label: '' #search after relevance
-    config.add_sort_field 'cobject_title_ssi asc, score desc', label: 'title'
+    config.add_sort_field 'cobject_title_ssi asc, score desc', label: I18n.t('blacklight.search.sort.title')
+    config.add_sort_field 'creator_tsi asc, score desc', label: I18n.t('blacklight.search.sort.author')
+    config.add_sort_field 'cobject_not_before_dtsi asc', label: I18n.t('blacklight.search.sort.not_before')
+    config.add_sort_field 'cobject_not_after_dtsi desc', label: I18n.t('blacklight.search.sort.not_after')
 
 
     # If there are more than this many search results, no spelling ("did you

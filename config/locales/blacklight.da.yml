@@ -171,6 +171,10 @@ da:
       sort:
         label: 'Sorter efter %{field}'
         submit: 'Sorter resultater'
+        title: 'Titel'
+        author: 'Ophav'
+        not_before: 'Tidligst'
+        not_after: 'Senest'
       form:
         search_field:
           label: 'Søg i'
@@ -225,6 +229,13 @@ da:
       atom_feed: 'Atom for resultater' # unknown meaning om "atom", needs translation
       fields:
         default: 'Nøgleord'
+        cobject_title_ssi: 'Titel'
+        creator_tsim: 'Ophav'
+        description_tsim: 'Beskrivelse'
+        pub_dat_tsim: 'Oprindelsesdato'
+        add_show_field: 'Mods'
+        cobject_not_before_dtsi: 'Tidligst'
+        cobject_not_after_dtsi: 'Senest'
       bookmarks:
         present: "I bogmærker"
         absent: "Bogmærke"
