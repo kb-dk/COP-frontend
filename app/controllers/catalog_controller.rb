@@ -98,10 +98,10 @@ class CatalogController < ApplicationController
 
     # solr fields to be displayed in the index (search results) view
     #   The ordering of the field names is the order of the display
-    config.add_index_field 'cobject_title_ssi', label: 'Title'
-    config.add_index_field 'creator_tsim', label: 'Creator'
-    config.add_index_field 'description_tsim', label: 'Description'
-    config.add_index_field 'pub_dat_tsim', label: 'Pub date'
+    config.add_index_field 'cobject_title_ssi'
+    config.add_index_field 'creator_tsim'
+    config.add_index_field 'description_tsim'
+    config.add_index_field 'pub_dat_tsim'
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
