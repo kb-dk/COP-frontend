@@ -49,10 +49,16 @@
 
     $(function () {
         $("#datepicker1").datepicker({
-            dateFormat: 'yy-mm-dd'
+            dateFormat: 'yy-mm-dd',
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "1000:-nn"
         });
         $("#datepicker2").datepicker({
-            dateFormat: 'yy-mm-dd'
+            dateFormat: 'yy-mm-dd',
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "1000:-nn"
         });
     });
 </script>
