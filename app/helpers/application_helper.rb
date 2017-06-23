@@ -87,6 +87,7 @@ module ApplicationHelper
 
   # Default route to the search action (used e.g. in global partials). Override this method
   # in a controller or in your ApplicationController to introduce custom logic for choosing
+
   # which action the search form should use
   def search_action_url_local options = {}
     # Rails 4.2 deprecated url helpers accepting string keys for 'controller' or 'action'
@@ -115,10 +116,9 @@ module ApplicationHelper
        query_params[:page] = params[:page]? params[:page]:((counter - 1)/ per_page) + 1
      end
 
-     scope.url_for(query_params).partition('?').last
-  end
-
-  def force_translation
+     para = current_search_session.try(:query_params)? {"q"=>query_params[:q], "page"=>query_params[:page], "per_page"=>query_params[:per_page], "utf8"=>query_params[:utf8], "search_field"=>query_params[:search_field], "controller"=>query_params[:controller], "locale"=>query_params[:locale]}:query_params.permit!
+     scope.url_for(para).partition('?').last
 
   end
+  
 end
