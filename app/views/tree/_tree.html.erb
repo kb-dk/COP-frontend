@@ -33,7 +33,10 @@
 </div>
 <script>
   $(function () {
-    $('#tree').jstree()
+    $('#tree').jstree({
+      // Sorts the keys
+      "plugins" : [ "sort" ]
+    })
 
     // Activating the links in the tree
         .bind("select_node.jstree", function (e, data) {

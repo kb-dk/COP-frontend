@@ -202,7 +202,7 @@ en:
         title: 'Limit your search'
         category:
           title: 'Select a category'
-          heading: 'Category'
+          heading: 'Digital collections'
         clear: 'Clear Filter'
         sort:
           count: 'Numerical Sort'

@@ -203,7 +203,7 @@ da:
         title: 'Afgræns søgning'
         category:
           title: 'Vælg en kategori'
-          heading: 'Kategori'
+          heading: 'Digitale samlinger'
         clear: 'Slet filter'
         sort:
           count: 'Numerisk sortering'
