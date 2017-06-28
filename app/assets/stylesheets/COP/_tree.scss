@@ -1,10 +1,11 @@
-#tree, #tree2 {
+#tree{
   border: 1px solid transparent;
   border-color: #ddd;
   margin-bottom: 0;
   border-radius: 4px;
   height: 400px;
   overflow: auto;
+  position: relative;
   .glyphicon{
     color:#ff9d74;
     font-size: xx-small;
