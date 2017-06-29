@@ -1,44 +1,64 @@
 <% lang = params[:locale] ? params[:locale] : "da" %>
 
-<div class="row">
+<div class="row ">
   <div class="container">
-    <div class="form-wrapper col-xs-12">
-      <%= form_tag search_action_url_local, method: :get, class: 'search-query-form clearfix navbar-form col-xs-12', role: 'search' do %>
-          <%= render_hash_as_hidden_fields(search_state.params_for_search.except(:q, :search_field, :qt, :page, :utf8,
-                                                                                 :medium, :collection, :year, :month, :edition, :subj_id)) %>
-
-          <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
-
-            <div class="input-group">
-
-              <% if search_fields.length > 1 %>
-      <span class="input-group-addon for-search-field ">
-
-        <label for="search_field" class="sr-only"><%= t('blacklight.search.form.search_field.label') %></label>
-        <%= select_tag(:search_field, options_for_select(search_fields, h(params[:search_field])), title: t('blacklight.search.form.search_field.title'), id: "search_field", class: "search_field form-control") %>
-      </span>
-              <% elsif search_fields.length == 1 %>
-                  <%= hidden_field_tag :search_field, search_fields.first.last %>
-              <% end %>
+    <div class="col-sm-12 text-center">
+      <div class="form-inline">
+        <%= form_tag search_action_url_local, method: :get, class: 'search-query-form clearfix navbar-form col-xs-12', role: 'search' do %>
+            <%= render_hash_as_hidden_fields(search_state.params_for_search.except(:q, :search_field, :qt, :page, :utf8,
+                                                                                   :medium, :collection, :year, :month, :edition, :subj_id)) %>
 
 
+            <% if search_fields.length > 1 %>
+                <div class="form-group">
+
+                  <%= select_tag(:search_field, options_for_select(search_fields, h(params[:search_field])), title: t('blacklight.search.form.search_field.title'), id: "search_field", class: "form-control") %>
+                </div>
+            <% elsif search_fields.length == 1 %>
+                <%= hidden_field_tag :search_field, search_fields.first.last %>
+            <% end %>
+
+            <div class="form-group">
               <label for="q" class="sr-only"><%= t('blacklight.search.form.search.label') %></label>
               <%= text_field_tag :q, params[:q], placeholder: t('blacklight.search.form.search.placeholder'),
                                  :class => "search_q q form-control", :id => "q", :autofocus => should_autofocus_on_search_box? %>
-
-
-              <span class="input-group-btn">
-      <button type="submit" class="btn btn-primary search-btn" id="search">
-        <span class="submit-search-text"><%= t('blacklight.search.form.submit') %></span>
-        <span class="glyphicon glyphicon-search"></span>
-      </button>
-
-
-    </span>
+            </div>
+            <div class="form-group left-inner-addon">
+              <i class="glyphicon glyphicon-calendar hidden-xs"></i>
+              <input type="text" class="form-control" id="datepicker1" placeholder="<%= t('blacklight.search.not_before') %> yyyy-mm-dd" <%= text_field_tag :notBefore, params[:notBefore] %>
 
             </div>
-          </div>
-      <% end %>
-    </div>
+            <div class="form-group left-inner-addon">
+              <i class="glyphicon glyphicon-calendar hidden-xs "></i>
+              <input type="text" class="form-control" id="datepicker2" placeholder="<%= t('blacklight.search.not_after') %> yyyy-mm-dd" <%= text_field_tag :notAfter, params[:notAfter] %>
+
+            </div>
+
+            <button type="submit" class="btn btn-primary search-btn" id="search">
+              <span class="submit-search-text"><%= t('blacklight.search.form.submit') %></span>
+              <span class="glyphicon glyphicon-search"></span>
+            </button>
+            </div>
+
+        <% end %>
+        </div>
   </div>
 </div>
+</div>
+<script>
+
+    $(function () {
+        $("#datepicker1").datepicker({
+            dateFormat: 'yy-mm-dd',
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "1000:-nn"
+        });
+        $("#datepicker2").datepicker({
+            dateFormat: 'yy-mm-dd',
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "1000:-nn"
+        });
+    });
+</script>

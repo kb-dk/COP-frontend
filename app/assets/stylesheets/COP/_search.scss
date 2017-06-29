@@ -1,22 +1,61 @@
 #search-navbar, #search-navbar .form-wrapper {
-  min-height: 70px !important;
+
+
+  @media only screen and (min-width: 1024px) {
+    min-height: 60px !important;
+  }
+
+  @media only screen
+  and (min-device-width : 667px)
+  and (max-device-width : 1024px) {
+    min-height: 100px !important;
+  }
+
+  @media only screen
+  and (max-device-width : 667px) {
+    min-height: 220px !important;
+  }
+
+
   .search-query-form{
     width: 100% !important;
   }
-  form {
-    position: absolute;
-    top: 50%;
-    margin-top: -15px;
+  .form-inline {
+    position:absolute;
+    padding-left:5%;
+    padding-right:5%;
+    top:40%;
     .input-group-btn{
       width: 1px;
     }
+
   }
 
-  .search_field{
-    height: 32px;
-    padding: 7px 17px;
-  
+  @media only screen and (min-width: 768px) {
+    .left-inner-addon {
+      position: relative;
+    }
+    .left-inner-addon input {
+      padding-left: 30px;
+    }
+    .left-inner-addon i {
+      position: absolute;
+      padding: 10px 12px;
+      pointer-events: none;
+    }
   }
+
+  #datepicker1, #datepicker2{
+    max-width: 170px;
+  }
+  @media only screen and (min-width: 768px) {
+
+
+    .search_q{
+      min-width: 450px;
+    }
+  }
+
 
 }
 
