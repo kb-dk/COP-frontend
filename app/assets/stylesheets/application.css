@@ -17,5 +17,6 @@
  *= require jstree-default
   *= require jquery-ui/datepicker
 
+ *= require perfect-scrollbar
 
  */

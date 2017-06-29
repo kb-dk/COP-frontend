@@ -77,3 +77,5 @@ gem 'kbcookie', '>=0.0.1', :git => 'https://github.com/Det-Kongelige-Bibliotek/k
 
 # jstree
 gem "jstree-rails-4"
+# nicer scrollbars
+gem 'perfect-scrollbar-rails'
