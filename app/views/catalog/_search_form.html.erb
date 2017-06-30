@@ -25,12 +25,12 @@
             </div>
             <div class="form-group left-inner-addon">
               <i class="glyphicon glyphicon-calendar hidden-xs"></i>
-              <input type="text" class="form-control" id="datepicker1" placeholder="<%= t('blacklight.search.not_before') %> yyyy-mm-dd" <%= text_field_tag :notBefore, params[:notBefore] %>
+              <input type="text" class="form-control" id="datepicker1" placeholder="<%= t('blacklight.search.not_before') %> dd-mm-yyy" <%= text_field_tag :notBefore, params[:notBefore] %>
 
             </div>
             <div class="form-group left-inner-addon">
               <i class="glyphicon glyphicon-calendar hidden-xs "></i>
-              <input type="text" class="form-control" id="datepicker2" placeholder="<%= t('blacklight.search.not_after') %> yyyy-mm-dd" <%= text_field_tag :notAfter, params[:notAfter] %>
+              <input type="text" class="form-control" id="datepicker2" placeholder="<%= t('blacklight.search.not_after') %> dd-mm-yyyy" <%= text_field_tag :notAfter, params[:notAfter] %>
 
             </div>
 
@@ -49,13 +49,13 @@
 
     $(function () {
         $("#datepicker1").datepicker({
-            dateFormat: 'yy-mm-dd',
+            dateFormat: 'dd-mm-yy',
             changeMonth: true,
             changeYear: true,
             yearRange: "1000:-nn"
         });
         $("#datepicker2").datepicker({
-            dateFormat: 'yy-mm-dd',
+            dateFormat: 'dd-mm-yy',
             changeMonth: true,
             changeYear: true,
             yearRange: "1000:-nn"
