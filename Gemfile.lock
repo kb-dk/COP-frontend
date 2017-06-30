@@ -144,6 +144,8 @@ GEM
     openseadragon (0.3.3)
       rails (> 3.2.0)
     orm_adapter (0.5.0)
+    perfect-scrollbar-rails (0.6.15)
+      railties (>= 3.2, < 6.0)
     puma (3.9.1)
     rack (2.0.3)
     rack-test (0.6.3)
@@ -260,6 +262,7 @@ DEPENDENCIES
   jstree-rails-4
   kbcookie (>= 0.0.1)!
   listen (~> 3.0.5)
+  perfect-scrollbar-rails
   puma (~> 3.0)
   rails (~> 5.0.1)
   rsolr (~> 1.0)
