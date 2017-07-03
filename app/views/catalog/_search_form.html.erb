@@ -46,19 +46,41 @@
 </div>
 </div>
 <script>
-
-    $(function () {
-        $("#datepicker1").datepicker({
-            dateFormat: 'dd-mm-yy',
-            changeMonth: true,
-            changeYear: true,
-            yearRange: "1000:-nn"
-        });
-        $("#datepicker2").datepicker({
-            dateFormat: 'dd-mm-yy',
-            changeMonth: true,
-            changeYear: true,
-            yearRange: "1000:-nn"
-        });
-    });
+  $( function() {
+    var dateFormat = 'dd-mm-yy',
+        from = $( "#datepicker1" )
+            .datepicker({
+              dateFormat: dateFormat,
+              defaultDate: "+1w",
+              changeMonth: true,
+              changeYear: true,
+              yearRange: "0100:-nn",
+              numberOfMonths: 1,
+              firstDay: 1
+            })
+            .on( "change", function() {
+              to.datepicker( "option", "minDate", getDate( this ) );
+            }),
+        to = $( "#datepicker2" ).datepicker({
+          dateFormat: dateFormat,
+          defaultDate: "+1w",
+          changeMonth: true,
+          numberOfMonths: 1,
+          yearRange: "0100:-nn",
+          changeYear: true,
+          firstDay: 1
+        })
+            .on( "change", function() {
+              from.datepicker( "option", "maxDate", getDate( this ) );
+            });
+    function getDate( element ) {
+      var date;
+      try {
+        date = $.datepicker.parseDate( dateFormat, element.value );
+      } catch( error ) {
+        date = null;
+      }
+      return date;
+    }
+  } );
 </script>
