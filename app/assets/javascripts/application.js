@@ -19,3 +19,4 @@
 //= require jstree
 //= require perfect-scrollbar
 //= require_tree .
+//= require jquery.turbolinks
