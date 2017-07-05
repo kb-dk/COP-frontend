@@ -22,9 +22,10 @@
   }
   .form-inline {
     position:absolute;
-    padding-left:5%;
-    padding-right:5%;
+    padding-left:0;
+    padding-right:0;
     top:40%;
+    width: 100%;
     .input-group-btn{
       width: 1px;
     }
@@ -45,17 +46,19 @@
     }
   }
 
-  #datepicker1, #datepicker2{
-    max-width: 170px;
-  }
+
   @media only screen and (min-width: 768px) {
 
-
+    #datepicker1, #datepicker2{
+      max-width: 170px;
+    }
+    .search-box{
+      width: 40%;
+    }
     .search_q{
-      min-width: 450px;
+      width: 100%;
     }
   }
-
-
 }
+
 
