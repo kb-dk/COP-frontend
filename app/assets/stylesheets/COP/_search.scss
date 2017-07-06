@@ -1,61 +1,68 @@
 #search-navbar, #search-navbar .form-wrapper {
-
-
-  @media only screen and (min-width: 1024px) {
-    min-height: 60px !important;
-  }
-
-  @media only screen
-  and (min-device-width : 667px)
-  and (max-device-width : 1024px) {
-    min-height: 100px !important;
-  }
-
-  @media only screen
-  and (max-device-width : 667px) {
-    min-height: 220px !important;
-  }
-
-
-  .search-query-form{
+  .search-query-form {
     width: 100% !important;
   }
   .form-inline {
-    position:absolute;
-    padding-left:5%;
-    padding-right:5%;
-    top:40%;
-    .input-group-btn{
+    position: absolute;
+    padding-left: 0;
+    padding-right: 0;
+    top: 40%;
+    width: 100%;
+    .input-group-btn {
       width: 1px;
     }
-
   }
-
-  @media only screen and (min-width: 768px) {
-    .left-inner-addon {
-      position: relative;
-    }
-    .left-inner-addon input {
-      padding-left: 30px;
-    }
-    .left-inner-addon i {
-      position: absolute;
-      padding: 10px 12px;
-      pointer-events: none;
-    }
+  .left-inner-addon {
+    position: relative;
   }
-
-  #datepicker1, #datepicker2{
+  .left-inner-addon input {
+    padding-left: 30px;
+  }
+  .left-inner-addon i {
+    position: absolute;
+    padding: 10px 12px;
+    pointer-events: none;
+  }
+  #datepicker1, #datepicker2 {
     max-width: 170px;
   }
-  @media only screen and (min-width: 768px) {
-
-
-    .search_q{
-      min-width: 450px;
+  @media only screen and (min-width: 992px) {
+    .search-box {
+      width: 40%;
+    }
+    .search_q {
+      width: 100%;
     }
   }
-
-
 }
 
+@media only screen and (max-width: 992px) {
+  .form-control, .form-group {
+    width: auto;
+    display: inline-block;
+  }
+  #search-navbar {
+    min-height: 150px !important;
+  }
+  .search-box {
+    width: 60%;
+    .search_q {
+      width: 100%;
+    }
+  }
+  .form-group {
+    select, input, button {
+      margin-bottom: 5px;
+    }
+  }
+  .group {
+    width: 100% !important;
+    &:before, &:after {
+      content: " ";
+      display: table;
+    }
+    &:after {
+      clear: both;
+    }
+  }
+}

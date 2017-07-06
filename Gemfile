@@ -79,3 +79,5 @@ gem 'kbcookie', '>=0.0.1', :git => 'https://github.com/Det-Kongelige-Bibliotek/k
 gem "jstree-rails-4"
 # nicer scrollbars
 gem 'perfect-scrollbar-rails'
+# fixes the problem with javascript libraries(calendar and tree). Before they somethimes needed reloading to work
+gem 'jquery-turbolinks'
