@@ -23,7 +23,7 @@
                                    :class => "search_q q form-control", :id => "q", :autofocus => should_autofocus_on_search_box? %>
             </div>
               </span>
-              <span class="group">
+            <span class="group">
             <div class=" left-inner-addon form-group">
               <i class="glyphicon glyphicon-calendar"></i>
               <input type="text" class="form-control" id="datepicker1" placeholder="<%= t('blacklight.search.not_before') %> dd-mm-yyyy" <%= text_field_tag :notBefore, params[:notBefore] %>
@@ -39,50 +39,71 @@
               <span class="submit-search-text"><%= t('blacklight.search.form.submit') %></span>
               <span class="glyphicon glyphicon-search"></span>
             </button>
-              </div>
+            </div>
 
         <% end %>
-          </div>
+        </div>
   </div>
 </div>
 </div>
 <script>
-  $(function () {
-    var dateFormat = 'dd-mm-yy',
-        from = $("#datepicker1")
+    $(function () {
+        var dateFormat = 'dd-mm-yy';
+
+        var from = $("#datepicker1")
             .datepicker({
-              dateFormat: dateFormat,
-              defaultDate: "+1w",
-              changeMonth: true,
-              changeYear: true,
-              yearRange: "0100:-nn",
-              numberOfMonths: 1,
-              firstDay: 1
+                dateFormat: dateFormat,
+                defaultDate: "+1w",
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "0100:-nn",
+                numberOfMonths: 1,
+                firstDay: 1,
+                onChangeMonthYear: function (year, month, datePicker) {
+                    var daysInMonth = new Date(year, month, 0).getDate();
+                    var oldDate = $(this).datepicker('getDate');
+                    var oldDay = oldDate.getDate();
+                    if (oldDay > daysInMonth)
+                        oldDay = daysInMonth;
+                    var newDate = new Date(year, month - 1, oldDay, oldDate.getHours(), 0, 0);
+                    $(this).datepicker('setDate', newDate);
+                }
             })
             .on("change", function () {
-              to.datepicker("option", "minDate", getDate(this));
-            }),
-        to = $("#datepicker2").datepicker({
-          dateFormat: dateFormat,
-          defaultDate: "+1w",
-          changeMonth: true,
-          numberOfMonths: 1,
-          yearRange: "0100:-nn",
-          changeYear: true,
-          firstDay: 1
-        })
-            .on("change", function () {
-              from.datepicker("option", "maxDate", getDate(this));
+                to.datepicker("option", "minDate", getDate(this));
             });
 
-    function getDate(element) {
-      var date;
-      try {
-        date = $.datepicker.parseDate(dateFormat, element.value);
-      } catch (error) {
-        date = null;
-      }
-      return date;
-    }
-  });
+        var to = $("#datepicker2")
+            .datepicker({
+                dateFormat: dateFormat,
+                defaultDate: "+1w",
+                changeMonth: true,
+                numberOfMonths: 1,
+                yearRange: "0100:-nn",
+                changeYear: true,
+                firstDay: 1,
+                onChangeMonthYear: function (year, month, datePicker) {
+                    var daysInMonth = new Date(year, month, 0).getDate();
+                    var oldDate = $(this).datepicker('getDate');
+                    var oldDay = oldDate.getDate();
+                    if (oldDay > daysInMonth)
+                        oldDay = daysInMonth;
+                    var newDate = new Date(year, month - 1, oldDay, oldDate.getHours(), 0, 0);
+                    $(this).datepicker('setDate', newDate);
+                }
+            })
+            .on("change", function () {
+                from.datepicker("option", "maxDate", getDate(this));
+            });
+
+        function getDate(element) {
+            var date;
+            try {
+                date = $.datepicker.parseDate(dateFormat, element.value);
+            } catch (error) {
+                date = null;
+            }
+            return date;
+        }
+    });
 </script>
