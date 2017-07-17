@@ -56,7 +56,7 @@
                 defaultDate: "+1w",
                 changeMonth: true,
                 changeYear: true,
-                yearRange: "0100:-nn",
+                yearRange: "1000:-nn",
                 numberOfMonths: 1,
                 firstDay: 1,
                 onChangeMonthYear: function (year, month, datePicker) {
@@ -66,7 +66,7 @@
                     if (oldDay > daysInMonth)
                         oldDay = daysInMonth;
                     var newDate = new Date(year, month - 1, oldDay, oldDate.getHours(), 0, 0);
-                    $(this).datepicker('setDate', newDate);
+                    from.datepicker('setDate', newDate);
                 }
             })
             .on("change", function () {
@@ -78,9 +78,9 @@
                 dateFormat: dateFormat,
                 defaultDate: "+1w",
                 changeMonth: true,
-                numberOfMonths: 1,
-                yearRange: "0100:-nn",
                 changeYear: true,
+                yearRange: "1000:-nn",
+                numberOfMonths: 1,
                 firstDay: 1,
                 onChangeMonthYear: function (year, month, datePicker) {
                     var daysInMonth = new Date(year, month, 0).getDate();
@@ -89,7 +89,7 @@
                     if (oldDay > daysInMonth)
                         oldDay = daysInMonth;
                     var newDate = new Date(year, month - 1, oldDay, oldDate.getHours(), 0, 0);
-                    $(this).datepicker('setDate', newDate);
+                    to.datepicker('setDate', newDate);
                 }
             })
             .on("change", function () {
