@@ -26,12 +26,12 @@
             <span class="group">
             <div class=" left-inner-addon form-group">
               <i class="glyphicon glyphicon-calendar"></i>
-              <input type="text" class="form-control" id="datepicker1" placeholder="<%= t('blacklight.search.not_before') %> dd-mm-yyyy" <%= text_field_tag :notBefore, params[:notBefore] %>
+              <input type="text" class="form-control" id="datepicker1" placeholder="<%= t('blacklight.search.not_before') %> yyyy-mm-dd" <%= text_field_tag :notBefore, params[:notBefore] %>
 
             </div>
             <div class=" left-inner-addon form-group">
               <i class="glyphicon glyphicon-calendar"></i>
-              <input type="text" class="form-control" id="datepicker2" placeholder="<%= t('blacklight.search.not_after') %> dd-mm-yyyy" <%= text_field_tag :notAfter, params[:notAfter] %>
+              <input type="text" class="form-control" id="datepicker2" placeholder="<%= t('blacklight.search.not_after') %> yyyy-mm-dd" <%= text_field_tag :notAfter, params[:notAfter] %>
 
             </div>
 </span>
@@ -48,7 +48,7 @@
 </div>
 <script>
     $(function () {
-        var dateFormat = 'dd-mm-yy';
+        var dateFormat = 'yy-mm-dd';
 
         var from = $("#datepicker1")
             .datepicker({
@@ -60,13 +60,7 @@
                 numberOfMonths: 1,
                 firstDay: 1,
                 onChangeMonthYear: function (year, month, datePicker) {
-                    var daysInMonth = new Date(year, month, 0).getDate();
-                    var oldDate = $(this).datepicker('getDate');
-                    var oldDay = oldDate.getDate();
-                    if (oldDay > daysInMonth)
-                        oldDay = daysInMonth;
-                    var newDate = new Date(year, month - 1, oldDay, oldDate.getHours(), 0, 0);
-                    from.datepicker('setDate', newDate);
+                    getNewDate(year, month, from);
                 }
             })
             .on("change", function () {
@@ -83,13 +77,7 @@
                 numberOfMonths: 1,
                 firstDay: 1,
                 onChangeMonthYear: function (year, month, datePicker) {
-                    var daysInMonth = new Date(year, month, 0).getDate();
-                    var oldDate = $(this).datepicker('getDate');
-                    var oldDay = oldDate.getDate();
-                    if (oldDay > daysInMonth)
-                        oldDay = daysInMonth;
-                    var newDate = new Date(year, month - 1, oldDay, oldDate.getHours(), 0, 0);
-                    to.datepicker('setDate', newDate);
+                    getNewDate(year, month, to);
                 }
             })
             .on("change", function () {
@@ -104,6 +92,21 @@
                 date = null;
             }
             return date;
+        }
+
+        function getNewDate(year, month, picker){
+            var daysInMonth = new Date(year, month, 0).getDate();
+            var oldDate = picker.datepicker('getDate');
+            if (oldDate != null){
+                var oldDay = oldDate.getDate();
+                if (oldDay > daysInMonth)
+                    oldDay = daysInMonth;
+                var newDate = new Date(year, month - 1, oldDay, 0, 0, 0);
+            }else{
+                var newDate = new Date(year, month - 1, 1, 0, 0, 0);
+            }
+
+            picker.datepicker('setDate', newDate);
         }
     });
 </script>
