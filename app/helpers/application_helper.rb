@@ -103,7 +103,6 @@ module ApplicationHelper
     end
   end
 
-
   def search_query(opts={:label=>nil})
      scope = opts.delete(:route_set) || self
      query_params = current_search_session.try(:query_params) || ActionController::Parameters.new
@@ -118,7 +117,6 @@ module ApplicationHelper
 
      para = current_search_session.try(:query_params)? {"q"=>query_params[:q], "page"=>query_params[:page], "per_page"=>query_params[:per_page], "utf8"=>query_params[:utf8], "search_field"=>query_params[:search_field], "controller"=>query_params[:controller], "locale"=>query_params[:locale]}:query_params.permit!
      scope.url_for(para).partition('?').last
-
   end
   
 end
