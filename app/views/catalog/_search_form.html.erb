@@ -6,7 +6,7 @@
       <div class="form-inline">
         <%= form_tag search_action_url_local, method: :get, class: 'search-query-form clearfix navbar-form col-xs-12', role: 'search' do %>
             <%= render_hash_as_hidden_fields(search_state.params_for_search.except(:q, :search_field, :qt, :page, :utf8,
-                                                                                   :medium, :collection, :year, :month, :edition, :subj_id)) %>
+                                                                                   :medium, :collection, :year, :month, :edition, :subj_id, :notBefore, :notAfter)) %>
             <span class="group">
               <% if search_fields.length > 1 %>
                 <div class="form-group">
