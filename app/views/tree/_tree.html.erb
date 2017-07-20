@@ -1,11 +1,11 @@
 <div class="facets">
-  <div class="panel panel-default">
-  <div class="panel-heading collapse-toggle" data-toggle="collapse" data-target="#tree" aria-expanded="true">
+  <div class="panel panel-default collapse-panel-group">
+  <div id="tree-heading" class="panel-heading collapse-toggle" data-toggle="collapse" data-target="#tree" aria-expanded="true">
     <h3 class="panel-title">
       <%= t('blacklight.search.facets.category.heading') %>
     </h3>
   </div>
-  <div id="tree" class="panel-body collapse in">
+  <div id="tree" class="panel-collapse facet-content collapse in">
       <!-- Show the home page node -->
         <!--If the subject_id is the home page id (that means we have a search across all the editions)-->
         <% if subject_id == "/editions/any/2009/jul/editions" %>
@@ -55,5 +55,20 @@
     document.getElementById('tree').scrollTop = topPos - treeHeight/2;
     document.getElementById('tree').scrollLeft = leftPos - treeWidth/4;
   });
+  (function($) {
+    var $window = $(window),
+        $tree = $('#tree'),
+        $tree_heading = $('#tree-heading');
 
+
+    function closeTree() {
+      if ($window.width() <= 768) {
+        return [$tree.removeClass('in'), $tree_heading.addClass('collapsed')];
+      }
+
+      return [$tree.addClass('in'), $tree_heading.removeClass('collapsed')];
+    }
+    $( "document" ).ready(closeTree());
+
+  })(jQuery);
 </script>

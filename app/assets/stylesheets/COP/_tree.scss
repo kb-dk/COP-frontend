@@ -11,3 +11,17 @@
     font-size: xx-small;
   }
 }
+@media(min-width: $screen-md-min)
+{
+  #tree
+  {
+    display: block;
+  }
+}
+#tree.collapse.in
+{
+  display: block;
+}
+#tree.collapse{
+  display: none;
+}
