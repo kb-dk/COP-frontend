@@ -34,8 +34,8 @@
 <!-- </div> -->
 <script>
 
+    // Focus on the selected node
     function focus() {
-        // Focus on the selected node
         var id = $('#tree').jstree('get_selected');
 
         if (id != null) {
@@ -45,6 +45,7 @@
             var leftPos = document.getElementById(id).offsetLeft;
             document.getElementById('tree').scrollTop = topPos - treeHeight / 2;
             document.getElementById('tree').scrollLeft = leftPos - treeWidth / 4;
+
         }
     }
 
@@ -62,9 +63,9 @@
     }
 
     $(document).ready(function () {
+
         $('#tree').jstree({
-            // Sorts the keys
-            "plugins": ["sort"],
+            "plugins": ["sort"],  // Sorts the keys
             "plugins" : [ "wholerow" ]
         }).bind("select_node.jstree", function (e, data) {
             // Activating the links in the tree
@@ -72,12 +73,25 @@
             $('#loader').show();
         }).bind("ready.jstree", function (e, data) {
             $('#loader').hide();
+
             focus();
         }).on("activate_node.jstree", function (e, data) {
             window.location.href = data.node.a_attr.href;
+        });
+
+        //make sure the highlight is the same height as the node text
+        $('#tree').bind('hover_node.jstree', function() {
+            var bar = $(this).find('.jstree-wholerow-hovered');
+            bar.css('height',
+                bar.parent().children('a.jstree-anchor').height() + 'px');
+        });
+
+        $('#tree').perfectScrollbar({
+            "suppressScrollX" : true
         });
 
         closeTree();
 
     });
 </script>
+

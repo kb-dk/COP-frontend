@@ -1,15 +1,14 @@
-#tree{
- // border: 1px solid transparent;
- // border-color: #ddd;
- // margin-bottom: 0;
- // border-radius: 4px;
- // height: 400px;
+#tree {
+  max-height: 650px;
+  width: 100%;
   overflow: auto;
   position: relative;
-  .glyphicon{
-    color:#ff9d74;
+  .glyphicon {
+    color: #ff9d74;
     font-size: 8px;
   }
+  background-color: #fdfdfd;
+  overflow-x: hidden !important;
 
 }
 
@@ -19,28 +18,35 @@
   line-height: 20px !important;
 }
 
+.jstree-anchor {
+  /*enable wrapping*/
+  white-space: normal !important;
+  /*ensure lower nodes move down*/
+  height: auto !important;
+  /*offset icon width*/
+  padding-right: 24px !important;
+}
 
-@media(min-width: $screen-md-min)
-{
-  #tree
-  {
+@media(min-width: $screen-md-min) {
+  #tree {
     display: block;
   }
 }
-#tree.collapse.in
-{
+
+#tree.collapse.in {
   display: block;
 }
-#tree.collapse{
+
+#tree.collapse {
   display: none;
 }
 
-#navigation{
+#navigation {
   border: 0;
 }
 
-#sidebar{
-  padding-right: 5px;
+#tree-heading{
+  border: 1px solid #ddd;
 }
 
 .loader {
@@ -53,16 +59,24 @@
   height: 30px;
   z-index: 50;
   position: absolute;
-  left:50%;
+  left: 50%;
   top: 25%;
 }
 
 @-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
