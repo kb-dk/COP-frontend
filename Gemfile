@@ -23,6 +23,7 @@ gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -71,6 +72,12 @@ gem 'high_voltage', '~> 3.0.0'
 gem 'font-awesome-rails'
 
 # kb cookie policy
-gem 'kbcookie', '>=0.0.0', :git => 'https://github.com/Det-Kongelige-Bibliotek/kbcookie.git'
+gem 'kbcookie', '>=0.0.1', :git => 'https://github.com/Det-Kongelige-Bibliotek/kbcookie.git'
 # Makes it possible to xraying the partials from the browser
 
+# jstree
+gem "jstree-rails-4"
+# nicer scrollbars
+gem 'perfect-scrollbar-rails'
+# fixes the problem with javascript libraries(calendar and tree). Before they somethimes needed reloading to work
+gem 'jquery-turbolinks'

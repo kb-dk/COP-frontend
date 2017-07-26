@@ -1,0 +1,34 @@
+<!-- Call recursively for subcategories-->
+<!-- For each ancestor get its siblings -->
+<% get_siblings(array_of_ancestors[i]).each do |sibling| %>
+    <!-- If this sibling is one of the ancestors of the selected node -->
+    <% if array_of_ancestors[i] == sibling['id'] %>
+        <!-- Show its children -->
+        <li <% if i == array_of_ancestors.length-1 %> id = 'selected'
+        <% end %> data-jstree='{ "opened" : true, "icon" : "glyphicon glyphicon-minus"
+          <% if i == array_of_ancestors.length-1 %> , "selected" : true, "id" : "focused"
+          <% end %>}'>
+          <%= link_to show_category_name(sibling['id']), "#{sibling['id']}/#{lang}/"+filter_params_url %>
+          <ul>
+            <!-- Call recursively for siblings of the members of the array of ancestors -->
+            <% if i < array_of_ancestors.length-1 %>
+                <%= render :partial => 'tree/siblings', locals: {:array_of_ancestors => array_of_ancestors, :i => i+1, :lang => lang, :filter_params_url => filter_params_url} %>
+            <% end %>
+            <!-- When we are at the selected child-->
+            <% if i == array_of_ancestors.length-1 %>
+                <!-- Show its children -->
+                <% get_children(array_of_ancestors[i]).each do |child| %>
+                    <li data-jstree='{"icon" : "glyphicon glyphicon-plus"}'>
+                      <%= link_to show_category_name(child['id']), "#{child['id']}/#{lang}/"+filter_params_url %>
+                    </li>
+                <% end %>
+            <% end %>
+          </ul>
+        </li>
+        <!-- If it's a sibling that is NOT a member of the array of ancestors, only show itself -->
+    <% else %>
+        <li data-jstree='{"icon" : "glyphicon glyphicon-plus"}'>
+          <%= link_to show_category_name(sibling['id']), "#{sibling['id']}/#{lang}/"+filter_params_url %>
+        </li>
+    <% end %>
+<% end %>

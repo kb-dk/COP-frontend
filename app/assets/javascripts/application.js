@@ -12,8 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui/widgets/datepicker
 //= require turbolinks//
 // Required by Blacklight
 //= require blacklight/blacklight
-
+//= require jstree
+//= require perfect-scrollbar
 //= require_tree .
+//= require jquery.turbolinks

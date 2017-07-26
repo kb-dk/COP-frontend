@@ -11,6 +11,7 @@ class CatalogController < ApplicationController
     config.view.masonry.partials = [:index]
 
     config.show.tile_source_field = :content_metadata_image_iiif_info_ssm
+
     config.show.partials.insert(1, :openseadragon)
     ## Class for sending and receiving requests from a search index
     # config.repository_class = Blacklight::Solr::Repository
@@ -33,6 +34,7 @@ class CatalogController < ApplicationController
 
     # items to show per page, each number in the array represent another option to choose from.
     #config.per_page = [10,20,50,100]
+    config.default_per_page = 20
 
     ## Default parameters to send on single-document requests to Solr. These settings are the Blackligt defaults (see SearchHelper#solr_doc_params) or
     ## parameters included in the Blacklight-jetty document requestHandler.
@@ -80,7 +82,6 @@ class CatalogController < ApplicationController
 
     # I put the limit at 300000 here, to get all the facets to iterate through in the _facet_category.html.erb so we can
     # calculate the hits. SO FAR we have ~30000 subjects in solr (search for: parent_ssi:[* TO *])
-    config.add_facet_field 'subject_topic_id_ssim', label: 'Kategori', helper_method: :show_category_name, collapse: false, limit: 300000 , partial: 'facet_category'
     config.add_facet_field 'contributor_tsim', label: 'Contributor', limit: 20
 
     #config.add_facet_field 'example_query_facet_field', label: 'Publish Date', :query => {
@@ -97,10 +98,10 @@ class CatalogController < ApplicationController
 
     # solr fields to be displayed in the index (search results) view
     #   The ordering of the field names is the order of the display
-    config.add_index_field 'cobject_title_ssi', label: 'Title'
-    config.add_index_field 'creator_tsim', label: 'Creator'
-    config.add_index_field 'description_tsim', label: 'Description'
-    config.add_index_field 'pub_dat_tsim', label: 'Pub date'
+    config.add_index_field 'cobject_title_ssi'
+    config.add_index_field 'creator_tsim'
+    config.add_index_field 'description_tsim'
+    config.add_index_field 'pub_dat_tsim'
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
@@ -124,7 +125,7 @@ class CatalogController < ApplicationController
     # solr request handler? The one set in config[:default_solr_parameters][:qt],
     # since we aren't specifying it otherwise.
 
-    config.add_search_field 'all_fields', label: 'All Fields' do |field|
+    config.add_search_field 'all_fields', label: 'Fritekst' do |field|
       # Free text search in these fields: title, creator, description
       field.solr_local_parameters = {
           :qf => 'cobject_title_ssi^100 full_title_tsim^90 creator_tsim^80 description_tsim^50 pub_dat_tsim^40 readable_dat_string_tsim^40 type_tdsim^30 dc_type_ssim^30 subject_tdsim^30 coverage_tdsim^30 local_id_ssi^30 shelf_mark_tdsim^20 subject_topic_facet_tdsim^20 subject_topic_facet_tesim^20 processed_mods_ts^10'
@@ -135,14 +136,35 @@ class CatalogController < ApplicationController
     # case for a BL "search field", which is really a dismax aggregate
     # of Solr search fields.
 
-    config.add_search_field('creator') do |field|
-
-      # solr_parameters hash are sent to Solr as ordinary url query params.
-      field.solr_parameters = { :'spellcheck.dictionary' => 'title' }
+    config.add_search_field 'title', label: 'Titel' do |field|
 
       field.solr_local_parameters = {
-          qf: 'creator_tsim',
-          pf: 'creator_tsim'
+          qf: 'full_title_tsim',
+          pf: 'full_title_tsim'
+      }
+    end
+
+    config.add_search_field 'creator', label: 'Ophav' do |field|
+
+      field.solr_local_parameters = {
+          qf: 'creator_nasim',
+          pf: 'creator_nasim'
+      }
+    end
+
+    config.add_search_field 'person', label: 'Person' do |field|
+
+      field.solr_local_parameters = {
+          qf: 'cobject_person_tsim',
+          pf: 'cobject_person_tsim'
+      }
+    end
+
+    config.add_search_field 'location', label: 'Lokalitet' do |field|
+
+      field.solr_local_parameters = {
+          qf: 'cobject_location_tsim',
+          pf: 'cobject_location_tsim'
       }
     end
 
@@ -157,7 +179,10 @@ class CatalogController < ApplicationController
     # whether the sort is ascending or descending (it must be asc or desc
     # except in the relevancy case).
     config.add_sort_field 'score desc', label: '' #search after relevance
-    config.add_sort_field 'cobject_title_ssi asc, score desc', label: 'title'
+    config.add_sort_field 'cobject_title_ssi asc, score desc', label: I18n.t('blacklight.search.sort.title')
+    config.add_sort_field 'creator_tsi asc, score desc', label: I18n.t('blacklight.search.sort.author')
+    config.add_sort_field 'cobject_not_before_dtsi asc', label: I18n.t('blacklight.search.sort.not_before')
+    config.add_sort_field 'cobject_not_after_dtsi desc', label: I18n.t('blacklight.search.sort.not_after')
 
 
     # If there are more than this many search results, no spelling ("did you
@@ -167,11 +192,12 @@ class CatalogController < ApplicationController
     # Configuration for autocomplete suggestor
     config.autocomplete_enabled = true
     config.autocomplete_path = 'suggest'
+
   end
-  
+
   private
 
-  def set_id 
+  def set_id
     params[:locale] = "da" unless params[:locale].present?
     params[:id] = "/#{params[:medium]}/#{params[:collection]}/#{params[:year]}/#{params[:month]}/#{params[:edition]}/object#{params[:obj_id]}" if params[:medium].present? and params[:obj_id].present?
   end
@@ -192,7 +218,7 @@ class CatalogController < ApplicationController
 
   helper_method :get_edition_image_url
 
-  # Configuration for autocomplete suggestor
+# Configuration for autocomplete suggestor
   config.autocomplete_enabled = true
   config.autocomplete_path = 'suggest'
 
