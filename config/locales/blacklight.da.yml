@@ -234,7 +234,7 @@ da:
         cobject_title_ssi: 'Titel'
         creator_tsim: 'Ophav'
         description_tsim: 'Beskrivelse'
-        pub_dat_tsim: 'Oprindelsesdato'
+        pub_dat_tsi: 'Oprindelsesdato'
         add_show_field: 'Mods'
         cobject_not_before_dtsi: 'Tidligst'
         cobject_not_after_dtsi: 'Senest'
