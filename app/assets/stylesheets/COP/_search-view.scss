@@ -1,9 +1,19 @@
 .gallery .document img {
-  max-height: 300px !important;
+  max-height: 250px !important;
 
+}
+
+.gallery .document  {
+  max-height: 520px !important;
+}
+
+.gallery .thumbnail  {
+  height: 500px !important;
+  overflow:hidden;
 }
 
 
 .document-thumbnail a img{
   max-height: 450px !important;
 }
+
