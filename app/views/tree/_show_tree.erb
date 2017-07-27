@@ -1,4 +1,4 @@
-<% subject_id = "/#{params[:medium]}/#{params[:collection]}/#{params[:year]}/#{params[:month]}/#{params[:edition]}/subject#{params[:subj_id]}" unless params[:medium].blank? %>
+<% subject_id = "/#{params[:medium]}/#{params[:collection]}/#{params[:year]}/#{params[:month]}/#{params[:edition]}/subject#{params[:subj_id]}" unless params[:medium].blank? || 'editions'.eql?(params[:medium]) %>
 <% lang = params['locale'] %>
 
 <!--I take the params by splitting the URL, and NOT by using blacklight functionality, because the params returned
