@@ -82,7 +82,7 @@ class CatalogController < ApplicationController
 
     # I put the limit at 300000 here, to get all the facets to iterate through in the _facet_category.html.erb so we can
     # calculate the hits. SO FAR we have ~30000 subjects in solr (search for: parent_ssi:[* TO *])
-    config.add_facet_field 'contributor_tsim', label: 'Contributor', limit: 20
+    #config.add_facet_field 'contributor_tsim', label: 'Contributor', limit: 20
 
     #config.add_facet_field 'example_query_facet_field', label: 'Publish Date', :query => {
     #   :years_5 => { label: 'within 5 Years', fq: "pub_date:[#{Time.zone.now.year - 5 } TO *]" },
@@ -128,7 +128,7 @@ class CatalogController < ApplicationController
     config.add_search_field 'all_fields', label: 'Fritekst' do |field|
       # Free text search in these fields: title, creator, description
       field.solr_local_parameters = {
-          :qf => 'cobject_title_ssi^100 full_title_tsim^90 creator_tsim^80 description_tsim^50 pub_dat_tsim^40 readable_dat_string_tsim^40 type_tdsim^30 dc_type_ssim^30 subject_tdsim^30 coverage_tdsim^30 local_id_ssi^30 shelf_mark_tdsim^20 subject_topic_facet_tdsim^20 subject_topic_facet_tesim^20 processed_mods_ts^10'
+          :qf => 'cobject_title_ssi^100 full_title_tsi^90 creator_tsim^80 description_tsim^50 pub_dat_tsim^40 readable_dat_string_tsim^40 type_tdsim^30 dc_type_ssim^30 subject_tdsim^30 coverage_tdsim^30 local_id_ssi^30 shelf_mark_tdsim^20 subject_topic_facet_tdsim^20 subject_topic_facet_tesim^20 processed_mods_ts^10'
       }
     end
 
@@ -139,8 +139,8 @@ class CatalogController < ApplicationController
     config.add_search_field 'title', label: 'Titel' do |field|
 
       field.solr_local_parameters = {
-          qf: 'full_title_tsim',
-          pf: 'full_title_tsim'
+          qf: 'full_title_tsi',
+          pf: 'full_title_tsi'
       }
     end
 
@@ -180,7 +180,7 @@ class CatalogController < ApplicationController
     # except in the relevancy case).
     config.add_sort_field 'score desc', label: '' #search after relevance
     config.add_sort_field 'cobject_title_ssi asc, score desc', label: I18n.t('blacklight.search.sort.title')
-    config.add_sort_field 'creator_tsi asc, score desc', label: I18n.t('blacklight.search.sort.author')
+    config.add_sort_field 'creator_ssi asc, score desc', label: I18n.t('blacklight.search.sort.author')
     config.add_sort_field 'cobject_not_before_dtsi asc', label: I18n.t('blacklight.search.sort.not_before')
     config.add_sort_field 'cobject_not_after_dtsi desc', label: I18n.t('blacklight.search.sort.not_after')
 
