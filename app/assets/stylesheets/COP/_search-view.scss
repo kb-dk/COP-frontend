@@ -1,14 +1,15 @@
 .gallery .document img {
-  max-height: 250px !important;
+  max-height: 230px !important;
 
 }
 
 .gallery .document  {
-  max-height: 520px !important;
+  max-height: 480px !important;
+  max-width: 33% !important;
 }
 
 .gallery .thumbnail  {
-  height: 500px !important;
+  height: 460px !important;
   overflow:hidden;
 }
 
@@ -17,3 +18,30 @@
   max-height: 450px !important;
 }
 
+.gallery .document-metadata dt, .gallery .document-metadata dd {
+  padding-bottom: 3px !important;
+}
+
+.gradientback{
+
+  position:absolute;
+  bottom:12px;
+  left:15px;
+  //don't know exatly why but it works
+  @media only screen
+  and (min-device-width : 1024px){
+    width: 90%;
+  }
+  @media only screen and (max-device-width : 1024px) {
+    width: 88%;
+  }
+  height:50px;
+  background: -moz-linear-gradient(top,  #ffffff 0%, #f1f1f1 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0)), color-stop(100%,rgba(245,245,245,1))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(245,245,245,1) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(245,245,245,1) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(245,245,245,1) 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%,rgba(245,245,245,1) 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0089fff1', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+
+}
