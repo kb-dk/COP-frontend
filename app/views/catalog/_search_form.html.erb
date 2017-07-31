@@ -27,12 +27,13 @@
             <div class=" left-inner-addon form-group">
               <i class="glyphicon glyphicon-calendar"></i>
               <input type="text" class="form-control" id="datepicker1" placeholder="<%= t('blacklight.search.not_before') %> yyyy-mm-dd" <%= text_field_tag :notBefore, params[:notBefore] %>
+              <a id="datepicker1_remove" class="btn btn-default btn-sm remove dropdown-toggle" href=""><span class="glyphicon glyphicon-remove"></span></a>
 
             </div>
             <div class=" left-inner-addon form-group">
               <i class="glyphicon glyphicon-calendar"></i>
               <input type="text" class="form-control" id="datepicker2" placeholder="<%= t('blacklight.search.not_after') %> yyyy-mm-dd" <%= text_field_tag :notAfter, params[:notAfter] %>
-
+              <a id="datepicker2_remove" class="btn btn-default btn-sm remove dropdown-toggle" href=""><span class="glyphicon glyphicon-remove"></span></a>
             </div>
 </span>
             <button type="submit" class="btn btn-primary search-btn" id="search">
@@ -61,10 +62,12 @@
                 firstDay: 1,
                 onChangeMonthYear: function (year, month, datePicker) {
                     getNewDate(year, month, from);
+                    $("#datepicker1_remove").show();
                 }
             })
             .on("change", function () {
                 to.datepicker("option", "minDate", getDate(this));
+                $("#datepicker1_remove").show();
             });
 
         var to = $("#datepicker2")
@@ -78,11 +81,24 @@
                 firstDay: 1,
                 onChangeMonthYear: function (year, month, datePicker) {
                     getNewDate(year, month, to);
+                    $("#datepicker2_remove").show();
                 }
             })
             .on("change", function () {
                 from.datepicker("option", "maxDate", getDate(this));
+                $("#datepicker2_remove").show();
             });
+
+
+        $("#datepicker1_remove").on('click', function(){
+            from.datepicker('setDate', null);
+            $("#datepicker1_remove").hide();
+        });
+
+        $("#datepicker2_remove").on('click', function(){
+            to.datepicker('setDate', null);
+            $("#datepicker2_remove").hide();
+        });
 
         function getDate(element) {
             var date;

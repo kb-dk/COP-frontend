@@ -26,6 +26,11 @@
   #datepicker1, #datepicker2 {
     max-width: 170px;
   }
+
+  #datepicker1_remove, #datepicker2_remove{
+    display: none;
+  }
+
   @media only screen and (min-width: 992px) {
     .search-box {
       width: 40%;
