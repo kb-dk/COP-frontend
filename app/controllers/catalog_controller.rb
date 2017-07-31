@@ -194,6 +194,14 @@ class CatalogController < ApplicationController
     config.autocomplete_enabled = true
     config.autocomplete_path = 'suggest'
 
+    # Remove all actions from the navbar
+    config.navbar.partials = {}
+    # The individual actions can be brought back by uncommenting the lines below
+    #config.add_nav_action(:bookmark, partial: 'blacklight/nav/bookmark', if: :render_bookmarks_control?)
+    #config.add_nav_action(:saved_searches, partial: 'blacklight/nav/saved_searches', if: :render_saved_searches?)
+    #config.add_nav_action(:search_history, partial: 'blacklight/nav/search_history')
+
+
   end
 
   private
