@@ -205,6 +205,11 @@ class CatalogController < ApplicationController
     config.add_nav_action(:copinfo, partial: 'blacklight/nav/copinfo')
   end
 
+  #Disable login -- remove this function to get login back
+  def has_user_authentication_provider?
+    false
+  end
+
   private
 
   def set_id
