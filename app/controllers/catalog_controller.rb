@@ -200,8 +200,9 @@ class CatalogController < ApplicationController
     #config.add_nav_action(:bookmark, partial: 'blacklight/nav/bookmark', if: :render_bookmarks_control?)
     #config.add_nav_action(:saved_searches, partial: 'blacklight/nav/saved_searches', if: :render_saved_searches?)
     #config.add_nav_action(:search_history, partial: 'blacklight/nav/search_history')
-
-
+    # And we can add our own custom actions
+    config.add_nav_action(:language, partial: 'blacklight/nav/language')
+    config.add_nav_action(:copinfo, partial: 'blacklight/nav/copinfo')
   end
 
   private
