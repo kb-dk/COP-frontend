@@ -169,6 +169,13 @@ class CatalogController < ApplicationController
       }
     end
 
+    config.add_search_field('editions') do |field|
+      field.include_in_simple_select = false
+      field.solr_parameters = {
+          :fq => ['medium_ssi:editions']
+      }
+    end
+
     # "sort results by" select (pulldown)
     # label in pulldown is followed by the name of the SOLR field to sort by and
     # whether the sort is ascending or descending (it must be asc or desc
