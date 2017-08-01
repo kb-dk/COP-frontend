@@ -24,7 +24,7 @@
             </div>
               </span>
             <span class="group">
-            <div class=" left-inner-addon form-group">
+            <div class=" left-inner-addon form-group date-group">
               <i class="glyphicon glyphicon-calendar"></i>
               <input type="text" class="form-control" id="datepicker1" placeholder="<%= t('blacklight.search.not_before') %> yyyy-mm-dd" <%= text_field_tag :notBefore, params[:notBefore] %>
               <a class="btn btn-default btn-sm remove dropdown-toggle" href="<%= remove_date_url('notBefore') %>">
@@ -32,7 +32,7 @@
               </a>
 
             </div>
-            <div class=" left-inner-addon form-group">
+            <div class=" left-inner-addon form-group date-group">
               <i class="glyphicon glyphicon-calendar"></i>
               <input type="text" class="form-control" id="datepicker2" placeholder="<%= t('blacklight.search.not_after') %> yyyy-mm-dd" <%= text_field_tag :notAfter, params[:notAfter] %>
               <a class="btn btn-default btn-sm remove dropdown-toggle" href="<%= remove_date_url('notAfter') %>">
