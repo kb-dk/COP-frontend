@@ -105,13 +105,20 @@ module ApplicationHelper
 
   def change_lang_url(opts={:label=>nil})
      scope = opts.delete(:route_set) || self
-     state = search_state.to_h
+     state = search_state.to_h.clone
      if 'da'.eql?(state[:locale])
        state[:locale] = 'en'
      else
        state[:locale] = 'da'
      end
      scope.url_for(state)
+  end
+
+  def remove_date_url(datefield,opts={:label=>nil})
+    scope = opts.delete(:route_set) || self
+    state = search_state.to_h.clone
+    state[datefield]=''
+    scope.url_for(state)
   end
   
 end
