@@ -114,6 +114,7 @@ module ApplicationHelper
      scope.url_for(state)
   end
 
+
   def remove_date_url(datefield,opts={:label=>nil})
     scope = opts.delete(:route_set) || self
     state = search_state.to_h.clone
