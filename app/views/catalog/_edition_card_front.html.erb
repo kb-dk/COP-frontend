@@ -8,4 +8,10 @@
   <!--<div class="label label-warning unpublished"><%#= t('.unpublished') %></div>-->
 <% #end %>
 
-<h3 class="card-title"><%= edition[:name_ssi]%></h3>
+<h3 class="card-title"><%=
+  if 'en'.eql?(params[:locale])
+    edition[:name_en_ssi]
+  else
+    edition[:name_ssi]
+  end
+%></h3>

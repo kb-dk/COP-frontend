@@ -1,97 +1,91 @@
 <!--<div class="facets"> -->
-  <div class="panel panel-default collapse-panel-group" id="navigation">
-    <div id="tree-heading" class="panel-heading collapse-toggle" data-toggle="collapse" data-target="#tree" aria-expanded="true">
-      <h3 class="panel-title">
-        <%= t('blacklight.search.facets.category.heading') %>
-      </h3>
-    </div>
-    <div class="loader" id="loader"></div>
-    <div id="tree" class="panel-collapse facet-content collapse in">
-      <!-- Show the home page node -->
-      <!--If the subject_id is the home page id (that means we have a search across all the editions)-->
-      <% if subject_id == "/editions/any/2009/jul/editions" %>
-          <!-- We only show the editions list in the tree-->
-          <ul>
-            <% get_children("/editions/any/2009/jul/editions").each do |child| %>
-                <li data-jstree='{"icon" : "glyphicon glyphicon-plus" }'>
-                  <%= link_to show_category_name(child['id']), "#{child['id']}/#{lang}/"+filter_params_url %>
-                </li>
-            <% end %>
-            </li>
-          </ul>
-          <!--If there is a breadcrumb (that means we are in a subcategory and NOT an edition)-->
-      <% elsif !get_breadcrumb_path(subject_id).nil? %>
-          <!--Iterate through the subcategories-->
-          <% array_of_ancestors = get_breadcrumb_path(subject_id) %>
-          <% i=0 %>
-          <!-- Show the siblings of the category using array_of_ancestors, which includes all the ancestors including the category itself-->
-          <ul>
-            <%= render :partial => 'tree/siblings', locals: {:array_of_ancestors => array_of_ancestors, :i => i, :lang => lang, :filter_params_url => filter_params_url} %>
-          </ul>
-      <% end %>
-    </div>
+<div class="panel panel-default collapse-panel-group" id="navigation">
+  <div id="tree-heading" class="panel-heading collapse-toggle" data-toggle="collapse" data-target="#tree" aria-expanded="true">
+    <h3 class="panel-title">
+      <%= t('blacklight.search.facets.category.heading') %>
+    </h3>
   </div>
+  <div class="loader" id="loader"></div>
+  <div id="tree" class="panel-collapse facet-content collapse in">
+    <!-- Show the home page node -->
+    <!--If the subject_id is the home page id (that means we have a search across all the editions)-->
+    <% if subject_id == "/editions/any/2009/jul/editions" %>
+        <!-- We only show the editions list in the tree-->
+        <ul>
+          <% get_children("/editions/any/2009/jul/editions").each do |child| %>
+              <li data-jstree='{"icon" : "glyphicon glyphicon-plus" }'>
+                <%= link_to show_category_name(child['id']), "#{child['id']}/#{lang}/"+filter_params_url %>
+              </li>
+          <% end %>
+          </li>
+        </ul>
+        <!--If there is a breadcrumb (that means we are in a subcategory and NOT an edition)-->
+    <% elsif !get_breadcrumb_path(subject_id).nil? %>
+        <!--Iterate through the subcategories-->
+        <% array_of_ancestors = get_breadcrumb_path(subject_id) %>
+        <% i=0 %>
+        <!-- Show the siblings of the category using array_of_ancestors, which includes all the ancestors including the category itself-->
+        <ul>
+          <%= render :partial => 'tree/siblings', locals: {:array_of_ancestors => array_of_ancestors, :i => i, :lang => lang, :filter_params_url => filter_params_url} %>
+        </ul>
+    <% end %>
+  </div>
+</div>
 <!-- </div> -->
 <script>
 
-    // Focus on the selected node
-    function focus() {
-        var id = $('#tree').jstree('get_selected');
+  // Focus on the selected node
+  function focus() {
+    var id = $('#tree').jstree('get_selected');
 
-        if (id != null) {
-            var treeHeight = document.getElementById('tree').offsetHeight;
-            var treeWidth = document.getElementById('tree').offsetWidth;
-            var topPos = document.getElementById(id).offsetTop;
-            var leftPos = document.getElementById(id).offsetLeft;
-            document.getElementById('tree').scrollTop = topPos - treeHeight / 2;
-            document.getElementById('tree').scrollLeft = leftPos - treeWidth / 4;
+    if (id != null) {
+      var treeHeight = document.getElementById('tree').offsetHeight;
+      var treeWidth = document.getElementById('tree').offsetWidth;
+      var topPos = document.getElementById(id).offsetTop;
+      var leftPos = document.getElementById(id).offsetLeft;
+      document.getElementById('tree').scrollTop = topPos - treeHeight / 2;
+      document.getElementById('tree').scrollLeft = leftPos - treeWidth / 4;
 
-        }
+    }
+  }
+
+  function closeTree() {
+    var $window = $(window),
+        $tree = $('#tree'),
+        $tree_heading = $('#tree-heading');
+
+
+    if ($window.width() <= 768) {
+      return [$tree.removeClass('in'), $tree_heading.addClass('collapsed')];
     }
 
-    function closeTree() {
-        var $window = $(window),
-            $tree = $('#tree'),
-            $tree_heading = $('#tree-heading');
+    return [$tree.addClass('in'), $tree_heading.removeClass('collapsed')];
+  }
 
+  $(document).ready(function () {
 
-        if ($window.width() <= 768) {
-            return [$tree.removeClass('in'), $tree_heading.addClass('collapsed')];
-        }
+    $('#tree').jstree({
+      "plugins": ["sort", "wholerow"]  // Sorts the keys
+    }).bind("select_node.jstree", function (e, data) {
+      // Activating the links in the tree
+      $('#jstree').jstree('save_state');
+      $('#loader').show();
+    }).bind("ready.jstree", function (e, data) {
+      $('#loader').hide();
 
-        return [$tree.addClass('in'), $tree_heading.removeClass('collapsed')];
-    }
-
-    $(document).ready(function () {
-
-        $('#tree').jstree({
-            "plugins": ["sort"],  // Sorts the keys
-            "plugins" : [ "wholerow" ]
-        }).bind("select_node.jstree", function (e, data) {
-            // Activating the links in the tree
-            $('#jstree').jstree('save_state');
-            $('#loader').show();
-        }).bind("ready.jstree", function (e, data) {
-            $('#loader').hide();
-
-            focus();
-        }).on("activate_node.jstree", function (e, data) {
-            window.location.href = data.node.a_attr.href;
-        });
-
-        //make sure the highlight is the same height as the node text
-        $('#tree').bind('hover_node.jstree', function() {
-            var bar = $(this).find('.jstree-wholerow-hovered');
-            bar.css('height',
-                bar.parent().children('a.jstree-anchor').height() + 'px');
-        });
-
-        $('#tree').perfectScrollbar({
-            "suppressScrollX" : true
-        });
-
-        closeTree();
-
+      focus();
+    }).bind('hover_node.jstree', function () {  //make sure the highlight is the same height as the node text
+      var bar = $(this).find('.jstree-wholerow-hovered');
+      bar.css('height',
+          bar.parent().children('a.jstree-anchor').height() + 'px');
+    }).on("activate_node.jstree", function (e, data) {
+      window.location.href = data.node.a_attr.href;
+    }).perfectScrollbar({
+      "suppressScrollX": true
     });
+
+    closeTree();
+
+  });
 </script>
 
