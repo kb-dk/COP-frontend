@@ -1,0 +1,55 @@
+.gallery .document img {
+  max-height: 230px !important;
+
+}
+
+.gallery .document  {
+  max-height: 480px !important;
+  max-width: 33% !important;
+}
+
+.gallery .thumbnail  {
+  height: 460px !important;
+  overflow:hidden;
+}
+
+
+.document-thumbnail a img{
+  max-height: 450px !important;
+}
+
+.gallery .document-metadata dt, .gallery .document-metadata dd {
+  padding-bottom: 3px !important;
+}
+
+.gradientback{
+
+  position:absolute;
+  bottom:15px;
+  left:16px;
+  border-radius: 4px;
+  padding-right: 15px;
+
+  //don't know exatly why but it works
+  @media only screen
+  and (min-device-width : 1024px){
+    width: 89%;
+  }
+  @media only screen and (max-device-width : 1024px) {
+    width: 88%;
+  }
+  height:50px;
+  background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 30%, rgba(255,255,255,0.7) 60%, rgba(255,255,255,1) 90%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,0.3) 30%,rgba(255,255,255,0.7) 60%, rgba(255,255,255,1) 90%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgba(255,255,255,0.3) 30%, rgba(255,255,255,0.7) 60%, rgba(255,255,255,1) 90%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+
+}
+
+.masonry.document {
+  background-color: transparent !important;
+}
+
+#documents .document {
+  border-bottom: 0px !important;
+}

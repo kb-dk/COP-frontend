@@ -33,8 +33,8 @@ class CatalogController < ApplicationController
     #config.solr_path = 'select'
 
     # items to show per page, each number in the array represent another option to choose from.
-    #config.per_page = [10,20,50,100]
-    config.default_per_page = 20
+    config.per_page = [30,50,100]
+    config.default_per_page = 30
 
     ## Default parameters to send on single-document requests to Solr. These settings are the Blackligt defaults (see SearchHelper#solr_doc_params) or
     ## parameters included in the Blacklight-jetty document requestHandler.
@@ -82,7 +82,7 @@ class CatalogController < ApplicationController
 
     # I put the limit at 300000 here, to get all the facets to iterate through in the _facet_category.html.erb so we can
     # calculate the hits. SO FAR we have ~30000 subjects in solr (search for: parent_ssi:[* TO *])
-    config.add_facet_field 'contributor_tsim', label: 'Contributor', limit: 20
+    #config.add_facet_field 'contributor_tsim', label: 'Contributor', limit: 20
 
     #config.add_facet_field 'example_query_facet_field', label: 'Publish Date', :query => {
     #   :years_5 => { label: 'within 5 Years', fq: "pub_date:[#{Time.zone.now.year - 5 } TO *]" },
@@ -98,10 +98,11 @@ class CatalogController < ApplicationController
 
     # solr fields to be displayed in the index (search results) view
     #   The ordering of the field names is the order of the display
-    config.add_index_field 'cobject_title_ssi'
+    #config.add_index_field 'cobject_title_ssi'
     config.add_index_field 'creator_tsim'
     config.add_index_field 'description_tsim'
     config.add_index_field 'pub_dat_tsi'
+
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
@@ -128,7 +129,7 @@ class CatalogController < ApplicationController
     config.add_search_field 'all_fields', label: 'Fritekst' do |field|
       # Free text search in these fields: title, creator, description
       field.solr_local_parameters = {
-          :qf => 'cobject_title_ssi^100 full_title_tsim^90 creator_tsim^80 description_tsim^50 pub_dat_tsi^40 readable_dat_string_tsim^40 type_tdsim^30 dc_type_ssim^30 subject_tdsim^30 coverage_tdsim^30 local_id_ssi^30 shelf_mark_tdsim^20 subject_topic_facet_tdsim^20 subject_topic_facet_tesim^20 processed_mods_ts^10'
+          :qf => 'cobject_title_ssi^100 full_title_tsi^90 creator_tsim^80 description_tsim^50 pub_dat_tsi^40 readable_dat_string_tsim^40 type_tdsim^30 dc_type_ssim^30 subject_tdsim^30 coverage_tdsim^30 local_id_ssi^30 shelf_mark_tdsim^20 subject_topic_facet_tdsim^20 subject_topic_facet_tesim^20 processed_mods_ts^10'
       }
     end
 
@@ -139,8 +140,8 @@ class CatalogController < ApplicationController
     config.add_search_field 'title', label: 'Titel' do |field|
 
       field.solr_local_parameters = {
-          qf: 'full_title_tsim',
-          pf: 'full_title_tsim'
+          qf: 'full_title_tsi',
+          pf: 'full_title_tsi'
       }
     end
 
@@ -169,6 +170,7 @@ class CatalogController < ApplicationController
     end
 
     config.add_search_field('editions') do |field|
+      field.include_in_simple_select = false
       field.solr_parameters = {
           :fq => ['medium_ssi:editions']
       }
@@ -180,7 +182,7 @@ class CatalogController < ApplicationController
     # except in the relevancy case).
     config.add_sort_field 'score desc', label: '' #search after relevance
     config.add_sort_field 'cobject_title_ssi asc, score desc', label: I18n.t('blacklight.search.sort.title')
-    config.add_sort_field 'creator_tsi asc, score desc', label: I18n.t('blacklight.search.sort.author')
+    config.add_sort_field 'creator_ssi asc, score desc', label: I18n.t('blacklight.search.sort.author')
     config.add_sort_field 'cobject_not_before_dtsi asc', label: I18n.t('blacklight.search.sort.not_before')
     config.add_sort_field 'cobject_not_after_dtsi desc', label: I18n.t('blacklight.search.sort.not_after')
 
@@ -193,6 +195,20 @@ class CatalogController < ApplicationController
     config.autocomplete_enabled = true
     config.autocomplete_path = 'suggest'
 
+    # Remove all actions from the navbar
+    config.navbar.partials = {}
+    # The individual actions can be brought back by uncommenting the lines below
+    #config.add_nav_action(:bookmark, partial: 'blacklight/nav/bookmark', if: :render_bookmarks_control?)
+    #config.add_nav_action(:saved_searches, partial: 'blacklight/nav/saved_searches', if: :render_saved_searches?)
+    #config.add_nav_action(:search_history, partial: 'blacklight/nav/search_history')
+    # And we can add our own custom actions
+    config.add_nav_action(:language, partial: 'blacklight/nav/language')
+   # config.add_nav_action(:copinfo, partial: 'blacklight/nav/copinfo')
+  end
+
+  #Disable login -- remove this function to get login back
+  def has_user_authentication_provider?
+    false
   end
 
   private
