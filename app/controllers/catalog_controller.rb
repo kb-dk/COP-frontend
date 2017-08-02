@@ -170,6 +170,7 @@ class CatalogController < ApplicationController
     end
 
     config.add_search_field('editions') do |field|
+      field.include_in_simple_select = false
       field.solr_parameters = {
           :fq => ['medium_ssi:editions']
       }
@@ -194,6 +195,20 @@ class CatalogController < ApplicationController
     config.autocomplete_enabled = true
     config.autocomplete_path = 'suggest'
 
+    # Remove all actions from the navbar
+    config.navbar.partials = {}
+    # The individual actions can be brought back by uncommenting the lines below
+    #config.add_nav_action(:bookmark, partial: 'blacklight/nav/bookmark', if: :render_bookmarks_control?)
+    #config.add_nav_action(:saved_searches, partial: 'blacklight/nav/saved_searches', if: :render_saved_searches?)
+    #config.add_nav_action(:search_history, partial: 'blacklight/nav/search_history')
+    # And we can add our own custom actions
+    config.add_nav_action(:language, partial: 'blacklight/nav/language')
+    config.add_nav_action(:copinfo, partial: 'blacklight/nav/copinfo')
+  end
+
+  #Disable login -- remove this function to get login back
+  def has_user_authentication_provider?
+    false
   end
 
   private
