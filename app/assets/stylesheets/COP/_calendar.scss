@@ -66,6 +66,27 @@ font-size: 14px !important;
     background-color:rgba(	51, 122, 183, .3)!important;
   }
 }
+.date-group {
+  .remove{
+    float: right !important;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    margin-left: -1px;
+    height: 34px;
+    span{
+      line-height: 1.8;
+    }
+    &:hover{
+      color: #fff !important;
+      background-color: #c9302c;
+      border-color: #ac2925 !important;
+    }
+  }
+  input{
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+  }
+}
 
 //
 //@media (max-width: 1400px) {

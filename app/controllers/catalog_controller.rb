@@ -101,7 +101,7 @@ class CatalogController < ApplicationController
     #config.add_index_field 'cobject_title_ssi'
     config.add_index_field 'creator_tsim'
     config.add_index_field 'description_tsim'
-    config.add_index_field 'pub_dat_tsim'
+    config.add_index_field 'pub_dat_tsi'
 
 
     # solr fields to be displayed in the show (single result) view
@@ -129,7 +129,7 @@ class CatalogController < ApplicationController
     config.add_search_field 'all_fields', label: 'Fritekst' do |field|
       # Free text search in these fields: title, creator, description
       field.solr_local_parameters = {
-          :qf => 'cobject_title_ssi^100 full_title_tsi^90 creator_tsim^80 description_tsim^50 pub_dat_tsim^40 readable_dat_string_tsim^40 type_tdsim^30 dc_type_ssim^30 subject_tdsim^30 coverage_tdsim^30 local_id_ssi^30 shelf_mark_tdsim^20 subject_topic_facet_tdsim^20 subject_topic_facet_tesim^20 processed_mods_ts^10'
+          :qf => 'cobject_title_ssi^100 full_title_tsi^90 creator_tsim^80 description_tsim^50 pub_dat_tsi^40 readable_dat_string_tsim^40 type_tdsim^30 dc_type_ssim^30 subject_tdsim^30 coverage_tdsim^30 local_id_ssi^30 shelf_mark_tdsim^20 subject_topic_facet_tdsim^20 subject_topic_facet_tesim^20 processed_mods_ts^10'
       }
     end
 
@@ -195,6 +195,20 @@ class CatalogController < ApplicationController
     config.autocomplete_enabled = true
     config.autocomplete_path = 'suggest'
 
+    # Remove all actions from the navbar
+    config.navbar.partials = {}
+    # The individual actions can be brought back by uncommenting the lines below
+    #config.add_nav_action(:bookmark, partial: 'blacklight/nav/bookmark', if: :render_bookmarks_control?)
+    #config.add_nav_action(:saved_searches, partial: 'blacklight/nav/saved_searches', if: :render_saved_searches?)
+    #config.add_nav_action(:search_history, partial: 'blacklight/nav/search_history')
+    # And we can add our own custom actions
+    config.add_nav_action(:language, partial: 'blacklight/nav/language')
+   # config.add_nav_action(:copinfo, partial: 'blacklight/nav/copinfo')
+  end
+
+  #Disable login -- remove this function to get login back
+  def has_user_authentication_provider?
+    false
   end
 
   private
