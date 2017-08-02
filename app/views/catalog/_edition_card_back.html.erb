@@ -1,5 +1,11 @@
 <h2 class="card-title">
-  <%= edition[:name_ssi]%>
+  <%=
+    if 'en'.eql?(params[:locale])
+      edition[:name_en_ssi]
+    else
+      edition[:name_ssi]
+    end
+  %>
 </h2>
 
 
