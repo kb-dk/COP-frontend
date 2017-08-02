@@ -233,7 +233,7 @@ en:
         cobject_title_ssi: 'Title'
         creator_tsim: 'Creator'
         description_tsim: 'Description'
-        pub_dat_tsim: 'Publication date'
+        pub_dat_tsi: 'Publication date'
         add_show_field: 'Mods'
         cobject_not_before_dtsi: 'Earliest'
         cobject_not_after_dtsi: 'Latest'

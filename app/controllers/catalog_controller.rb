@@ -101,7 +101,7 @@ class CatalogController < ApplicationController
     #config.add_index_field 'cobject_title_ssi'
     config.add_index_field 'creator_tsim'
     config.add_index_field 'description_tsim'
-    config.add_index_field 'pub_dat_tsim'
+    config.add_index_field 'pub_dat_tsi'
 
 
     # solr fields to be displayed in the show (single result) view
@@ -129,7 +129,7 @@ class CatalogController < ApplicationController
     config.add_search_field 'all_fields', label: 'Fritekst' do |field|
       # Free text search in these fields: title, creator, description
       field.solr_local_parameters = {
-          :qf => 'cobject_title_ssi^100 full_title_tsi^90 creator_tsim^80 description_tsim^50 pub_dat_tsim^40 readable_dat_string_tsim^40 type_tdsim^30 dc_type_ssim^30 subject_tdsim^30 coverage_tdsim^30 local_id_ssi^30 shelf_mark_tdsim^20 subject_topic_facet_tdsim^20 subject_topic_facet_tesim^20 processed_mods_ts^10'
+          :qf => 'cobject_title_ssi^100 full_title_tsi^90 creator_tsim^80 description_tsim^50 pub_dat_tsi^40 readable_dat_string_tsim^40 type_tdsim^30 dc_type_ssim^30 subject_tdsim^30 coverage_tdsim^30 local_id_ssi^30 shelf_mark_tdsim^20 subject_topic_facet_tdsim^20 subject_topic_facet_tesim^20 processed_mods_ts^10'
       }
     end
 
