@@ -5,6 +5,7 @@ class CatalogController < ApplicationController
 
 # Don't know what track does. Don't like what I don't understand
   before_action :set_id, only: [:show,:track]
+  before_action :decode_redirect, only: [:track]
 
   configure_blacklight do |config|
     config.view.gallery.partials = [:index_header, :index]
@@ -216,6 +217,10 @@ class CatalogController < ApplicationController
   def set_id
     params[:locale] = "da" unless params[:locale].present?
     params[:id] = "/#{params[:medium]}/#{params[:collection]}/#{params[:year]}/#{params[:month]}/#{params[:edition]}/object#{params[:obj_id]}" if params[:medium].present? and params[:obj_id].present?
+  end
+
+  def decode_redirect
+    params[:redirect] = CGI.unescape(params[:redirect]) if params[:redirect].present?
   end
 
   def fetch_editions
