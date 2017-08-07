@@ -218,6 +218,7 @@ class CatalogController < ApplicationController
     params[:id] = "/#{params[:medium]}/#{params[:collection]}/#{params[:year]}/#{params[:month]}/#{params[:edition]}/object#{params[:obj_id]}" if params[:medium].present? and params[:obj_id].present?
   end
 
+
   def fetch_editions
     search_results({search_field: 'editions', rows: 100})
   end
