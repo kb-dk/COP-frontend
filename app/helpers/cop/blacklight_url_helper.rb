@@ -2,7 +2,7 @@ module Cop
   module BlacklightUrlHelper
     include Blacklight::UrlHelperBehavior
     def url_for_document doc, options = {}
-      "#{doc[:id]}/#{params[:locale]}" unless doc.nil?
+      "#{doc[:id]}/#{params[:locale]}/" unless doc.nil?
     end
 
     ## Overwriting this function to generate tracking urls that fit with our URL scheme
@@ -11,7 +11,7 @@ module Cop
       return if doc.nil?
       doc_path =  "#{doc[:id]}/#{params[:locale]}"
       opts[:per_page] = default_per_page unless opts[:per_page].present? # make sure that per_page has a value
-      "#{doc_path}/track?#{opts.to_query}"
+      "#{doc_path}/track?#{opts.to_query}/"
     end
 
     ##
