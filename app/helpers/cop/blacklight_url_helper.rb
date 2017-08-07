@@ -11,7 +11,7 @@ module Cop
       return if doc.nil?
       doc_path =  "#{doc[:id]}/#{params[:locale]}"
       opts[:per_page] = default_per_page unless opts[:per_page].present? # make sure that per_page has a value
-      "#{doc_path}/track?#{opts.merge({redirect: CGI.escape(doc_path)}).to_query}"
+      "#{doc_path}/track?#{opts.to_query}"
     end
 
     ##
