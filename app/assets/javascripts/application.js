@@ -20,3 +20,6 @@
 //= require perfect-scrollbar
 //= require_tree .
 //= require jquery.turbolinks
+
+//use to generate pdf metadata
+//= require html2canvas.js

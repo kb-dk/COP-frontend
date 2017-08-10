@@ -1,25 +1,22 @@
 <% doc_presenter = show_presenter(document) %>
 
 <div id="row">
-
-
   <div id="kbOSDInstance" class="col-sm-12 col-md-6">
     <div class="socialButtons hidden-print">
-      <a href="javascript:window.open('https://www.facebook.com/sharer/sharer.php?s=100&amp;u=http://www.kb.dk/<%= document.id %>', '_blank', 'width=626,height=436');void(0);" title="<%= t('social_button_title.facebook')%>">
+      <a href="javascript:window.open('https://www.facebook.com/sharer/sharer.php?s=100&amp;u=http://www.kb.dk/<%= document.id %>', '_blank', 'width=626,height=436');void(0);" title="<%= t('social_button_title.facebook') %>">
         <i class="fa fa-facebook fa-lg" aria-hidden="true"></i>
       </a>
-      <a href="https://twitter.com/intent/tweet?&amp;url=http://www.kb.dk/<%= document.id %>" target="_blank" title="<%= t('social_button_title.twitter')%>">
+      <a href="https://twitter.com/intent/tweet?&amp;url=http://www.kb.dk/<%= document.id %>" target="_blank" title="<%= t('social_button_title.twitter') %>">
         <i class="fa fa-twitter fa-lg" aria-hidden="true"></i>
       </a>
-      <a href="javascript:window.print();" title="<%= t('social_button_title.print')%>">
+      <a href="javascript:window.print();" title="<%= t('social_button_title.print') %>">
         <i class="fa fa-print fa-lg" aria-hidden="true"></i>
       </a>
       <% pdf_uri = show_pdf_link(document) %>
       <% if pdf_uri.length > 0 %>
-          <a href=" <%= show_pdf_link(document) %>" target="_blank" title="<%= t('social_button_title.pdf')%>">
+          <a href=" <%= show_pdf_link(document) %>" target="_blank" title="<%= t('social_button_title.pdf') %>">
             <i class="fa fa-file-pdf-o fa-lg" aria-hidden="true"></i>
           </a>
-
       <% end %>
 
     </div>
@@ -34,29 +31,52 @@
             <%= doc_presenter.field_value field_name %>
         <% end -%>
     <% end -%>
-
   </div>
 
 
 </div>
 
 <script type="text/javascript">
+
+
     var jsonurl = <%= @document['content_metadata_image_iiif_info_ssm'].to_s.html_safe %>;
-    var readDirection  ='<%= @document['read_direction_ssi']%>';
+    var readDirection = '<%= @document['read_direction_ssi']%>';
+    var title = '<%= @document['title_tdsim'].to_s.html_safe %>';
 
-
+    (jsonurl != null && jsonurl.length <= 200 ) ? showPdfControl = true : showPdfControl = false;
     (readDirection == "RTL") ? rtl = true : rtl = false;
 
+    html2canvas($("#metadata"), {
+        onrendered: function(canvas) {
+            document.body.appendChild(canvas);
+            var kbOSDconfig = [{
+                "id": "kbOSDInstance",
+                "kbHeader": title,
+                "metadata" : metadata,
+                "showDownloadControl": true,
+                "showPdfControl": showPdfControl,
+                "toolbar": "kbOSDToolbar",
+                "showNavigator": true,
+                "defaultZoomLevel": 0,
+                "sequenceMode": true,
+                "rtl": rtl,
+                "tileSources": jsonurl
+            }];
+            console.log()
+        }
+    });
 
-    var kbOSDconfig = [{
-        "id": "kbOSDInstance",
-        "showDownloadControl": true,
-        "toolbar": "kbOSDToolbar",
-        "showNavigator": true,
-        "defaultZoomLevel": 0,
-        "sequenceMode": true,
-        "rtl": rtl,
-        "tileSources": jsonurl
-    }];
+    //Parse metadata into an array that is given to osd config in order to generate pdf
+    var metadata = [];
+    $('dl dt').each(function(){
+        var dt_dds = [];
+        dt_dds.push( $(this).text().trim());
+        dds = $(this).nextUntil('dt');
+        dds.each(function(){  dt_dds.push( $(this).text().trim())});
+        metadata.push( dt_dds );
+    })
+
+
+
 </script>
-<script src="http://static.kb.dk/kbOpenSeadragon/2.3.0/js/KbOSD_bundle_min.js"></script>
+<script src="http://static-test-01.kb.dk/kbOpenSeadragon/2.4.0/js/KbOSD_bundle_min.js"></script>
