@@ -43,40 +43,35 @@
     var readDirection = '<%= @document['read_direction_ssi']%>';
     var title = '<%= @document['title_tdsim'].to_s.html_safe %>';
 
-    (jsonurl != null && jsonurl.length <= 200 ) ? showPdfControl = true : showPdfControl = false;
+    (jsonurl != null && jsonurl.length <= 300 ) ? showPdfControl = true : showPdfControl = false;
     (readDirection == "RTL") ? rtl = true : rtl = false;
 
+    var kbOSDconfig = [{
+        "id": "kbOSDInstance",
+        "kbHeader": title,
+        "metadata" : metadata,
+        "showDownloadControl": true,
+        "showPdfControl": showPdfControl,
+        "toolbar": "kbOSDToolbar",
+        "showNavigator": true,
+        "defaultZoomLevel": 0,
+        "sequenceMode": true,
+        "rtl": rtl,
+        "tileSources": jsonurl
+    }];
+
+
+    // Make a canvas of the metadata to send it to openseadragon, to be included in the pdf file
+    // It has to be a canvas because chinese, arabic or hebrew language are not supported the jspdf
     html2canvas($("#metadata"), {
         onrendered: function(canvas) {
-            document.body.appendChild(canvas);
-            var kbOSDconfig = [{
-                "id": "kbOSDInstance",
-                "kbHeader": title,
-                "metadata" : metadata,
-                "showDownloadControl": true,
-                "showPdfControl": showPdfControl,
-                "toolbar": "kbOSDToolbar",
-                "showNavigator": true,
-                "defaultZoomLevel": 0,
-                "sequenceMode": true,
-                "rtl": rtl,
-                "tileSources": jsonurl
-            }];
-            console.log()
+            kbOSDconfig[0].metadata = canvas;
+            $.getScript( 'http://static-test-01.kb.dk/kbOpenSeadragon/2.4.0/js/KbOSD_bundle_min.js', function( data, textStatus, jqxhr ) {
+                // do some stuff after script is loaded
+            });
         }
     });
 
-    //Parse metadata into an array that is given to osd config in order to generate pdf
-    var metadata = [];
-    $('dl dt').each(function(){
-        var dt_dds = [];
-        dt_dds.push( $(this).text().trim());
-        dds = $(this).nextUntil('dt');
-        dds.each(function(){  dt_dds.push( $(this).text().trim())});
-        metadata.push( dt_dds );
-    })
-
-
 
 </script>
-<script src="http://static-test-01.kb.dk/kbOpenSeadragon/2.4.0/js/KbOSD_bundle_min.js"></script>
+
