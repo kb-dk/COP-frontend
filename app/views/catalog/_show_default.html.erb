@@ -41,7 +41,14 @@
 
     var jsonurl = <%= @document['content_metadata_image_iiif_info_ssm'].to_s.html_safe %>;
     var readDirection = '<%= @document['read_direction_ssi']%>';
-    var title = '<%= @document['title_tesim'].to_s.html_safe %>';
+
+    if (<%= @document['title_tesim'].to_s.html_safe %>[0] != null) {
+        var title = '' + <%= @document['title_tesim'].to_s.html_safe %>[0];
+    } else if (<%= @document['title_tdsim'].to_s.html_safe %>[0] != null) {
+        title = '' + <%= @document['title_tdsim'].to_s.html_safe %>[0];
+    } else {
+        title = "document";
+    }
 
 
     (readDirection == "RTL") ? rtl = true : rtl = false;
@@ -49,7 +56,7 @@
     var kbOSDconfig = [{
         "id": "kbOSDInstance",
         "kbHeader": title,
-        "metadata" : metadata,
+        "metadata": metadata,
         "showDownloadControl": true,
         "showPdfControl": true,
         "toolbar": "kbOSDToolbar",
@@ -59,14 +66,14 @@
         "rtl": rtl,
         "tileSources": jsonurl
     }];
-    
+
 
     // Make a canvas of the metadata to send it to openseadragon, to be included in the pdf file
     // It has to be a canvas because chinese, arabic or hebrew language are not supported the jspdf
     html2canvas($("#metadata"), {
-        onrendered: function(canvas) {
+        onrendered: function (canvas) {
             kbOSDconfig[0].metadata = canvas;
-            $.getScript( 'http://static-test-01.kb.dk/kbOpenSeadragon/2.4.0/js/KbOSD_bundle_min.js', function( data, textStatus, jqxhr ) {
+            $.getScript('http://static-test-01.kb.dk/kbOpenSeadragon/2.4.0/js/KbOSD_bundle_min.js', function (data, textStatus, jqxhr) {
                 // do some stuff after script is loaded
             });
         }
