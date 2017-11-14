@@ -4,7 +4,9 @@
 
 <% #exhibits.each_slice(3).each do |row| %>
     <div class="row"><!-- start main content row -->
-      <%= render partial: 'edition_card' %>
+      <% cache('edition-cards', expires_in: 1.hour) do %>
+        <%= render partial: 'edition_card' %>
+      <% end %>
     </div>
 <% #end %>
 
