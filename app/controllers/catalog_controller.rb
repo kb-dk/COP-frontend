@@ -128,7 +128,7 @@ class CatalogController < ApplicationController
 
     config.add_search_field 'all_fields', label: 'Fritekst' do |field|
       # Free text search in these fields: title, creator, description
-      field.solr_local_parameters = {
+      field.solr_parameters = {
           :qf => 'cobject_title_ssi^100 full_title_tsi^90 creator_tsim^80 description_tsim^50 pub_dat_tsi^40 readable_dat_string_tsim^40 type_tdsim^30 dc_type_ssim^30 subject_tdsim^30 coverage_tdsim^30 local_id_ssi^30 shelf_mark_tdsim^20 subject_topic_facet_tdsim^20 subject_topic_facet_tesim^20 processed_mods_ts^10'
       }
     end
@@ -139,7 +139,7 @@ class CatalogController < ApplicationController
 
     config.add_search_field 'title', label: 'Titel' do |field|
 
-      field.solr_local_parameters = {
+      field.solr_parameters = {
           qf: 'full_title_tsi',
           pf: 'full_title_tsi'
       }
@@ -147,7 +147,7 @@ class CatalogController < ApplicationController
 
     config.add_search_field 'creator', label: 'Ophav' do |field|
 
-      field.solr_local_parameters = {
+      field.solr_parameters = {
           qf: 'creator_nasim',
           pf: 'creator_nasim'
       }
@@ -155,7 +155,7 @@ class CatalogController < ApplicationController
 
     config.add_search_field 'person', label: 'Person' do |field|
 
-      field.solr_local_parameters = {
+      field.solr_parameters = {
           qf: 'cobject_person_tsim',
           pf: 'cobject_person_tsim'
       }
@@ -163,7 +163,7 @@ class CatalogController < ApplicationController
 
     config.add_search_field 'location', label: 'Lokalitet' do |field|
 
-      field.solr_local_parameters = {
+      field.solr_parameters = {
           qf: 'cobject_location_tsim',
           pf: 'cobject_location_tsim'
       }
