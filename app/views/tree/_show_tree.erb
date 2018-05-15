@@ -8,11 +8,7 @@ different format for the facets (I think it's bug in Blacklight)-->
 
 <% if subject_id %>
     <!--Show the tree -->
-    <% cache("#{subject_id.gsub('/','#')}-#{get_lang(params)}", expires_in: 3.hour) do %>
-       <%= render :partial => 'tree/tree', locals: {:subject_id => subject_id, :lang => lang, :filter_params_url => filter_params_url} %>
-    <% end %>
+    <%= render :partial => 'tree/tree', locals: {:subject_id => subject_id, :lang => lang, :filter_params_url => filter_params_url} %>
 <% else %>
-    <% cache("subject-all-#{get_lang(params)}", expires_in: 3.hour) do %>
-      <%= render :partial => 'tree/tree', locals: {:subject_id => "/editions/any/2009/jul/editions", :lang => lang, :filter_params_url => filter_params_url} %>
-    <% end %>
+    <%= render :partial => 'tree/tree', locals: {:subject_id => "/editions/any/2009/jul/editions", :lang => lang, :filter_params_url => filter_params_url} %>
 <% end %>
