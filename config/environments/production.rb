@@ -12,7 +12,13 @@ Rails.application.configure do
 
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
+
+  #cache settings
   config.action_controller.perform_caching = true
+  config.cache_store = :file_store, 'cache'
+  config.public_file_server.headers = {
+      'Cache-Control' => 'public, max-age=172800'
+  }
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
