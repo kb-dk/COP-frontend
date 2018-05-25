@@ -1,9 +1,3 @@
-GIT
-  remote: https://github.com/Det-Kongelige-Bibliotek/kbcookie.git
-  revision: 6e7e7751b34560f062b5ef21c6d1726784a4b89b
-  specs:
-    kbcookie (0.0.1)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -264,7 +258,6 @@ DEPENDENCIES
   jquery-turbolinks
   jquery-ui-rails
   jstree-rails-4
-  kbcookie (>= 0.0.1)!
   listen (~> 3.0.5)
   perfect-scrollbar-rails
   puma (~> 3.0)
@@ -283,4 +276,4 @@ DEPENDENCIES
   xray-rails
 
 BUNDLED WITH
-   1.15.1
+   1.16.0
