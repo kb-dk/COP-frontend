@@ -258,7 +258,7 @@ DEPENDENCIES
   blacklight-gallery
   byebug
   coffee-rails (~> 4.2)
-  devise
+  devise (>= 4.6.0)
   devise-guests (~> 0.5)
   devise_cas_authenticatable
   font-awesome-rails

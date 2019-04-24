@@ -66,7 +66,7 @@ group :development, :test do
 end
 
 gem 'rsolr', '~> 1.0'
-gem 'devise'
+gem "devise", ">= 4.6.0"
 gem 'devise-guests', '~> 0.5'
 gem 'devise_cas_authenticatable'
 
