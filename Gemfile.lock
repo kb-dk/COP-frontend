@@ -256,6 +256,7 @@ DEPENDENCIES
   actionview (>= 5.0.7.2)
   blacklight (~> 6.0)
   blacklight-gallery
+  bootstrap-sass (>= 3.4.1)
   byebug
   coffee-rails (~> 4.2)
   devise (>= 4.6.0)

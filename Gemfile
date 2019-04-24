@@ -69,6 +69,7 @@ gem 'rsolr', '~> 1.0'
 gem "devise", ">= 4.6.0"
 gem 'devise-guests', '~> 0.5'
 gem 'devise_cas_authenticatable'
+gem "bootstrap-sass", ">= 3.4.1"
 
 #Makes it possible to find a file path using fx. page_path
 gem 'high_voltage', '~> 3.0.0'
