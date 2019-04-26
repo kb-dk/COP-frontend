@@ -1,16 +1,26 @@
+<%
+  if 'da'.eql?(params[:locale])
+    plink = "http://www.kb.dk/da/kb/webstedet/cookiepolitik.html"
+    ptext = "Cookie- og Privatlivspolitik"
+  else
+    plink = "http://www.kb.dk/en/kb/webstedet/cookiepolitik.html"
+    ptext = "Cookie- and Privacy policy"
+  end
+%>
+
 <footer class="pageFooter dkbreveFooter">
   <div class="container">
     <div class="row text-center hidden-xs">
-      <sp>
+      <span>
           <a href="http://www.kb.dk" target="_blank">
             <span>
               <h5>Det Kgl. Bibliotek</h5>
             </span>
           </a>
-      </sp
+      </span>
       <span>|</span>
       <span>
-         <%= link_to 'Cookie- og Privatlivspolitik', page_path('politik'), class: '', :target => '_blank'  %>
+         <a href="<%= plink %>" target="_blank"><%= ptext %></a>
       </span>
       <span>|</span>
       <span>
@@ -23,8 +33,7 @@
           Det Kgl. Bibliotek
         </a>
       </div>
-
-      <div class="col-sm-12"><%= link_to 'Cookie- og Privatlivspolitik', page_path('politik'), class: '' , :target => "_blank" %></div>
+      <div class="col-sm-12"><a href="<%= plink %>" target="_blank"><%= ptext %></a></div>
       <div class="col-sm-12"><%= link_to t('blacklight.footer_links.info'), t('blacklight.footer_links.link'), class: '' , :target => '_blank' %></div>
     </div>
   </div>

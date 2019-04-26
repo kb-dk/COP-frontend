@@ -7,7 +7,10 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.1'
+gem 'rails', '~> 5.1.4'
+# gem 'rails', '~> 5.0.1'
+gem "actionview", ">= 5.0.7.2"
+#
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server
@@ -20,7 +23,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 gem 'therubyracer', platforms: :ruby
-
+#
+gem "nokogiri", ">= 1.8.5"
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
@@ -62,17 +66,19 @@ group :development, :test do
 end
 
 gem 'rsolr', '~> 1.0'
-gem 'devise'
+gem "devise", ">= 4.6.0"
 gem 'devise-guests', '~> 0.5'
 gem 'devise_cas_authenticatable'
+gem "bootstrap-sass", ">= 3.4.1"
+gem "rack", ">= 2.0.6"
+gem "rails-html-sanitizer", ">= 1.0.4"
+gem "loofah", ">= 2.2.3"
 
 #Makes it possible to find a file path using fx. page_path
 gem 'high_voltage', '~> 3.0.0'
 #Used in openseadragon
 gem 'font-awesome-rails'
 
-# kb cookie policy
-gem 'kbcookie', '>=0.0.1', :git => 'https://github.com/Det-Kongelige-Bibliotek/kbcookie.git'
 # Makes it possible to xraying the partials from the browser
 
 # jstree
