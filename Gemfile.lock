@@ -143,7 +143,7 @@ GEM
     orm_adapter (0.5.0)
     perfect-scrollbar-rails (0.6.15)
       railties (>= 3.2, < 6.0)
-    puma (3.9.1)
+    puma (3.12.2)
     rack (2.0.3)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -260,7 +260,7 @@ DEPENDENCIES
   jstree-rails-4
   listen (~> 3.0.5)
   perfect-scrollbar-rails
-  puma (~> 3.0)
+  puma (~> 3.12)
   rails (~> 5.0.1)
   rsolr (~> 1.0)
   sass-rails (~> 5.0)
