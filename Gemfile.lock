@@ -139,7 +139,7 @@ GEM
     multi_json (1.12.1)
     multipart-post (2.0.0)
     nio4r (2.1.0)
-    nokogiri (1.10.7)
+    nokogiri (1.10.8)
       mini_portile2 (~> 2.4.0)
     openseadragon (0.3.3)
       rails (> 3.2.0)
