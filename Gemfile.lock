@@ -146,7 +146,7 @@ GEM
     orm_adapter (0.5.0)
     perfect-scrollbar-rails (0.6.15)
       railties (>= 3.2, < 6.0)
-    puma (4.3.3)
+    puma (4.3.5)
       nio4r (~> 2.0)
     rack (2.0.8)
     rack-test (0.6.3)
