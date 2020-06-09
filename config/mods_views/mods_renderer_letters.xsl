@@ -989,12 +989,12 @@ in the metadatasection of a landing page -->
           </xsl:for-each>
         </xsl:if>
         <!-- Copyright -->
-        <xsl:if test="md:mods/md:accessCondition/node()">
+        <xsl:if test="md:mods/md:accessCondition[not(@displayLabel='Copyright Applied')]">
           <xsl:element name="dt">
             <strong xml:lang="en">Copyright shit</strong>
             <strong xml:lang="da">Ophavsret</strong>
           </xsl:element>
-          <xsl:for-each select="md:mods/md:accessCondition">
+          <xsl:for-each select="md:mods/md:accessCondition[not(@displayLabel='Copyright Applied')]">
             <xsl:element name="dd">
               <xsl:choose>
                 <xsl:when test="not(contains(.,'CC BY-NC-ND'))">
