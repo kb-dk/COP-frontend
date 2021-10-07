@@ -45,12 +45,11 @@ module ApplicationHelper
 
 
   def show_scaled_image(doc, opts)
-    uri2 = CGI.escape(doc['thumbnail_url_ssm'].first)
     uri = doc['thumbnail_url_ssm'].first
     if uri[/ull\/[^\/]*?/]
       uri = uri.gsub(/full\/[^\/]*?\//,'full/!225,/')
     end
-    img_tag2 = image_tag(URI(uri2))
+    # what if uri is even sicker than having space?
     img_tag = image_tag(uri)
     return img_tag
   end
