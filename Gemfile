@@ -71,7 +71,7 @@ gem "devise", ">= 4.6.0"
 gem 'devise-guests', '~> 0.5'
 gem 'devise_cas_authenticatable'
 gem "bootstrap-sass", ">= 3.4.1"
-gem "rack", ">= 2.0.6"
+gem "rack", ">= 2.2.3"
 gem "rails-html-sanitizer", ">= 1.4.3"
 gem "loofah", ">= 2.2.3"
 
