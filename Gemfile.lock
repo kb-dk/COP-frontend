@@ -136,7 +136,7 @@ GEM
     minitest (5.11.3)
     multi_json (1.13.1)
     multipart-post (2.0.0)
-    nio4r (2.3.1)
+    nio4r (2.5.8)
     nokogiri (1.13.7)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
@@ -271,7 +271,7 @@ DEPENDENCIES
   loofah (>= 2.2.3)
   nokogiri (>= 1.13.6)
   perfect-scrollbar-rails
-  puma (~> 4.3)
+  puma (~> 4.3.12)
   rack (>= 2.0.6)
   rails (~> 5.1.4)
   rails-html-sanitizer (>= 1.4.3)
