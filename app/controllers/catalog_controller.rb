@@ -221,6 +221,7 @@ class CatalogController < ApplicationController
 
   def fetch_editions
     search_results({search_field: 'editions', rows: 100})
+#    search_results({medium_ssi: 'editions', rows: 100})
   end
   helper_method :fetch_editions
 
