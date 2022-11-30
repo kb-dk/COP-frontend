@@ -44,7 +44,10 @@
 </div>
 
 <script type="text/javascript">
-    var jsonurl = <%= @document['content_metadata_image_iiif_info_ssm'].to_s.html_safe %>;
+    var jsonurl = 
+    [<% @document['content_metadata_image_iiif_info_ssm'].each do | url |%>
+    <%= url.gsub(/(https?:\/\/)(.*)$/,"\"https://\\2\",").html_safe %>
+    <% end %>];
     var readDirection  ='<%= @document['read_direction_ssi']%>';
 
 
@@ -62,4 +65,4 @@
         "tileSources": jsonurl
     }];
 </script>
-<script src="http://static.kb.dk/kbOpenSeadragon/2.3.0/js/KbOSD_bundle_min.js"></script>
+<script src="https://static.kb.dk/kbOpenSeadragon/2.3.0/js/KbOSD_bundle_min.js"></script>

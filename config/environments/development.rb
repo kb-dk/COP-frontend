@@ -12,6 +12,8 @@ Rails.application.configure do
   # Show full error reports.
   config.consider_all_requests_local = true
 
+
+  config.i18n.fallbacks = [:en,:da]
   #cache settings
   config.action_controller.perform_caching = true
   config.cache_store = :file_store, 'cache'

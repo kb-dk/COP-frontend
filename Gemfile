@@ -5,13 +5,17 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+ruby "~> 2.6.5"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.1'
+gem 'rails', '~> 5.1.4'
+# gem 'rails', '~> 5.0.1'
+gem "actionview", ">= 5.0.7.2"
+#
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server
-gem 'puma', '~> 4.3'
+gem 'puma', '~> 4.3.12'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -20,7 +24,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 gem 'therubyracer', platforms: :ruby
-
+#
+gem "nokogiri", ">= 1.13.6"
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
@@ -62,9 +67,13 @@ group :development, :test do
 end
 
 gem 'rsolr', '~> 1.0'
-gem 'devise'
+gem "devise", ">= 4.6.0"
 gem 'devise-guests', '~> 0.5'
 gem 'devise_cas_authenticatable'
+gem "bootstrap-sass", ">= 3.4.1"
+gem "rack", ">= 2.2.3"
+gem "rails-html-sanitizer", ">= 1.4.3"
+gem "loofah", ">= 2.2.3"
 
 #Makes it possible to find a file path using fx. page_path
 gem 'high_voltage', '~> 3.0.0'

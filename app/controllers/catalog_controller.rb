@@ -229,6 +229,7 @@ class CatalogController < ApplicationController
     url = ""
     if docs.size > 0
       url = docs.first['thumbnail_url_ssm'].first
+      url = url.gsub(/(https?:\/\/)(.*)$/,"https://\\2")
     end
     url
   end
