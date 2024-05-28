@@ -253,8 +253,11 @@ in the metadatasection of a landing page -->
                   <xsl:call-template name="get_language">
                     <xsl:with-param name="cataloging_language" select="$cataloging_language"/>
                   </xsl:call-template>
-                </xsl:attribute>
-                <xsl:apply-templates select="md:namePart[not(@transliteration='rex')]"/>
+	  	</xsl:attribute>
+                <xsl:choose>
+                        <xsl:when test="md:displayForm"><xsl:value-of select="md:displayForm"/></xsl:when>
+                        <xsl:otherwise><xsl:apply-templates test="md:namePart"/></xsl:otherwise>
+                </xsl:choose>
                 <xsl:call-template name="render_residence"/>
                 <xsl:call-template name="break_semicolon"/>
               </xsl:element>
@@ -282,8 +285,11 @@ in the metadatasection of a landing page -->
                   <xsl:call-template name="get_language">
                     <xsl:with-param name="cataloging_language" select="$cataloging_language"/>
                   </xsl:call-template>
-                </xsl:attribute>
-                <xsl:apply-templates select="md:namePart[not(@transliteration='rex')]"/>
+	  	</xsl:attribute>
+                <xsl:choose>
+                        <xsl:when test="md:displayForm"><xsl:value-of select="md:displayForm"/></xsl:when>
+                        <xsl:otherwise><xsl:apply-templates test="md:namePart"/></xsl:otherwise>
+                </xsl:choose>
                 <xsl:call-template name="break_semicolon"/>
               </xsl:element>
             </xsl:for-each>
@@ -302,7 +308,6 @@ in the metadatasection of a landing page -->
                     <xsl:with-param name="cataloging_language" select="$cataloging_language"/>
                   </xsl:call-template>
                 </xsl:attribute>
-                <xsl:apply-templates select="md:namePart[not(@transliteration='rex')]"/>
 
                 <xsl:call-template name="break_semicolon">
                   <xsl:with-param name="cataloging_language" select="$cataloging_language"/>
@@ -323,8 +328,11 @@ in the metadatasection of a landing page -->
                   <xsl:call-template name="get_language">
                     <xsl:with-param name="cataloging_language" select="$cataloging_language"/>
                   </xsl:call-template>
-                </xsl:attribute>
-                <xsl:apply-templates select="md:namePart[not(@transliteration='rex')]"/>
+	  	</xsl:attribute>
+		  <xsl:choose>
+                        <xsl:when test="md:displayForm"><xsl:value-of select="md:displayForm"/></xsl:when>
+                        <xsl:otherwise><xsl:apply-templates test="md:namePart"/></xsl:otherwise>
+                  </xsl:choose>
               </xsl:element>
               <xsl:call-template name="break_semicolon">
                 <xsl:with-param name="cataloging_language" select="$cataloging_language"/>
@@ -339,10 +347,14 @@ in the metadatasection of a landing page -->
                 </xsl:element>
               </xsl:if>
               <xsl:element name="dd">
-                <xsl:apply-templates select="md:namePart[not(@transliteration='rex')]"/>
+                <!--xsl:apply-templates select="md:namePart[not(@transliteration='rex')]"/-->
                 <xsl:call-template name="break_semicolon">
                   <xsl:with-param name="cataloging_language" select="$cataloging_language"/>
-                </xsl:call-template>
+	  	</xsl:call-template>
+		<xsl:choose>
+                        <xsl:when test="md:displayForm"><xsl:value-of select="md:displayForm"/></xsl:when>
+                        <xsl:otherwise><xsl:apply-templates test="md:namePart"/></xsl:otherwise>
+                </xsl:choose>
               </xsl:element>
             </xsl:for-each>
 
@@ -354,10 +366,13 @@ in the metadatasection of a landing page -->
                 </xsl:element>
               </xsl:if>
               <xsl:element name="dd">
-                <xsl:apply-templates select="md:namePart[not(@transliteration='rex')]"/>
                 <xsl:call-template name="break_semicolon">
                   <xsl:with-param name="cataloging_language" select="$cataloging_language"/>
-                </xsl:call-template>
+	  	</xsl:call-template>
+		<xsl:choose>
+                        <xsl:when test="md:displayForm"><xsl:value-of select="md:displayForm"/></xsl:when>
+                        <xsl:otherwise><xsl:apply-templates test="md:namePart"/></xsl:otherwise>
+                </xsl:choose>
               </xsl:element>
             </xsl:for-each>
 
@@ -368,8 +383,11 @@ in the metadatasection of a landing page -->
                   <strong xml:lang="da">Modtager</strong>
                 </xsl:element>
               </xsl:if>
-              <xsl:element name="dd">
-                <xsl:apply-templates select="md:namePart[not(@transliteration='rex')]"/>
+	      <xsl:element name="dd">
+		<xsl:choose>
+                        <xsl:when test="md:displayForm"><xsl:value-of select="md:displayForm"/></xsl:when>
+                        <xsl:otherwise><xsl:apply-templates test="md:namePart"/></xsl:otherwise>
+                </xsl:choose>      
                 <xsl:call-template name="render_residence"/>
                 <xsl:call-template name="break_semicolon">
                   <xsl:with-param name="cataloging_language" select="$cataloging_language"/>
@@ -765,8 +783,11 @@ in the metadatasection of a landing page -->
                   <xsl:call-template name="get_language">
                     <xsl:with-param name="cataloging_language" select="$cataloging_language"/>
                   </xsl:call-template>
-                </xsl:attribute>
-                <xsl:apply-templates select="md:namePart[not(@transliteration='rex')]"/>
+	  	</xsl:attribute>
+		<xsl:choose>
+			<xsl:when test="md:displayForm"><xsl:value-of select="md:displayForm"/></xsl:when>
+			<xsl:otherwise><xsl:apply-templates test="md:namePart"/></xsl:otherwise>
+		</xsl:choose>
                 <xsl:if test="position()!=last()">
                 </xsl:if>
               </xsl:element>
