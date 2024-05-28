@@ -27,8 +27,8 @@ da:
       language_path: '../en/'
 
     footer_links:
-      info: 'Kontakt biblioteket'
-      link: 'http://kontaktbiblioteket.kb.dk/q.php'
+      info: 'Spoerg biblioteket'
+      link: 'https://www.kb.dk/spoerg-biblioteket'
 
 
     welcome: 'Velkommen!'
@@ -235,9 +235,11 @@ da:
         creator_tsim: 'Ophav'
         description_tsim: 'Beskrivelse'
         pub_dat_tsi: 'Oprindelsesdato'
+        pub_dat_display_tsi: 'Oprindelsesdato'  
         add_show_field: 'Mods'
         cobject_not_before_dtsi: 'Tidligst'
         cobject_not_after_dtsi: 'Senest'
+        subject_person_ss: 'Person'  
       bookmarks:
         present: "I bogmærker"
         absent: "Bogmærke"
