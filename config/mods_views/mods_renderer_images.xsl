@@ -521,13 +521,11 @@ in the metadatasection of a landing page -->
               <xsl:if test="position() = 1">
                 <xsl:element name="dt">
                   <strong xml:lang="en">Size</strong>
-                  <strong xml:lang="da">Dimensioner</strong>
+                  <strong xml:lang="da">Størrelse</strong>
                 </xsl:element>
               </xsl:if>
               <xsl:element name="dd">
-                <xsl:apply-templates select="md:extent"/>
-                <xsl:if test="position() = last()">
-                </xsl:if>
+                <xsl:value-of select="md:extent"/>
               </xsl:element>
             </xsl:for-each>
 
