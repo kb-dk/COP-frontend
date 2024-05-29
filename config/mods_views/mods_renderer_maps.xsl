@@ -502,7 +502,19 @@ in the metadatasection of a landing page -->
                 <xsl:apply-templates select="md:extent"/>
               </xsl:element>
             </xsl:for-each>
-          </xsl:if>
+    	  </xsl:if>
+
+	  <xsl:for-each select="md:mods/md:subject/md:cartographics/md:coordinates">
+	     <xsl:if test="position() = 1">
+		<xsl:element name="dt">
+                  <strong xml:lang="en">Coordinates</strong>
+                  <strong xml:lang="da">Koordinater</strong>
+	  	</xsl:element>
+             </xsl:if>   
+	     <xsl:element name="dd">
+                <xsl:value-of select="text()"/>
+             </xsl:element>
+	  </xsl:for-each>	  
 
 
           <xsl:if test="md:mods/md:note[@displayLabel='Script']">
