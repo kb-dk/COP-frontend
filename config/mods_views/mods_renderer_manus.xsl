@@ -795,8 +795,8 @@ This xsl does the formatting of metadata for a landing page
           </xsl:if>
 
           <!-- References -->
-          <xsl:if test="md:mods/md:note[@type='citation/reference']">
-            <xsl:for-each select="md:mods/md:note[@type='citation/reference']">
+          <xsl:if test="md:mods/md:note[@type='citation/reference' and not(@displayLabel='Description')]">
+            <xsl:for-each select="md:mods/md:note[@type='citation/reference' and not(@displayLabel='Description')]">
 
               <xsl:if test="position() = 1">
                 <xsl:element name="dt">
@@ -816,6 +816,25 @@ This xsl does the formatting of metadata for a landing page
               </xsl:element>
             </xsl:for-each>
           </xsl:if>
+
+          <xsl:for-each select="md:mods/md:note[@type='citation/reference' and @displayLabel='Description']">
+            <xsl:if test="position() = 1">
+              <xsl:element name="dt">
+                <strong xml:lang="en">Description</strong>
+                <strong xml:lang="da">Beskrivelse</strong>
+              </xsl:element>
+              <xsl:element name="dd">
+                <xsl:if test="@xml:lang">
+                  <xsl:attribute name="lang">
+                    <xsl:call-template name="get_language">
+                      <xsl:with-param name="cataloging_language" select="$cataloging_language"/>
+                    </xsl:call-template>
+                  </xsl:attribute>
+                </xsl:if>
+                <xsl:value-of select="."/>
+              </xsl:element>
+            </xsl:if>
+          </xsl:for-each>
 
           <!-- a nude note without any decorations whatsoever -->
           <xsl:if test="md:mods/md:note[not(@type)]">
