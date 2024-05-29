@@ -755,7 +755,6 @@ in the metadatasection of a landing page -->
                   <strong xml:lang="da">Lokalitet</strong>
                 </xsl:element>
               </xsl:if>
-              <!-- START Topic -->
               <xsl:element name="dd">
                 <xsl:attribute name="lang">
                   <xsl:call-template name="get_language">
@@ -768,7 +767,19 @@ in the metadatasection of a landing page -->
                 <xsl:with-param name="cataloging_language" select="$cataloging_language"/>
               </xsl:call-template>
             </xsl:for-each>
-            <!-- END Topic -->
+
+            <xsl:for-each select="md:mods/md:subject/md:cartographics/md:coordinates">
+              <xsl:if test="position() = 1">
+                <xsl:element name="dt">
+                  <strong xml:lang="en">Coordinates</strong>
+                  <strong xml:lang="da">Koordinater</strong>
+                </xsl:element>
+              </xsl:if>
+              <xsl:element name="dd">
+                <xsl:value-of select="text()"/>
+              </xsl:element>
+            </xsl:for-each>
+
 
             <!-- START PERSON -->
             <xsl:for-each select="md:mods/md:subject/md:name">
@@ -786,7 +797,7 @@ in the metadatasection of a landing page -->
 	  	</xsl:attribute>
 		<xsl:choose>
 			<xsl:when test="md:displayForm"><xsl:value-of select="md:displayForm"/></xsl:when>
-			<xsl:otherwise><xsl:apply-templates test="md:namePart"/></xsl:otherwise>
+			<xsl:otherwise><xsl:value-of select="md:namePart[not(@*)]"/></xsl:otherwise>
 		</xsl:choose>
                 <xsl:if test="position()!=last()">
                 </xsl:if>
@@ -1098,7 +1109,7 @@ in the metadatasection of a landing page -->
         <xsl:with-param name="cataloging_language" select="$cataloging_language"/>
       </xsl:call-template>
     </xsl:attribute>
-    <xsl:apply-templates/>
+    <xsl:value-of select="text()"/>
   </xsl:template>
 
   <xsl:template name="break_semicolon">
