@@ -794,6 +794,18 @@ in the metadatasection of a landing page -->
             </xsl:for-each>
           </xsl:if>
 
+            <xsl:for-each select="md:mods/md:identifier[@displaylabel='Scan Number']">
+              <xsl:if test="position() = 1">
+                <xsl:element name="dt">
+                  <strong xml:lang="en">Scan number</strong>
+                  <strong xml:lang="da">Skannummer</strong>
+                </xsl:element>
+              </xsl:if>
+              <xsl:element name="dd">
+                <xsl:value-of select="."/>
+              </xsl:element>
+            </xsl:for-each>
+
           <!-- Shelf mark    -->
           <xsl:if test="md:mods/md:location/md:physicalLocation[not(@transliteration)]">
             <xsl:for-each select="md:mods/md:location/md:physicalLocation[not(@transliteration)]">
