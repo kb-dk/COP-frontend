@@ -288,7 +288,7 @@ in the metadatasection of a landing page -->
 	  	</xsl:attribute>
                 <xsl:choose>
                         <xsl:when test="md:displayForm"><xsl:value-of select="md:displayForm"/></xsl:when>
-                        <xsl:otherwise><xsl:apply-templates test="md:namePart"/></xsl:otherwise>
+                        <xsl:otherwise><xsl:value-of select="md:namePart[not(@*)]"/></xsl:otherwise>
                 </xsl:choose>
                 <xsl:call-template name="break_semicolon"/>
               </xsl:element>
@@ -330,8 +330,8 @@ in the metadatasection of a landing page -->
                   </xsl:call-template>
 	  	</xsl:attribute>
 		  <xsl:choose>
-                        <xsl:when test="md:displayForm"><xsl:value-of select="md:displayForm"/></xsl:when>
-                        <xsl:otherwise><xsl:apply-templates test="md:namePart"/></xsl:otherwise>
+			  <xsl:when test="md:displayForm"><xsl:value-of select="md:displayForm"/></xsl:when>
+			  <xsl:otherwise><xsl:value-of select="md:namePart[not(@*)]"/></xsl:otherwise>
                   </xsl:choose>
               </xsl:element>
               <xsl:call-template name="break_semicolon">
@@ -352,8 +352,8 @@ in the metadatasection of a landing page -->
                   <xsl:with-param name="cataloging_language" select="$cataloging_language"/>
 	  	</xsl:call-template>
 		<xsl:choose>
-                        <xsl:when test="md:displayForm"><xsl:value-of select="md:displayForm"/></xsl:when>
-                        <xsl:otherwise><xsl:apply-templates test="md:namePart"/></xsl:otherwise>
+			<xsl:when test="md:displayForm"><xsl:value-of select="md:displayForm"/></xsl:when>
+			<xsl:otherwise><xsl:value-of select="md:namePart[not(@*)]"/></xsl:otherwise>
                 </xsl:choose>
               </xsl:element>
             </xsl:for-each>
@@ -370,8 +370,8 @@ in the metadatasection of a landing page -->
                   <xsl:with-param name="cataloging_language" select="$cataloging_language"/>
 	  	</xsl:call-template>
 		<xsl:choose>
-                        <xsl:when test="md:displayForm"><xsl:value-of select="md:displayForm"/></xsl:when>
-                        <xsl:otherwise><xsl:apply-templates test="md:namePart"/></xsl:otherwise>
+			<xsl:when test="md:displayForm"><xsl:value-of select="md:displayForm"/></xsl:when>
+			<xsl:otherwise><xsl:value-of select="md:namePart[not(@*)]"/></xsl:otherwise>
                 </xsl:choose>
               </xsl:element>
             </xsl:for-each>
@@ -385,8 +385,8 @@ in the metadatasection of a landing page -->
               </xsl:if>
 	      <xsl:element name="dd">
 		<xsl:choose>
-                        <xsl:when test="md:displayForm"><xsl:value-of select="md:displayForm"/></xsl:when>
-                        <xsl:otherwise><xsl:apply-templates test="md:namePart"/></xsl:otherwise>
+			<xsl:when test="md:displayForm"><xsl:value-of select="md:displayForm"/></xsl:when>
+			<xsl:otherwise><xsl:value-of select="md:namePart[not(@*)]"/></xsl:otherwise>
                 </xsl:choose>      
                 <xsl:call-template name="render_residence"/>
                 <xsl:call-template name="break_semicolon">
