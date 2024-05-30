@@ -556,6 +556,18 @@ This xsl does the formatting of metadata for a landing page
               </xsl:element>
             </xsl:for-each>
 
+            <xsl:for-each select="md:mods/md:originInfo/md:edition">
+              <xsl:if test="position()=1">
+                <xsl:element name="dt">
+                  <strong xml:lang="en">Edition</strong>
+                  <strong xml:lang="da">Udgave</strong>
+                </xsl:element>
+              </xsl:if>
+              <xsl:element name="dd">
+                <xsl:value-of select="."/>
+              </xsl:element>
+            </xsl:for-each>
+
             <xsl:if test="md:mods/md:originInfo/md:dateCreated[@xml:lang]">
               <xsl:for-each select="md:mods/md:originInfo/md:dateCreated[@xml:lang]">
                 <xsl:if test="position()=1">
