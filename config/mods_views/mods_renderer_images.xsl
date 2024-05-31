@@ -981,6 +981,30 @@ in the metadatasection of a landing page -->
             </xsl:element>
           </xsl:for-each>
 
+          <xsl:for-each select="md:mods/md:note[@displayLabel='Incoporated as']">
+            <xsl:if test="position() = 1">
+              <xsl:element name="dt">
+                <strong xml:lang="en">Incorporated as</strong>
+                <strong xml:lang="da">Hjemtaget som</strong>
+              </xsl:element>
+              <xsl:element name="dd">
+                <xsl:value-of select="."/>
+              </xsl:element>
+            </xsl:if>
+          </xsl:for-each>
+
+          <xsl:for-each select="md:mods/md:note[@displayLabel='Incoporated by']">
+            <xsl:if test="position() = 1">
+              <xsl:element name="dt">
+                <strong xml:lang="en">Incorporated by</strong>
+                <strong xml:lang="da">Hjemtaget af</strong>
+              </xsl:element>
+              <xsl:element name="dd">
+                <xsl:value-of select="."/>
+              </xsl:element>
+            </xsl:if>
+          </xsl:for-each>
+
           <!-- a nude note without any decorations whatsoever -->
           <xsl:if test="md:mods/md:note[not(@type)]">
             <xsl:for-each select="md:mods/md:note[not(@type)]">
