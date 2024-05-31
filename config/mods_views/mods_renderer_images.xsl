@@ -781,8 +781,8 @@ in the metadatasection of a landing page -->
             <xsl:for-each select="md:mods/md:subject/md:cartographics/md:coordinates">
               <xsl:if test="position() = 1">
                 <xsl:element name="dt">
-                  <strong xml:lang="en">Coordinates</strong>
-                  <strong xml:lang="da">Koordinater</strong>
+                  <strong xml:lang="en">Georeference</strong>
+                  <strong xml:lang="da">Georeference</strong>
                 </xsl:element>
               </xsl:if>
               <xsl:element name="dd">
