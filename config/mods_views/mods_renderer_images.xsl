@@ -956,22 +956,27 @@ in the metadatasection of a landing page -->
                 <xsl:value-of select="."/>
               </xsl:element>
           </xsl:for-each>
-          
-          <xsl:for-each select="md:mods/md:subject[@displayLabel='TopographicalNumber']/md:geographicCode">
+
+          <xsl:for-each select="md:mods/md:relatedItem[@type='series']/md:titleInfo/md:title">
             <xsl:if test="position() = 1">
               <xsl:element name="dt">
-                <strong xml:lang="en">Topograhical Number</strong>
-                <strong xml:lang="da">Topografisk nummer</strong>
+                <strong xml:lang="en">Series title</strong>
+                <strong xml:lang="da">Serietitel</strong>
               </xsl:element>
             </xsl:if>
             <xsl:element name="dd">
-              <xsl:if test="@xml:lang">
-                <xsl:attribute name="lang">
-                  <xsl:call-template name="get_language">
-                    <xsl:with-param name="cataloging_language" select="$cataloging_language"/>
-                  </xsl:call-template>
-                </xsl:attribute>
-              </xsl:if>
+              <xsl:value-of select="."/>
+            </xsl:element>
+          </xsl:for-each>
+
+          <xsl:for-each select="md:mods/md:relatedItem[@type='series']/md:note[@displayLabel='Series Description']">
+            <xsl:if test="position() = 1">
+              <xsl:element name="dt">
+                <strong xml:lang="en">Series description</strong>
+                <strong xml:lang="da">Serie beskrivelse</strong>
+              </xsl:element>
+            </xsl:if>
+            <xsl:element name="dd">
               <xsl:value-of select="."/>
             </xsl:element>
           </xsl:for-each>
