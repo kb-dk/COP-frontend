@@ -239,7 +239,7 @@ da:
         add_show_field: 'Mods'
         cobject_not_before_dtsi: 'Tidligst'
         cobject_not_after_dtsi: 'Senest'
-        subject_person_ss: 'Person'  
+        subject_person_ssm: 'Person'  
       bookmarks:
         present: "I bogmærker"
         absent: "Bogmærke"

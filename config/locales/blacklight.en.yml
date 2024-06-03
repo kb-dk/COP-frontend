@@ -238,7 +238,7 @@ en:
         add_show_field: 'Mods'
         cobject_not_before_dtsi: 'Earliest'
         cobject_not_after_dtsi: 'Latest'
-        subject_person_ss: 'Person'  
+        subject_person_ssm: 'Person'  
       bookmarks:
         present: "In Bookmarks"
         absent: "Bookmark"
