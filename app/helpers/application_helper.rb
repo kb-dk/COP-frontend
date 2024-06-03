@@ -83,6 +83,13 @@ module ApplicationHelper
       query_params[:subj_id]
   end
 
+  def show_creator args
+    args[:document]['creator_tsim'].join("<br>").html_safe
+  end  
+
+  def show_subject_person args
+    args[:document]['subject_person_ssm'].join("<br>").html_safe
+  end  
 
 
 

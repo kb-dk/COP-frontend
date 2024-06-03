@@ -99,8 +99,8 @@ class CatalogController < ApplicationController
     # solr fields to be displayed in the index (search results) view
     #   The ordering of the field names is the order of the display
     #config.add_index_field 'cobject_title_ssi'
-    config.add_index_field 'creator_tsim'
-    config.add_index_field 'subject_person_ssm'
+    config.add_index_field 'creator_tsim', helper_method: :show_creator
+    config.add_index_field 'subject_person_ssm', helper_method: :show_subject_person
     config.add_index_field 'description_tsim'
     config.add_index_field 'pub_dat_display_tsi'
 
