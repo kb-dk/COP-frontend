@@ -12,7 +12,7 @@
 
 development:
   adapter: solr
-  url: <%= ENV['SOLR_URL'] || "http://index-test.kb.dk/solr/cop-editions" %>
+  url: <%= ENV['SOLR_URL'] || "http://cop-devel-01.kb.dk:50006/solr/cop-editions" %>
 test: &test
   adapter: solr
   url: <%= ENV['SOLR_URL'] || "http://127.0.0.1:#{ENV['TEST_JETTY_PORT'] || 8983}/solr/blacklight-core" %>
