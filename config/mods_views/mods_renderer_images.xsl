@@ -894,6 +894,20 @@ in the metadatasection of a landing page -->
             </xsl:for-each>
           </xsl:if>
 
+          <xsl:if test="md:mods/md:subject[@displayLabel='TopographicalNumber']/md:geographicCode">
+            <xsl:for-each select="md:mods/md:subject[@displayLabel='TopographicalNumber']/md:geographicCode">
+              <xsl:if test="position() = 1">
+                <xsl:element name="dt">
+                  <strong xml:lang="en">Topographical Number</strong>
+                  <strong xml:lang="da">Topografinummer</strong>
+                </xsl:element>
+              </xsl:if>
+              <xsl:element name="dd">
+                <xsl:value-of select="."/>
+              </xsl:element>
+            </xsl:for-each>
+          </xsl:if>
+
           <!-- Collection -->
           <xsl:if test="md:mods/md:relatedItem[@displayLabel='Collection']">
             <xsl:for-each select="md:mods/md:relatedItem[@displayLabel='Collection']">
