@@ -16,7 +16,7 @@
       <%#= content_tag(:span,"&hellip;".html_safe, class: "visible-sm visible-md") %>
       <span class="hidden-sm hidden-md">
         <%#= exhibit.description.slice(168, exhibit.description.length) %>
-        <%= if 'en'.eql?(params[:locale])
+        <%= if 'en'.eql?(params[:locale]) && edition.has_key?(:description_tesim)
               edition[:description_tesim].join(' ')
             else
               edition[:description_tdsim].join(' ')
