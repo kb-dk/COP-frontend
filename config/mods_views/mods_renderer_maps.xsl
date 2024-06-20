@@ -910,26 +910,6 @@ in the metadatasection of a landing page -->
             </xsl:if>
           </xsl:for-each>
 
-          <xsl:for-each select="md:mods/md:subject[@displayLabel='TopographicalNumber']/md:geographicCode">
-            <xsl:if test="position() = 1">
-              <xsl:element name="dt">
-                <strong xml:lang="en">Topograhical Number</strong>
-                <strong xml:lang="da">Topografisk nummer</strong>
-              </xsl:element>
-            </xsl:if>
-            <xsl:element name="dd">
-              <xsl:if test="@xml:lang">
-                <xsl:attribute name="lang">
-                  <xsl:call-template name="get_language">
-                    <xsl:with-param name="cataloging_language" select="$cataloging_language"/>
-                  </xsl:call-template>
-                </xsl:attribute>
-              </xsl:if>
-              <xsl:value-of select="."/>
-            </xsl:element>
-          </xsl:for-each>
-
-
           <!-- a nude note without any decorations whatsoever -->
           <xsl:if test="md:mods/md:note[not(@type)]">
             <xsl:for-each select="md:mods/md:note[not(@type)]">
