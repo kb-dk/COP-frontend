@@ -45,6 +45,7 @@ module ApplicationHelper
 
 
   def show_scaled_image(doc, opts)
+    return '' if doc['thumbnail_url_ssm'].nil?
     uri = doc['thumbnail_url_ssm'].first
     uri = uri.gsub(/(https?:\/\/)(.*)$/,"https://\\2")
     if uri[/ull\/[^\/]*?/]
