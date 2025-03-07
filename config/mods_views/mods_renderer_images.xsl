@@ -740,7 +740,7 @@ in the metadatasection of a landing page -->
 
               <!-- START Topic -->
               <xsl:element name="dd">
-                <xsl:attribute name="lang">
+                <xsl:attribute name="xml:lang">
                   <xsl:call-template name="get_language">
                     <xsl:with-param name="cataloging_language" select="$cataloging_language"/>
                   </xsl:call-template>
