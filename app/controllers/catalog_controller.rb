@@ -130,7 +130,7 @@ class CatalogController < ApplicationController
     config.add_search_field 'all_fields', label: 'Fritekst' do |field|
       # Free text search in these fields: title, creator, description
       field.solr_parameters = {
-          :qf => 'local_id_fngsi^100 cobject_title_ssi^100 full_title_tsi^90 creator_tsim^80 description_tsim^50 pub_dat_tsi^40 readable_dat_string_tsim^40 type_tdsim^30 dc_type_ssim^30 subject_tdsim^30 subject_tesim^30 coverage_tdsim^30  shelf_mark_tdsim^20 subject_topic_facet_tdsim^20 subject_topic_facet_tesim^20'
+          :qf => 'local_id_fngsi^100 cobject_title_ssi^100 full_title_tsi^90 creator_tsim^80 description_tsim^50 pub_dat_tsi^40 readable_dat_string_tsim^40 type_tdsim^30 dc_type_ssim^30 subject_tdsim^30 subject_tesim^30 subject_tsim^30 coverage_tdsim^30  shelf_mark_tdsim^20 subject_topic_facet_tdsim^20 subject_topic_facet_tesim^20 '
       }
     end
 
@@ -167,6 +167,13 @@ class CatalogController < ApplicationController
       field.solr_parameters = {
           qf: 'cobject_location_tsim',
           pf: 'cobject_location_tsim'
+      }
+    end
+
+    config.add_search_field 'subject', label: 'Emne' do |field|
+      field.solr_parameters = {
+          qf: 'subject_tsim subject_tdsim subject_tesim',
+          pf: 'subject_tsim subject_tdsim subject_tesim'
       }
     end
 
