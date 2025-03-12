@@ -51,7 +51,8 @@ module ApplicationHelper
     if uri[/ull\/[^\/]*?/]
       uri = uri.gsub(/full\/[^\/]*?\//,'full/!225,/')
     end
-    img_tag = image_tag(URI(uri))
+    # what if uri is even sicker than having space?
+    img_tag = image_tag(uri)
     return img_tag
   end
 
