@@ -79,6 +79,14 @@ From the repository:
 rbenv install 2.6.5
 ```
 
+You might run into problems here if you're on a newer version of Ubuntu (26.04 or above). To remove the errors, do this intall instead:
+
+```bash
+export CFLAGS="-std=gnu11 -Wno-error=incompatible-pointer-types"
+export RUBY_CONFIGURE_OPTS="--disable-jit-support"
+rbenv install 2.6.5
+```
+
 If it is already installed, this step can be skipped.
 
 Set Ruby 2.6.5 as the Ruby version for **this project only**:
@@ -132,6 +140,13 @@ Bundler version 1.17.2
 From the repository root:
 
 ```bash
+bundle _1.17.2_ install
+```
+
+Again, on newer Ubuntus (26.04 and above), you might run into problems here. If you do, you should run the install command with the following flags:
+
+```bash
+bundle config build.sqlite3 --with-cflags="-Wno-error=incompatible-pointer-types -Wno-error=int-conversion -std=gnu99"
 bundle _1.17.2_ install
 ```
 
