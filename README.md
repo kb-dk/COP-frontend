@@ -160,7 +160,7 @@ You normally only need to do this once, unless new migrations are added.
 Start the Rails development server:
 
 ```bash
-bundle exec rails server
+bundle _1.17.2_ exec rails server
 ```
 
 You should see something similar to:
