@@ -30,6 +30,10 @@ en:
       info: 'Ask the library'
       link: 'https://www.kb.dk/en/ask-library'
 
+    accessability_link:
+      info: 'Accessability statement'
+      link: 'https://was.digst.dk/digitalesamlinger-kb-dk'
+
     welcome: 'Welcome!'
     and: 'and'
     or: 'or'

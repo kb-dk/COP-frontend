@@ -29,7 +29,10 @@ da:
     footer_links:
       info: 'Spoerg biblioteket'
       link: 'https://www.kb.dk/spoerg-biblioteket'
-
+    
+    accessability_link:
+      info: 'Tilgængelighedserklæring'
+      link: 'https://was.digst.dk/digitalesamlinger-kb-dk'
 
     welcome: 'Velkommen!'
     and: 'og'
