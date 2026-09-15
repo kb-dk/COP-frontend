@@ -95,6 +95,17 @@ Set Ruby 2.6.5 as the Ruby version for **this project only**:
 rbenv local 2.6.5
 ```
 
+If you're using a newer Ubuntu version (26.04 or newer), you may need to add rbenv to your PATH manually in ~/.bashrc:
+
+```bash
+export PATH="$HOME/.rbenv/bin:$PATH"
+```
+After adding it, reload your shell configuration:
+
+```bash
+source ~/.bashrc
+```
+
 This creates a `.ruby-version` file.
 
 Verify:
