@@ -14,6 +14,27 @@ The application consists primarily of:
 * **Puma 4.3.12** — development web server
 * **SQLite** — local Rails development database
 
+## Run with Docker (recommended for development)
+
+Everything (Ruby 2.6.5, Bundler 1.17.2, all gems and native build deps) is installed in the image; you only need Docker with Compose.
+
+```bash
+docker compose --file docker/compose.yaml up --build
+```
+
+Open http://localhost:3000. The source is bind-mounted, so edits are picked up without a restart (allow a few seconds). Migrations run automatically on start.
+
+* **Solr**: by default the app uses the KB-internal `cop-devel-01.kb.dk` Solr, so you must be on the KB network/VPN. Point elsewhere with `SOLR_URL=http://host:port/solr/core docker compose --file docker/compose.yaml up`.
+* **Port taken?** `COP_PORT=3001 docker compose --file docker/compose.yaml up` publishes on another host port.
+* **After changing `Gemfile`/`Gemfile.lock`**: `docker compose --file docker/compose.yaml build`.
+* **Rails console**: `docker compose --file docker/compose.yaml exec web bin/rails console`.
+* **byebug**: run `docker compose --file docker/compose.yaml up -d`, then `docker compose --file docker/compose.yaml attach web` (detach with `Ctrl-p Ctrl-q`).
+* **Reset the dev database**: `docker compose --file docker/compose.yaml run --rm web bin/rails db:reset`.
+* **Shorter commands**: `export COMPOSE_FILE=docker/compose.yaml` in the repo root lets you drop `--file docker/compose.yaml`.
+* The image is `linux/amd64` only (`therubyracer`'s libv8 has no ARM build); on ARM machines it runs under emulation.
+
+The manual setup below is the alternative to Docker.
+
 ## Requirements
 
 The repository is an older Rails application and requires specific versions of Ruby and Bundler.

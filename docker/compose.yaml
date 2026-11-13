@@ -1,0 +1,32 @@
+# Without an explicit name Compose uses the directory name ("docker"), which collides with other repos using the same layout.
+name: cop-frontend
+
+services:
+  web:
+    image: cop-frontend/master:latest
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+      args:
+        UID: "${UID:-1000}"
+        GID: "${GID:-1000}"
+    # libv8 (therubyracer) only has a prebuilt binary for x86_64.
+    platform: linux/amd64
+    ports:
+      - "${COP_PORT:-3000}:3000"
+    environment:
+      # Passed through only when set on the host; an empty value would override the default Solr URL.
+      - SOLR_URL
+      - RAILS_POLL_FILES=1
+    networks:
+      - cop_frontend_network
+    volumes:
+      - ..:/app
+    # Lets `docker compose attach web` reach byebug breakpoints.
+    stdin_open: true
+    tty: true
+
+networks:
+  cop_frontend_network:
+    name: cop_frontend_network
+    driver: bridge
