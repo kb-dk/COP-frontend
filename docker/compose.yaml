@@ -3,6 +3,7 @@ name: cop-frontend
 
 services:
   web:
+    image: cop-frontend/master:latest
     build:
       context: ..
       dockerfile: docker/Dockerfile
@@ -17,8 +18,15 @@ services:
       # Passed through only when set on the host; an empty value would override the default Solr URL.
       - SOLR_URL
       - RAILS_POLL_FILES=1
+    networks:
+      - cop_frontend_network
     volumes:
       - ..:/app
     # Lets `docker compose attach web` reach byebug breakpoints.
     stdin_open: true
     tty: true
+
+networks:
+  cop_frontend_network:
+    name: cop_frontend_network
+    driver: bridge
